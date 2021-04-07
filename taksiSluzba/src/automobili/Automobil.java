@@ -7,7 +7,7 @@ public class Automobil extends Vozaci {
     protected String proizvodjac;
     protected String godinaProizvodnje;
     protected String registracija;
-//    protected VrstaAutomobila tipAutomobila;
+    protected VrstaAutomobila tipAutomobila;
 
 
     public Automobil() {
@@ -16,14 +16,16 @@ public class Automobil extends Vozaci {
         this.proizvodjac = "";
         this.godinaProizvodnje = "";
         this.registracija = "";
+//        this.tipAutomobila = "";
     }
 
-    public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija) {
+    public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, VrstaAutomobila tipAutomobila) {
         this.brojTaksiVozila = brojTaksiVozila;
         this.model = model;
         this.proizvodjac = proizvodjac;
         this.godinaProizvodnje = godinaProizvodnje;
         this.registracija = registracija;
+        this.tipAutomobila = tipAutomobila;
     }
 
     @Override
