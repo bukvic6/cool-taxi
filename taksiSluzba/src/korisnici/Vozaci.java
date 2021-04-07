@@ -4,17 +4,22 @@ import automobili.Automobil;
 public class Vozaci extends Korisnik {
     private String brojClanskeKarte;
     private double plata;
-    private Automobil taksi;
 
-
-    public Vozaci() {
-        super();
-        this.brojClanskeKarte = "";
-        this.plata = 0;
-        this.taksi = new Automobil();
+    public Automobil getTaksi() {
+        return taksi;
     }
 
-    public Vozaci(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, String brojClanskeKarte, double plata, Automobil taksi) {
+    public void setTaksi(Automobil taksi) {
+        this.taksi = taksi;
+    }
+
+    private Automobil taksi;
+
+    public Vozaci() {
+    }
+
+    public Vozaci(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa,
+                  String pol, String brojTelefona, String brojClanskeKarte, double plata, Automobil taksi) {
         super(jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.brojClanskeKarte = brojClanskeKarte;
         this.plata = plata;

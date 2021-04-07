@@ -11,14 +11,6 @@ public abstract class Korisnik {
     protected String brojTelefona;
 
     public Korisnik() {
-        this.jmbg = "";
-        this.korisnickoIme = "";
-        this.lozinka = "";
-        this.ime = "";
-        this.prezime = "";
-        this.adresa = "";
-        this.pol = "";
-        this.brojTelefona = "";
     }
 
     public Korisnik(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona) {

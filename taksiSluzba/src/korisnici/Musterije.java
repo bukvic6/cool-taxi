@@ -6,8 +6,6 @@ public class Musterije extends Korisnik{
     protected Voznja poruzbina;
 
     public Musterije() {
-        super();
-        this.poruzbina = new Voznja();
     }
 
     public Musterije(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, Voznja poruzbina) {

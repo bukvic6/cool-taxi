@@ -13,13 +13,6 @@ public class Voznja {
     protected Vozaci vozac;
 
     public Voznja() {
-//        this.vremePorudzbine = "";
-        this.adresaPolaska = "";
-        this.adresaDestinacije = "";
-//        this.status = "";
-        this.trajanjeVoznje = "";
-        this.musterija = new Musterije();
-        this.vozac = new Vozaci();
     }
 
     public Voznja(LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, Musterije musterija, Vozaci vozac) {

@@ -2,7 +2,12 @@ package cooltaxi;
 import automobili.Automobil;
 import automobili.VrstaAutomobila;
 import korisnici.Dispeceri;
+import korisnici.Musterije;
 import korisnici.Vozaci;
+import porudzbina.StatusVoznje;
+import porudzbina.Voznja;
+
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,9 +18,9 @@ public class Main {
 
         Vozaci vozac1 = new Vozaci("23242","todor123","todor123","todor","popovic",
                 "seljackihbuna","muski","235352","324",32,
-                new Automobil("1","2","3","34","ns", VrstaAutomobila.PUTNICKO_VOZILO));
-        System.out.println(vozac1);
+                new Automobil("1","Opel","a","2010","ns", VrstaAutomobila.PUTNICKO_VOZILO));
 
+        System.out.println(vozac1);
     }
 
 
