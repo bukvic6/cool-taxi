@@ -3,7 +3,7 @@ package korisnici;
 public class Dispeceri extends Korisnik {
     private double plata;
     private String brojTelefonskeLinije;
-    protected Odeljenje odeljenje;
+    private Odeljenje odeljenje;
 
     public Dispeceri(){
     }
