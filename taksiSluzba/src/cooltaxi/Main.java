@@ -26,6 +26,11 @@ public class Main {
 //                new Automobil("1","Opel","a","2010","ns", VrstaAutomobila.PUTNICKO_VOZILO));
 //
 //        System.out.println(vozac1);
+        Preduzece CoolTaxi = new Preduzece();
+        CoolTaxi.setPIB("3846296229");
+        CoolTaxi.setAdresa("Todora Toze Jovanovica 13");
+        CoolTaxi.setNaziv("Cool Taxi");
+        System.out.println(CoolTaxi);
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Unesite korisnicko ime: ");

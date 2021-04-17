@@ -43,10 +43,9 @@ public class Preduzece {
 
     @Override
     public String toString() {
-        return "Preduzece{" +
-                "PIB='" + PIB + '\'' +
-                ", naziv='" + naziv + '\'' +
-                ", adresa='" + adresa + '\'' +
-                '}';
+        return "Preduzece: " +
+                "PIB= '" + PIB + '\'' +
+                ", naziv= '" + naziv + '\'' +
+                ", adresa= '" + adresa + '\'';
     }
 }
