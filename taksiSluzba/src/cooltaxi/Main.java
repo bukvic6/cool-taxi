@@ -16,6 +16,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
+        String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
+        String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
+
 //        Dispeceri dispeceri1 = new Dispeceri("232323","milica123", "bukvic123", "milica",
 //                "bukivc","nizijska","zenski","32324",233,"23233");
 //
@@ -26,6 +30,9 @@ public class Main {
 //                new Automobil("1","Opel","a","2010","ns", VrstaAutomobila.PUTNICKO_VOZILO));
 //
 //        System.out.println(vozac1);
+        io.ucitajKorisnike(korisniciTXT);
+        io.ucitajAutomobil(automobiliTXT);
+        io.ucitajVoznju(voznjaTXT);
         Preduzece CoolTaxi = new Preduzece();
         CoolTaxi.setPIB("3846296229");
         CoolTaxi.setAdresa("Todora Toze Jovanovica 13");
@@ -42,7 +49,7 @@ public class Main {
         scanner.close();
 
         if(login(username, password)) {
-            System.out.println("Login OK.");
+            System.out.println("Dobrodosli " + username);
         }else {
             System.out.println("Pogresni login podaci, pokusajte ponovo.");
         }

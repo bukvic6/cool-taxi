@@ -8,7 +8,7 @@ public class Musterije extends Korisnik{
     public Musterije() {
     }
 
-    public Musterije(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, Voznja poruzbina) {
+    public Musterije(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, Voznja poruzbina) {
         super(jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.poruzbina = poruzbina;
     }

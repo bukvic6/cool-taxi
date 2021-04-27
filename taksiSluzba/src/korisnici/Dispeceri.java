@@ -8,7 +8,7 @@ public class Dispeceri extends Korisnik {
     public Dispeceri(){
     }
 
-    public Dispeceri(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, double plata, String brojTelefonskeLinije) {
+    public Dispeceri(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije) {
         super(jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.plata = plata;
         this.brojTelefonskeLinije = brojTelefonskeLinije;

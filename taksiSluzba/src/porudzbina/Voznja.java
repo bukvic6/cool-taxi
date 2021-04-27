@@ -10,19 +10,21 @@ public class Voznja {
     protected String adresaDestinacije;
     protected StatusVoznje status;
     protected String trajanjeVoznje;
+    protected double brojKM;
     protected Musterije musterija;
     protected Vozaci vozac;
 
     public Voznja() {
     }
 
-    public Voznja(int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, Musterije musterija, Vozaci vozac) {
+    public Voznja(int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, Musterije musterija, Vozaci vozac) {
         this.id = id;
         this.vremePorudzbine = vremePorudzbine;
         this.adresaPolaska = adresaPolaska;
         this.adresaDestinacije = adresaDestinacije;
         this.status = status;
         this.trajanjeVoznje = trajanjeVoznje;
+        this.brojKM = brojKM;
         this.musterija = musterija;
         this.vozac = vozac;
     }
@@ -73,6 +75,14 @@ public class Voznja {
 
     public void setTrajanjeVoznje(String trajanjeVoznje) {
         this.trajanjeVoznje = trajanjeVoznje;
+    }
+
+    public double getBrojKM() {
+        return brojKM;
+    }
+
+    public void setBrojKM(double brojKM) {
+        this.brojKM = brojKM;
     }
 
     public Musterije getMusterija() {
