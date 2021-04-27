@@ -4,6 +4,7 @@ import korisnici.Vozaci;
 import java.time.LocalDateTime;
 
 public class Voznja {
+    protected int id;
     protected LocalDateTime vremePorudzbine;
     protected String adresaPolaska;
     protected String adresaDestinacije;
@@ -15,7 +16,8 @@ public class Voznja {
     public Voznja() {
     }
 
-    public Voznja(LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, Musterije musterija, Vozaci vozac) {
+    public Voznja(int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, Musterije musterija, Vozaci vozac) {
+        this.id = id;
         this.vremePorudzbine = vremePorudzbine;
         this.adresaPolaska = adresaPolaska;
         this.adresaDestinacije = adresaDestinacije;
@@ -23,6 +25,14 @@ public class Voznja {
         this.trajanjeVoznje = trajanjeVoznje;
         this.musterija = musterija;
         this.vozac = vozac;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDateTime getVremePorudzbine() {
@@ -84,7 +94,8 @@ public class Voznja {
     @Override
     public String toString() {
         return "Voznja{" +
-                "vremePorudzbine=" + vremePorudzbine +
+                "id=" + id +
+                ", vremePorudzbine=" + vremePorudzbine +
                 ", adresaPolaska='" + adresaPolaska + '\'' +
                 ", adresaDestinacije='" + adresaDestinacije + '\'' +
                 ", status=" + status +

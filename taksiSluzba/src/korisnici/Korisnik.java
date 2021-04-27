@@ -7,13 +7,13 @@ public abstract class Korisnik {
     protected String ime;
     protected String prezime;
     protected String adresa;
-    protected String pol;
+    protected Pol pol;
     protected String brojTelefona;
 
     public Korisnik() {
     }
 
-    public Korisnik(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona) {
+    public Korisnik(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
         this.jmbg = jmbg;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
@@ -72,11 +72,11 @@ public abstract class Korisnik {
         this.adresa = adresa;
     }
 
-    public String getPol() {
+    public Pol getPol() {
         return pol;
     }
 
-    public void setPol(String pol) {
+    public void setPol(Pol pol) {
         this.pol = pol;
     }
 

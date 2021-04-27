@@ -1,0 +1,3 @@
+vozac|2603998905078|petarp|12345|Petar|Petrovic|Nizijska 12|MUSKI|0633293829
+musterija|2005998805045|jovanaj|54321|Jovana|Jovanovic|Seljackih Buna 23|ZENSKO|0613939329
+dispecer|1403998305034|milanM|23312|Milan|Milanovic|Durmitorska 12|0623938921
