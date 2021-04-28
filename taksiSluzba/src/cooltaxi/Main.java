@@ -3,6 +3,7 @@ import automobili.Automobil;
 import automobili.VrstaAutomobila;
 import korisnici.Dispeceri;
 import korisnici.Musterije;
+import korisnici.Pol;
 import korisnici.Vozaci;
 import porudzbina.StatusVoznje;
 import porudzbina.Voznja;
@@ -14,11 +15,13 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+import static cooltaxi.io.*;
+
 public class Main {
     public static void main(String[] args) {
-        String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
-        String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
-        String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
+//        String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
+//        String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
+//        String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
 
 //        Dispeceri dispeceri1 = new Dispeceri("232323","milica123", "bukvic123", "milica",
 //                "bukivc","nizijska","zenski","32324",233,"23233");
@@ -33,18 +36,45 @@ public class Main {
         io.ucitajKorisnike(korisniciTXT);
         io.ucitajAutomobil(automobiliTXT);
         io.ucitajVoznju(voznjaTXT);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Unesite jmbg: ");
+        String jmbg = scanner.nextLine();
+
+        System.out.print("Unesite korisnicko ime: ");
+        String korisnickoIme = scanner.nextLine();
+
+        System.out.print("Unesite sifru: ");
+        String sifra = scanner.nextLine();
+
+        System.out.print("Unesite ime: ");
+        String ime = scanner.nextLine();
+
+        System.out.print("Unesite prezime: ");
+        String prezime = scanner.nextLine();
+
+        System.out.print("Unesite adresa: ");
+        String adresa = scanner.nextLine();
+
+        System.out.print("Unesite pol: ");
+        Pol pol = Pol.valueOf(scanner.nextLine());
+
+        System.out.print("Unesite broj telefona: ");
+        String brojTelefona = scanner.nextLine();
+
+        io.registracija(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona);
+
         Preduzece CoolTaxi = new Preduzece();
         CoolTaxi.setPIB("3846296229");
         CoolTaxi.setAdresa("Todora Toze Jovanovica 13");
         CoolTaxi.setNaziv("Cool Taxi");
         System.out.println(CoolTaxi);
-        Scanner scanner = new Scanner(System.in);
+        Scanner skener = new Scanner(System.in);
 
         System.out.print("Unesite korisnicko ime: ");
-        String username = scanner.nextLine();
+        String username = skener.nextLine();
 
         System.out.print("Unesite sifru: ");
-        String password = scanner.nextLine();
+        String password = skener.nextLine();
 
         scanner.close();
 

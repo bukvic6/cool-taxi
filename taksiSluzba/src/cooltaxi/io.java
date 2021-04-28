@@ -2,13 +2,16 @@ package cooltaxi;
 
 
 import java.io.*;
+import java.util.Scanner;
 
 import korisnici.Pol;
 
 
 public class io {
 
-    private static String korisniciTXT;
+    static String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
+    static String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
+    static String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
 
     public static String ucitajKorisnike(String putanjaFajla) {
         File file = new File(putanjaFajla);
@@ -22,32 +25,27 @@ public class io {
             while ((line = reader.readLine()) != null) {
                 sadrzaj += line+ "\n";
 
+                String[] lineSplit = line.split("\\|");
 
-//
-//                String[] lineSplit = line.split("\\|");
-//
-//                String uloga = lineSplit[0];
-//                String jmgb = lineSplit[1];
-//                String korisnickoIme = lineSplit[2];
-//                String sifra = lineSplit[3];
-//                String ime = lineSplit[4];
-//                String prezime = lineSplit[5];
-//                String adresa = lineSplit[6];
-//                String brojTelefona = lineSplit[7];
-//
-//                System.out.println("Uspesno je ucitan korisnik: " + ime + " " + prezime);
+                String uloga = lineSplit[0];
+                String jmgb = lineSplit[1];
+                String korisnickoIme = lineSplit[2];
+                String sifra = lineSplit[3];
+                String ime = lineSplit[4];
+                String prezime = lineSplit[5];
+                String adresa = lineSplit[6];
+                String brojTelefona = lineSplit[7];
+
+                System.out.println("Uspesno je ucitan korisnik: " + ime + " " + prezime);
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
-
         }
         return sadrzaj;
     }
-    public static void registracija(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, Pol pol, String brojTelefona){
+    public static void registracija(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
         String ucitaniKorisnici = ucitajKorisnike(korisniciTXT);
-        String noviKorisnik = "\n"+"musterija" +"|"+ jmbg +"|"+ korisnickoIme +"|"+sifra +"|"+ ime +"|"+ prezime +"|"+ adresa+"|"+brojTelefona;
-
-
+        String noviKorisnik = "musterija" + "|" + jmbg + "|" + korisnickoIme + "|" + sifra + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona;
         try {
             File korisniciFile = new File(korisniciTXT);
             BufferedWriter writer = new BufferedWriter(new FileWriter(korisniciFile));
@@ -57,7 +55,6 @@ public class io {
         }catch(IOException e) {
             System.out.println("Greska prilikom upisa u datoteku");
         }
-
     }
 
     public static void ucitajAutomobil(String putanjaFajla) {
