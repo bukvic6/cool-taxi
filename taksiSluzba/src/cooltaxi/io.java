@@ -56,15 +56,33 @@ public class io {
             System.out.println("Greska prilikom upisa u datoteku");
         }
     }
+    public static void upisAutomobila() {
+        String ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
+        String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra"+ "|" + "2010"+ "|" +"ns232ms"+ "|" +"PUTNICKO_VOZILO";
+        try {
+            File autobomiliFile = new File(automobiliTXT);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(autobomiliFile));
+            writer.write(ucitaniAutomobili + noviAutomobil);
+            writer.close();
+            System.out.println("Uspesno ste se dodali automobil!");
+        }catch(IOException e) {
+            System.out.println("Greska prilikom upisa u datoteku");
+        }
+    }
 
-    public static void ucitajAutomobil(String putanjaFajla) {
+ 
+
+    public static String ucitajAutomobil(String putanjaFajla) {
         File file = new File(putanjaFajla);
+        String sadrzaj = "";
+
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
             while ((line = reader.readLine()) != null) {
+                sadrzaj += line+ "\n";
 
                 String[] lineSplit = line.split("\\|");
 
@@ -79,8 +97,9 @@ public class io {
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
-            return;
+
         }
+        return sadrzaj;
     }
     public static void ucitajVoznju(String putanjaFajla) {
         File file = new File(putanjaFajla);

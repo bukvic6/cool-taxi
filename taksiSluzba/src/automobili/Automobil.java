@@ -10,7 +10,7 @@ public class Automobil extends Vozaci {
     private VrstaAutomobila tipAutomobila;
 
 
-    public Automobil() {
+    public Automobil(String ddsd, String opel, String mazda, String godinaProizvodnje, String ns122ns, String putnicko_vozilo) {
     }
 
     public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, VrstaAutomobila tipAutomobila) {

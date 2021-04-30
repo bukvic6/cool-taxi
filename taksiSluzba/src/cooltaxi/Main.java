@@ -1,18 +1,11 @@
 package cooltaxi;
+
 import automobili.Automobil;
 import automobili.VrstaAutomobila;
-import korisnici.Dispeceri;
-import korisnici.Musterije;
 import korisnici.Pol;
-import korisnici.Vozaci;
-import porudzbina.StatusVoznje;
 import porudzbina.Voznja;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDateTime;
+import java.io.*;
 import java.util.Scanner;
 
 import static cooltaxi.io.*;
@@ -33,9 +26,14 @@ public class Main {
 //                new Automobil("1","Opel","a","2010","ns", VrstaAutomobila.PUTNICKO_VOZILO));
 //
 //        System.out.println(vozac1);
+
+//        Automobil automobil =new Automobil("ddsd","opel","mazda","2010","ns122ns","PUTNICKO VOZILO");
+        io.upisAutomobila();
+
         io.ucitajKorisnike(korisniciTXT);
         io.ucitajAutomobil(automobiliTXT);
         io.ucitajVoznju(voznjaTXT);
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Unesite jmbg: ");
         String jmbg = scanner.nextLine();
@@ -63,6 +61,8 @@ public class Main {
 
         io.registracija(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona);
 
+
+
         Preduzece CoolTaxi = new Preduzece();
         CoolTaxi.setPIB("3846296229");
         CoolTaxi.setAdresa("Todora Toze Jovanovica 13");
@@ -85,6 +85,7 @@ public class Main {
         }
 
     }
+
 
     public static boolean login(String username, String password) {
         try {

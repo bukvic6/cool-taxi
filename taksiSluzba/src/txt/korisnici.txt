@@ -1,3 +1,7 @@
 vozac|2603998905078|petarp|12345|Petar|Petrovic|Nizijska 12|MUSKI|0633293829
 musterija|2005998805045|jovanaj|54321|Jovana|Jovanovic|Seljackih Buna 23|ZENSKO|0613939329
 dispecer|1403998305034|milanM|23312|Milan|Milanovic|Durmitorska 12|MUSKO|0623938921
+musterija|4235345|dsfsdf|dsfsdf|asdas|asgsfg|sdfsdf|MUSKI|42342342
+musterija|23423423|3534|fsdf|dfsdfd|dfsdf|fsdfs|MUSKI|4234234
+musterija|fdfsd|fsdfs|sdfsdfs|d|sadasdas|sdadad|MUSKI|dssf
+musterija|jhdjshdj|edwef|wdedww|eferfg|dweferfg|dedfef|MUSKI|wshdjkj
