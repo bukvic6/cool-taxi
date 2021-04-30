@@ -71,7 +71,7 @@ public class io {
     }
     public static void upisVoznje() {
         String ucitaneVoznje = ucitajVoznju(voznjaTXT);
-        String novaVoznja = "100004"+ "|" + "2021-05-21T05:47:08.644"+ "|" + "Nizijska 14"+ "|" + "Gazimestanska 8a"+ "|" +"KREIRANA"+ "|" +"12" + "|"+"2" + "|"+ "marko" + "|" +"milan";
+        String novaVoznja = "100004"+ "|" + "2023-05-21T23:47:08.432"+ "|" + "Ulica br1 14"+ "|" + "Ulica broj 2"+ "|" +"KREIRANA"+ "|" +"15" + "|"+"2" + "|"+ "marko" + "|" +"milan";
         try {
             File voznjaFile = new File(voznjaTXT);
             BufferedWriter writer = new BufferedWriter(new FileWriter(voznjaFile));
