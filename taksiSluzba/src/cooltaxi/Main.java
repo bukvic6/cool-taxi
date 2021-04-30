@@ -29,6 +29,7 @@ public class Main {
 
 //        Automobil automobil =new Automobil("ddsd","opel","mazda","2010","ns122ns","PUTNICKO VOZILO");
         io.upisAutomobila();
+        io.upisVoznje();
 
         io.ucitajKorisnike(korisniciTXT);
         io.ucitajAutomobil(automobiliTXT);

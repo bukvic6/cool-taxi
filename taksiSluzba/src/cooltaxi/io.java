@@ -69,8 +69,21 @@ public class io {
             System.out.println("Greska prilikom upisa u datoteku");
         }
     }
+    public static void upisVoznje() {
+        String ucitaneVoznje = ucitajVoznju(voznjaTXT);
+        String novaVoznja = "100004"+ "|" + "2021-05-21T05:47:08.644"+ "|" + "Nizijska 14"+ "|" + "Gazimestanska 8a"+ "|" +"KREIRANA"+ "|" +"12" + "|"+"2" + "|"+ "marko" + "|" +"milan";
+        try {
+            File voznjaFile = new File(voznjaTXT);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(voznjaFile));
+            writer.write(ucitaneVoznje + novaVoznja);
+            writer.close();
+            System.out.println("Uspesno ste se dodali voznju!");
+        }catch(IOException e) {
+            System.out.println("Greska prilikom upisa u datoteku");
+        }
+    }
 
- 
+
 
     public static String ucitajAutomobil(String putanjaFajla) {
         File file = new File(putanjaFajla);
@@ -101,14 +114,16 @@ public class io {
         }
         return sadrzaj;
     }
-    public static void ucitajVoznju(String putanjaFajla) {
+    public static String ucitajVoznju(String putanjaFajla) {
         File file = new File(putanjaFajla);
+        String sadrzaj = "";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
             while ((line = reader.readLine()) != null) {
+                sadrzaj += line+ "\n";
 
                 String[] lineSplit = line.split("\\|");
 
@@ -126,7 +141,8 @@ public class io {
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
-            return;
+
         }
+        return sadrzaj;
     }
 }
