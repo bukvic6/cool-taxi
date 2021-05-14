@@ -9,8 +9,7 @@ public class Automobil extends Vozaci {
     private String registracija;
     private VrstaAutomobila tipAutomobila;
 
-
-    public Automobil(String ddsd, String opel, String mazda, String godinaProizvodnje, String ns122ns, String putnicko_vozilo) {
+    public Automobil() {
     }
 
     public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, VrstaAutomobila tipAutomobila) {
@@ -20,6 +19,21 @@ public class Automobil extends Vozaci {
         this.godinaProizvodnje = godinaProizvodnje;
         this.registracija = registracija;
         this.tipAutomobila = tipAutomobila;
+    }
+
+    public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, String vrstaAutomobila) {
+        this.brojTaksiVozila = brojTaksiVozila;
+        this.model = model;
+        this.proizvodjac = proizvodjac;
+        this.godinaProizvodnje = godinaProizvodnje;
+        this.registracija = registracija;
+        if (vrstaAutomobila.equals("PUTNICKO_VOZILO")){
+            this.tipAutomobila = VrstaAutomobila.PUTNICKO_VOZILO;
+        }else if (vrstaAutomobila.equals("KOMBI_VOZILO")) {
+            this.tipAutomobila = VrstaAutomobila.KOMBI_VOZILO;
+        } else {
+            throw new IllegalArgumentException("Ne postoji tip vozila " + vrstaAutomobila);
+        }
     }
 
     public String getBrojTaksiVozila() {
@@ -72,12 +86,6 @@ public class Automobil extends Vozaci {
 
     @Override
     public String toString() {
-        return "Automobil{" +
-                "brojTaksiVozila='" + brojTaksiVozila + '\'' +
-                ", model='" + model + '\'' +
-                ", proizvodjac='" + proizvodjac + '\'' +
-                ", godinaProizvodnje='" + godinaProizvodnje + '\'' +
-                ", registracija='" + registracija + '\'' +
-                '}';
+        return "A"+brojTaksiVozila + "|" + model + "|" + proizvodjac + "|" + godinaProizvodnje + "|" + registracija + "|" + tipAutomobila + "\n";
     }
 }

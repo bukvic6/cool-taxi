@@ -4,15 +4,6 @@ import automobili.Automobil;
 public class Vozaci extends Korisnik {
     private String brojClanskeKarte;
     private double plata;
-
-    public Automobil getTaksi() {
-        return taksi;
-    }
-
-    public void setTaksi(Automobil taksi) {
-        this.taksi = taksi;
-    }
-
     private Automobil taksi;
 
     public Vozaci() {
@@ -24,6 +15,25 @@ public class Vozaci extends Korisnik {
         this.brojClanskeKarte = brojClanskeKarte;
         this.plata = plata;
         this.taksi = taksi;
+    }
+
+    public Vozaci(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, String pol, String brojTelefona, String clanskaKarta, String plata) {
+        this.jmbg = jmbg;
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = sifra;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.adresa = adresa;
+        if (pol.equals("MUSKI")){
+            this.pol = Pol.MUSKI;
+        } else if (pol.equals("ZENSKI")) {
+            this.pol = Pol.ZENSKI;
+        } else {
+            throw new IllegalArgumentException("Pol " + pol + " ne postoji");
+        }
+        this.brojTelefona = brojTelefona;
+        this.brojClanskeKarte = clanskaKarta;
+        this.plata = Double.parseDouble(plata);
     }
 
     public String getBrojClanskeKarte() {
@@ -42,20 +52,16 @@ public class Vozaci extends Korisnik {
         this.plata = plata;
     }
 
+    public Automobil getTaksi() {
+        return taksi;
+    }
+
+    public void setTaksi(Automobil taksi) {
+        this.taksi = taksi;
+    }
+
     @Override
     public String toString() {
-        return "vozaci{" +
-                "jmbg='" + jmbg + '\'' +
-                ", korisnickoIme='" + korisnickoIme + '\'' +
-                ", lozinka='" + lozinka + '\'' +
-                ", ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", adresa='" + adresa + '\'' +
-                ", pol='" + pol + '\'' +
-                ", brojTelefona='" + brojTelefona + '\'' +
-                ", brojClanskeKarte='" + brojClanskeKarte + '\'' +
-                ", plata=" + plata +
-                ", taksi=" + taksi +
-                '}';
+        return jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|" + plata + "\n";
     }
 }

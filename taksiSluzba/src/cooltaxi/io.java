@@ -2,9 +2,11 @@ package cooltaxi;
 
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-import korisnici.Pol;
+import automobili.Automobil;
+import korisnici.*;
+import porudzbina.Voznja;
 
 
 public class io {
@@ -13,38 +15,49 @@ public class io {
     static String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
     static String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
 
-    public static String ucitajKorisnike(String putanjaFajla) {
+    public static ArrayList<Korisnik> ucitajKorisnike(String putanjaFajla) {
+        ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
         File file = new File(putanjaFajla);
-        String sadrzaj = "";
-
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
-
             String line;
-
             while ((line = reader.readLine()) != null) {
-                sadrzaj += line+ "\n";
 
                 String[] lineSplit = line.split("\\|");
 
                 String uloga = lineSplit[0];
-                String jmgb = lineSplit[1];
+                String jmbg = lineSplit[1];
                 String korisnickoIme = lineSplit[2];
                 String sifra = lineSplit[3];
                 String ime = lineSplit[4];
                 String prezime = lineSplit[5];
                 String adresa = lineSplit[6];
-                String brojTelefona = lineSplit[7];
+                String pol = lineSplit[7];
+                String brojTelefona = lineSplit[8];
 
-                System.out.println("Uspesno je ucitan korisnik: " + ime + " " + prezime);
+                if (uloga.equals("musterija")){
+                    Musterije korisnik = new Musterije(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona);
+                    korisnici.add(korisnik);
+                } else if (uloga.equals("vozac")){
+                    String clanskaKarta = lineSplit[9];
+                    String plata = lineSplit[10];
+                    Vozaci vozac = new Vozaci(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona, clanskaKarta, plata);
+                    korisnici.add(vozac);
+                } else if (uloga.equals("dispecer")){
+                    String brojTelefonskeLinije = lineSplit[9];
+                    String plata = lineSplit[10];
+                    String odeljenje = lineSplit[11];
+                    Dispeceri dispecer = new Dispeceri(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona, brojTelefonskeLinije, plata, odeljenje);
+                    korisnici.add(dispecer);
+                }
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
         }
-        return sadrzaj;
+        return korisnici;
     }
     public static void registracija(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
-        String ucitaniKorisnici = ucitajKorisnike(korisniciTXT);
+        ArrayList<Korisnik> ucitaniKorisnici = ucitajKorisnike(korisniciTXT);
         String noviKorisnik = "musterija" + "|" + jmbg + "|" + korisnickoIme + "|" + sifra + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona;
         try {
             File korisniciFile = new File(korisniciTXT);
@@ -56,9 +69,9 @@ public class io {
             System.out.println("Greska prilikom upisa u datoteku");
         }
     }
-    public static void upisAutomobila() {
-        String ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
-        String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra"+ "|" + "2010"+ "|" +"ns232ms"+ "|" +"PUTNICKO_VOZILO";
+    public static void upisAutomobila(ArrayList<Automobil> ucitaniAutomobili) {
+//        ArrayList<Automobil> ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
+        String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra" + "|" + "2010"+ "|" + "ns232ms" + "|" + "PUTNICKO_VOZILO";
         try {
             File autobomiliFile = new File(automobiliTXT);
             BufferedWriter writer = new BufferedWriter(new FileWriter(autobomiliFile));
@@ -70,8 +83,8 @@ public class io {
         }
     }
     public static void upisVoznje() {
-        String ucitaneVoznje = ucitajVoznju(voznjaTXT);
-        String novaVoznja = "100004"+ "|" + "2023-05-21T23:47:08.432"+ "|" + "Ulica br1 14"+ "|" + "Ulica broj 2"+ "|" +"KREIRANA"+ "|" +"15" + "|"+"2" + "|"+ "marko" + "|" +"milan";
+        ArrayList<Voznja> ucitaneVoznje = ucitajVoznju(voznjaTXT);
+        String novaVoznja = "100004" + "|" + "2023-05-21T23:47:08.432" + "|" + "Ulica br1 14" + "|" + "Ulica broj 2" + "|" + "KREIRANA" + "|" + "15" + "|" + "2" + "|"+ "marko" + "|" + "milan";
         try {
             File voznjaFile = new File(voznjaTXT);
             BufferedWriter writer = new BufferedWriter(new FileWriter(voznjaFile));
@@ -83,19 +96,15 @@ public class io {
         }
     }
 
-
-
-    public static String ucitajAutomobil(String putanjaFajla) {
+    public static ArrayList<Automobil> ucitajAutomobil(String putanjaFajla) {
+        ArrayList<Automobil> automobili = new ArrayList<Automobil>();
         File file = new File(putanjaFajla);
-        String sadrzaj = "";
-
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
             while ((line = reader.readLine()) != null) {
-                sadrzaj += line+ "\n";
 
                 String[] lineSplit = line.split("\\|");
 
@@ -105,25 +114,25 @@ public class io {
                 String godinaProizvodnje = lineSplit[3];
                 String registracija = lineSplit[4];
                 String vrstaAutomobila = lineSplit[5];
-
-                System.out.println("Uspesno su ucitani automobili: " + proizvodjac + " " + model + " " + registracija);
+                Automobil listaAutomobila = new Automobil(brojVozila, model, proizvodjac, godinaProizvodnje, registracija, vrstaAutomobila);
+                automobili.add(listaAutomobila);
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
-
         }
-        return sadrzaj;
+        return automobili;
     }
-    public static String ucitajVoznju(String putanjaFajla) {
+    public static ArrayList<Voznja> ucitajVoznju(String putanjaFajla) {
+        ArrayList<Voznja> voznja = new ArrayList<Voznja>();
         File file = new File(putanjaFajla);
-        String sadrzaj = "";
+//        String sadrzaj = "";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
             while ((line = reader.readLine()) != null) {
-                sadrzaj += line+ "\n";
+//                sadrzaj += line+ "\n";
 
                 String[] lineSplit = line.split("\\|");
 
@@ -136,13 +145,14 @@ public class io {
                 String brojKM = lineSplit[6];
                 String musterija = lineSplit[7];
                 String vozac = lineSplit[8];
-
-                System.out.println("Uspesno su ucitani podaci o voznji: " + musterija + " je narucila voznju u ulici: " +  adresaPolaska );
+                Voznja porudzbina = new Voznja(id, vremePorudzbine, adresaPolaska, adresaDestinacije, status, trajanjeVoznje, brojKM, musterija, vozac);
+                voznja.add(porudzbina);
+//                System.out.println("Uspesno su ucitani podaci o voznji: " + musterija + " je narucila voznju u ulici: " +  adresaPolaska );
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
 
         }
-        return sadrzaj;
+        return voznja;
     }
 }

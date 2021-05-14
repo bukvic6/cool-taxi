@@ -1,8 +1,10 @@
 package porudzbina;
 
+import automobili.VrstaAutomobila;
 import korisnici.Musterije;
 import korisnici.Vozaci;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 public class Voznja {
@@ -29,6 +31,32 @@ public class Voznja {
         this.brojKM = brojKM;
         this.musterija = musterija;
         this.vozac = vozac;
+    }
+
+    public Voznja(String id, String vremePorudzbine, String adresaPolaska, String adresaDestinacije, String status, String trajanjeVoznje, String brojKM, String musterija, String vozac) {
+        this.id = Integer.parseInt(id);
+        this.vremePorudzbine = LocalDateTime.parse(vremePorudzbine);
+        this.adresaPolaska = adresaPolaska;
+        this.adresaDestinacije = adresaDestinacije;
+        if (status.equals("KREIRANA")){
+            this.status = StatusVoznje.KREIRANA;
+        } else if (status.equals("KREIRANA_NA_CEKANJU")){
+            this.status = StatusVoznje.KREIRANA_NA_CEKANJU;
+        } else if (status.equals("DODELJENA")){
+            this.status = StatusVoznje.DODELJENA;
+        } else if (status.equals("PRIHVACENA")){
+        this.status = StatusVoznje.PRIHVACENA;
+        } else if (status.equals("ZAVRSENA")){
+            this.status = StatusVoznje.ZAVRSENA;
+        }else if (status.equals("ODBIJENA")){
+            this.status = StatusVoznje.ODBIJENA;
+        } else {
+            throw new IllegalArgumentException("Status " + status + " ne postoji");
+        }
+        this.trajanjeVoznje = trajanjeVoznje;
+        this.brojKM = Double.parseDouble(brojKM);
+//        this.musterija = musterija;
+//        this.vozac = vozac;
     }
 
     public int getId() {
@@ -105,15 +133,6 @@ public class Voznja {
 
     @Override
     public String toString() {
-        return "Voznja{" +
-                "id=" + id +
-                ", vremePorudzbine=" + vremePorudzbine +
-                ", adresaPolaska='" + adresaPolaska + '\'' +
-                ", adresaDestinacije='" + adresaDestinacije + '\'' +
-                ", status=" + status +
-                ", trajanjeVoznje='" + trajanjeVoznje + '\'' +
-                ", musterija=" + musterija +
-                ", vozac=" + vozac +
-                '}';
+        return id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + brojKM + "|" + trajanjeVoznje + "|" + musterija + "|" + vozac + "\n";
     }
 }

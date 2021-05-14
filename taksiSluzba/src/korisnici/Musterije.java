@@ -13,6 +13,23 @@ public class Musterije extends Korisnik{
         this.poruzbina = poruzbina;
     }
 
+    public Musterije(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa,String pol, String brojTelefona) {
+        this.jmbg = jmbg;
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = sifra;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.adresa = adresa;
+        if (pol.equals("MUSKI")){
+            this.pol = Pol.MUSKI;
+        } else if (pol.equals("ZENSKI")) {
+            this.pol = Pol.ZENSKI;
+        } else {
+            throw new IllegalArgumentException("Pol " + pol + " ne postoji");
+        }
+        this.brojTelefona = brojTelefona;
+    }
+
     public Voznja getPoruzbina() {
         return poruzbina;
     }
@@ -23,16 +40,6 @@ public class Musterije extends Korisnik{
 
     @Override
     public String toString() {
-        return "Musterije{" +
-                "jmbg='" + jmbg + '\'' +
-                ", korisnickoIme='" + korisnickoIme + '\'' +
-                ", lozinka='" + lozinka + '\'' +
-                ", ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", adresa='" + adresa + '\'' +
-                ", pol='" + pol + '\'' +
-                ", brojTelefona='" + brojTelefona + '\'' +
-                ", poruzbina=" + poruzbina +
-                '}';
+        return jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "\n";
     }
 }

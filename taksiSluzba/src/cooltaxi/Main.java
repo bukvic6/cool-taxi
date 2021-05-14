@@ -2,19 +2,20 @@ package cooltaxi;
 
 import automobili.Automobil;
 import automobili.VrstaAutomobila;
+import korisnici.Korisnik;
+import korisnici.Musterije;
 import korisnici.Pol;
+import korisnici.Vozaci;
 import porudzbina.Voznja;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static cooltaxi.io.*;
 
 public class Main {
     public static void main(String[] args) {
-//        String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
-//        String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
-//        String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
 
 //        Dispeceri dispeceri1 = new Dispeceri("232323","milica123", "bukvic123", "milica",
 //                "bukivc","nizijska","zenski","32324",233,"23233");
@@ -27,42 +28,25 @@ public class Main {
 //
 //        System.out.println(vozac1);
 
-//        Automobil automobil =new Automobil("ddsd","opel","mazda","2010","ns122ns","PUTNICKO VOZILO");
-        io.upisAutomobila();
-        io.upisVoznje();
-
-        io.ucitajKorisnike(korisniciTXT);
-        io.ucitajAutomobil(automobiliTXT);
-        io.ucitajVoznju(voznjaTXT);
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Unesite jmbg: ");
-        String jmbg = scanner.nextLine();
-
-        System.out.print("Unesite korisnicko ime: ");
-        String korisnickoIme = scanner.nextLine();
-
-        System.out.print("Unesite sifru: ");
-        String sifra = scanner.nextLine();
-
-        System.out.print("Unesite ime: ");
-        String ime = scanner.nextLine();
-
-        System.out.print("Unesite prezime: ");
-        String prezime = scanner.nextLine();
-
-        System.out.print("Unesite adresa: ");
-        String adresa = scanner.nextLine();
-
-        System.out.print("Unesite pol: ");
-        Pol pol = Pol.valueOf(scanner.nextLine());
-
-        System.out.print("Unesite broj telefona: ");
-        String brojTelefona = scanner.nextLine();
-
-        io.registracija(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona);
+        ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
+        for (Korisnik musterije: ucitaniKorisnici){
+            System.out.print(musterije);
+        }
 
 
+        ArrayList<Automobil> ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
+        for (Automobil automobil: ucitaniAutomobili){
+            System.out.print(automobil);
+        }
+
+
+        ArrayList<Voznja> ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
+        for (Voznja porudzbina: ucitaneVoznje){
+            System.out.print(porudzbina);
+        }
+
+//        io.upisAutomobila(ucitaniAutomobili);
+//        io.upisVoznje();
 
         Preduzece CoolTaxi = new Preduzece();
         CoolTaxi.setPIB("3846296229");
@@ -77,7 +61,7 @@ public class Main {
         System.out.print("Unesite sifru: ");
         String password = skener.nextLine();
 
-        scanner.close();
+        skener.close();
 
         if(login(username, password)) {
             System.out.println("Dobrodosli " + username);
