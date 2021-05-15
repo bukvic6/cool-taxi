@@ -15,6 +15,9 @@ import java.util.Scanner;
 import static cooltaxi.io.*;
 
 public class Main {
+    public static ArrayList<Korisnik> ucitaniKorisnici;
+    public static ArrayList<Automobil> ucitaniAutomobili;
+    public static ArrayList<Voznja> ucitaneVoznje;
     public static void main(String[] args) {
 
 //        Dispeceri dispeceri1 = new Dispeceri("232323","milica123", "bukvic123", "milica",
@@ -28,19 +31,19 @@ public class Main {
 //
 //        System.out.println(vozac1);
 
-        ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
-        for (Korisnik musterije: ucitaniKorisnici){
-            System.out.print(musterije);
+        ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
+        for (Korisnik korisnici: ucitaniKorisnici){
+            System.out.print(korisnici);
         }
 
 
-        ArrayList<Automobil> ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
+        ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
         for (Automobil automobil: ucitaniAutomobili){
             System.out.print(automobil);
         }
 
 
-        ArrayList<Voznja> ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
+        ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
         for (Voznja porudzbina: ucitaneVoznje){
             System.out.print(porudzbina);
         }
@@ -69,6 +72,14 @@ public class Main {
             System.out.println("Pogresni login podaci, pokusajte ponovo.");
         }
 
+    }
+
+    public static Korisnik pronadjiKorisnika(String korisnickoIme){
+        for (Korisnik korisnik: ucitaniKorisnici){
+            if (korisnik.getKorisnickoIme().equals(korisnickoIme)){
+                return korisnik;
+            }
+        } return null;
     }
 
 
