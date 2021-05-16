@@ -56,19 +56,7 @@ public class io {
         }
         return korisnici;
     }
-    public static void registracija(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
-        ArrayList<Korisnik> ucitaniKorisnici = ucitajKorisnike(korisniciTXT);
-        String noviKorisnik = "musterija" + "|" + jmbg + "|" + korisnickoIme + "|" + sifra + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona;
-        try {
-            File korisniciFile = new File(korisniciTXT);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(korisniciFile));
-            writer.write(ucitaniKorisnici + noviKorisnik);
-            writer.close();
-            System.out.println("Uspesno ste se registrovali!");
-        }catch(IOException e) {
-            System.out.println("Greska prilikom upisa u datoteku");
-        }
-    }
+
     public static void upisAutomobila(ArrayList<Automobil> ucitaniAutomobili) {
 //        ArrayList<Automobil> ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
         String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra" + "|" + "2010"+ "|" + "ns232ms" + "|" + "PUTNICKO_VOZILO";
@@ -125,14 +113,12 @@ public class io {
     public static ArrayList<Voznja> ucitajVoznju(String putanjaFajla) {
         ArrayList<Voznja> voznja = new ArrayList<Voznja>();
         File file = new File(putanjaFajla);
-//        String sadrzaj = "";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
             while ((line = reader.readLine()) != null) {
-//                sadrzaj += line+ "\n";
 
                 String[] lineSplit = line.split("\\|");
 
@@ -147,7 +133,6 @@ public class io {
                 String vozac = lineSplit[8];
                 Voznja porudzbina = new Voznja(id, vremePorudzbine, adresaPolaska, adresaDestinacije, status, trajanjeVoznje, brojKM, musterija, vozac);
                 voznja.add(porudzbina);
-//                System.out.println("Uspesno su ucitani podaci o voznji: " + musterija + " je narucila voznju u ulici: " +  adresaPolaska );
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");

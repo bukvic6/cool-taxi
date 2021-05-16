@@ -1,6 +1,7 @@
 package porudzbina;
 
 import automobili.VrstaAutomobila;
+import cooltaxi.Main;
 import korisnici.Musterije;
 import korisnici.Vozaci;
 
@@ -55,6 +56,8 @@ public class Voznja {
         }
         this.trajanjeVoznje = trajanjeVoznje;
         this.brojKM = Double.parseDouble(brojKM);
+        this.musterija = (Musterije) Main.pronadjiKorisnika(musterija);
+        this.vozac = (Vozaci) Main.pronadjiKorisnika(vozac);
 //        this.musterija = musterija;
 //        this.vozac = vozac;
     }
@@ -133,6 +136,6 @@ public class Voznja {
 
     @Override
     public String toString() {
-        return id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + brojKM + "|" + trajanjeVoznje + "|" + musterija + "|" + vozac + "\n";
+        return id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + brojKM + "|" + trajanjeVoznje + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
     }
 }
