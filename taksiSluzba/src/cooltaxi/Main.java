@@ -1,14 +1,16 @@
 package cooltaxi;
 
 import automobili.Automobil;
-import automobili.VrstaAutomobila;
 import korisnici.Korisnik;
-import korisnici.Musterije;
-import korisnici.Pol;
-import korisnici.Vozaci;
 import porudzbina.Voznja;
 
-import java.io.*;
+import gui.GlavniProzor;
+import gui.Loginprozor;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,6 +18,12 @@ import static cooltaxi.io.*;
 
 public class Main {
     public static void main(String[] args) {
+        Loginprozor lp = new Loginprozor();
+        lp.setVisible(true);
+//        GlavniProzor gp = new GlavniProzor();
+//        gp.setVisible(true);
+
+
 
 //        Dispeceri dispeceri1 = new Dispeceri("232323","milica123", "bukvic123", "milica",
 //                "bukivc","nizijska","zenski","32324",233,"23233");
