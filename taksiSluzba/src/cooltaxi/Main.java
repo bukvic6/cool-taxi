@@ -73,9 +73,11 @@ public class Main {
         String password = skener.nextLine();
 
         skener.close();
+        Korisnik ulogovaniKorisnik = (Korisnik) login(username, password);
 
-        if(login(username, password)) {
+        if(ulogovaniKorisnik != null) {
             System.out.println("Dobrodosli " + username);
+
         }else {
             System.out.println("Pogresni login podaci, pokusajte ponovo.");
         }
@@ -89,27 +91,38 @@ public class Main {
             }
         } return null;
     }
-
-
-    public static boolean login(String username, String password) {
-        try {
-            File file = new File("taksiSluzba/src/txt/korisnici.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line;
-            while((line = reader.readLine()) != null) {
-                String[] lineSplit = line.split("\\|");
-                String user = lineSplit[2];
-                String pass = lineSplit[3];
-
-                if(user.equalsIgnoreCase(username) && pass.equalsIgnoreCase(password)) {
-                    return true;
-                }
+    public static ArrayList<Korisnik> login(String korisnickoIme, String lozinka) {
+        ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
+        for(Korisnik korisnik : ucitaniKorisnici) {
+            if(korisnik.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) &&
+                    korisnik.getLozinka().equals(lozinka)){
+                return korisnik;
             }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
         }
-        return false;
+        return null;
     }
-}
+
+
+//    public static boolean login(String username, String password) {
+//        try {
+//            File file = new File("taksiSluzba/src/txt/korisnici.txt");
+//            BufferedReader reader = new BufferedReader(new FileReader(file));
+//            String line;
+//            while((line = reader.readLine()) != null) {
+//                String[] lineSplit = line.split("\\|");
+//                String user = lineSplit[2];
+//                String pass = lineSplit[3];
+//
+//                if(user.equalsIgnoreCase(username) && pass.equalsIgnoreCase(password)) {
+//                    return true;
+//                }
+//            }
+//            reader.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//        return false;
+//    }
+
+  }

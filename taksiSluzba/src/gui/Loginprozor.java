@@ -1,13 +1,13 @@
 package gui;
 
 
+import cooltaxi.Main;
+import korisnici.Korisnik;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class Loginprozor extends JFrame {
@@ -41,8 +41,38 @@ public class Loginprozor extends JFrame {
         add(btnCancel);
 
     }
-    public void initActions(){
 
-    }
+   public void initActions(){
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Loginprozor.this.dispose();
+                Loginprozor.this.setVisible(false);
+            }
+        });
+        btnOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String korisnickoIme = txtKorisnickoIme.getText().trim();
+                String sifra = new String(pfPassword.getPassword()).trim();
+
+                if(korisnickoIme.equals("") || sifra.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu", "greska", JOptionPane.WARNING_MESSAGE);
+                }else {
+                    Korisnik ulogovani  = (Korisnik) Main.login(korisnickoIme, sifra);
+                    if(ulogovani == null) {
+                        JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška", JOptionPane.WARNING_MESSAGE);
+                    }else {
+                        Loginprozor.this.dispose();
+                        Loginprozor.this.setVisible(false);
+                        GlavniProzor gp = new GlavniProzor(, ulogovani);
+                        gp.setVisible(true);
+                }
+
+            }
+        });
+
+
+   }
 
 }

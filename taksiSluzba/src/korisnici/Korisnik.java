@@ -1,6 +1,8 @@
 package korisnici;
 
-public abstract class Korisnik {
+import java.util.ArrayList;
+
+public abstract class Korisnik extends ArrayList<Korisnik> {
     protected String jmbg;
     protected String korisnickoIme;
     protected String lozinka;
