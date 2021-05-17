@@ -17,21 +17,15 @@ public class Preduzece {
     private ArrayList<Voznja> voznje;
     private ArrayList<Automobil> automobili;
 
-
-
-
-
     public Preduzece (){
 
     }
-
 
     public Preduzece(String PIB, String naziv, String adresa) {
         this.PIB = PIB;
         this.naziv = naziv;
         this.adresa = adresa;
     }
-
 
     public String getPIB() {
         return PIB;

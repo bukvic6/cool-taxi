@@ -12,10 +12,10 @@ import java.awt.event.ActionListener;
 
 public class Loginprozor extends JFrame {
 
-    private JLabel lblGreeting = new JLabel("DObrodosli molimo da se prijavite");
-    private JLabel lblUsername = new JLabel("korisnicko ime");
+    private JLabel lblGreeting = new JLabel("Dobrodosli molimo da se prijavite");
+    private JLabel lblUsername = new JLabel("Korisnicko ime");
     private JTextField txtKorisnickoIme = new JTextField(20);
-    private JLabel lblPassword = new JLabel("sifra");
+    private JLabel lblPassword = new JLabel("Sifra");
     private JPasswordField pfPassword = new JPasswordField(20);
     private JButton btnOK = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
@@ -65,14 +65,11 @@ public class Loginprozor extends JFrame {
                     }else {
                         Loginprozor.this.dispose();
                         Loginprozor.this.setVisible(false);
-                        GlavniProzor gp = new GlavniProzor(, ulogovani);
+                        GlavniProzor gp = new GlavniProzor();
                         gp.setVisible(true);
+                    }
                 }
-
             }
         });
-
-
-   }
-
+    }
 }

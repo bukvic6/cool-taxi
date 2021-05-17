@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GlavniProzor extends JFrame {
     public GlavniProzor() {
-        setTitle("glavni prozor");
+        setTitle("Meni");
         setSize(500, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
