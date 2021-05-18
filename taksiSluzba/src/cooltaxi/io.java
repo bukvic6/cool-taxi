@@ -8,6 +8,8 @@ import automobili.Automobil;
 import korisnici.*;
 import porudzbina.Voznja;
 
+import static cooltaxi.Main.ucitaniKorisnici;
+
 
 public class io {
 
@@ -25,29 +27,30 @@ public class io {
 
                 String[] lineSplit = line.split("\\|");
 
-                String uloga = lineSplit[0];
-                String jmbg = lineSplit[1];
-                String korisnickoIme = lineSplit[2];
-                String sifra = lineSplit[3];
-                String ime = lineSplit[4];
-                String prezime = lineSplit[5];
-                String adresa = lineSplit[6];
-                String pol = lineSplit[7];
-                String brojTelefona = lineSplit[8];
+                String obrisan = lineSplit[0];
+                String uloga = lineSplit[1];
+                String jmbg = lineSplit[2];
+                String korisnickoIme = lineSplit[3];
+                String lozinka = lineSplit[4];
+                String ime = lineSplit[5];
+                String prezime = lineSplit[6];
+                String adresa = lineSplit[7];
+                String pol = lineSplit[8];
+                String brojTelefona = lineSplit[9];
 
                 if (uloga.equals("musterija")){
-                    Musterije korisnik = new Musterije(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona);
-                    korisnici.add(korisnik);
+                    Musterije musterija = new Musterije(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
+                    korisnici.add(musterija);
                 } else if (uloga.equals("vozac")){
-                    String clanskaKarta = lineSplit[9];
-                    String plata = lineSplit[10];
-                    Vozaci vozac = new Vozaci(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona, clanskaKarta, plata);
+                    String clanskaKarta = lineSplit[10];
+                    String plata = lineSplit[11];
+                    Vozaci vozac = new Vozaci(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona, clanskaKarta, plata);
                     korisnici.add(vozac);
                 } else if (uloga.equals("dispecer")){
-                    String brojTelefonskeLinije = lineSplit[9];
-                    String plata = lineSplit[10];
-                    String odeljenje = lineSplit[11];
-                    Dispeceri dispecer = new Dispeceri(jmbg, korisnickoIme, sifra, ime, prezime, adresa, pol, brojTelefona, brojTelefonskeLinije, plata, odeljenje);
+                    String brojTelefonskeLinije = lineSplit[10];
+                    String plata = lineSplit[11];
+                    String odeljenje = lineSplit[12];
+                    Dispeceri dispecer = new Dispeceri(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona, brojTelefonskeLinije, plata, odeljenje);
                     korisnici.add(dispecer);
                 }
             } reader.close();
@@ -56,6 +59,29 @@ public class io {
         }
         return korisnici;
     }
+
+    public static void sacuvajKorisnike(String putanjaFajla) {
+        try {
+            File file = new File(putanjaFajla);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
+            String sadrzaj = "";
+            for (Korisnik korisnici: ucitaniKorisnici){
+                if (!korisnici.isObrisan() && korisnici.getUloga().equals("musterija")){
+                    sadrzaj += korisnici.isObrisan() + "|" + korisnici.getJmbg() + "|" + korisnici.getKorisnickoIme() + "|" + korisnici.getLozinka() + "|" + korisnici.getIme() + "|" + korisnici.getPrezime() + "|" + korisnici.getAdresa() + "|" + korisnici.getPol() + "|" + korisnici.getBrojTelefona() + "\n";
+                } else if (!korisnici.isObrisan() && korisnici.getUloga().equals("dispecer")){
+//                    sadrzaj += korisnici.isObrisan() + "|" + korisnici.getJmbg() + "|" + korisnici.getKorisnickoIme() + "|" + korisnici.getLozinka() + "|" + korisnici.getIme() + "|" + korisnici.getPrezime() + "|" + korisnici.getAdresa() + "|" + korisnici.getPol() + "|" + korisnici.getBrojTelefona() +  "|" + korisnici."\n";
+
+                }
+                    System.out.print(korisnici);
+            }
+            writer.write(sadrzaj);
+            writer.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     public static void upisAutomobila(ArrayList<Automobil> ucitaniAutomobili) {
 //        ArrayList<Automobil> ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
@@ -92,6 +118,7 @@ public class io {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
+
             while ((line = reader.readLine()) != null) {
 
                 String[] lineSplit = line.split("\\|");

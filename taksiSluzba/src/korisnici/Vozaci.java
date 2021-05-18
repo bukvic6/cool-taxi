@@ -9,18 +9,20 @@ public class Vozaci extends Korisnik {
     public Vozaci() {
     }
 
-    public Vozaci(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa,
+    public Vozaci(String uloga, boolean obrisan, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa,
                   Pol pol, String brojTelefona, String brojClanskeKarte, double plata, Automobil taksi) {
-        super(jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
+        super(uloga, obrisan, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.brojClanskeKarte = brojClanskeKarte;
         this.plata = plata;
         this.taksi = taksi;
     }
 
-    public Vozaci(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, String pol, String brojTelefona, String clanskaKarta, String plata) {
+    public Vozaci(String obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, String clanskaKarta, String plata) {
+        this.obrisan = Boolean.parseBoolean(obrisan);
+        this.uloga = uloga;
         this.jmbg = jmbg;
         this.korisnickoIme = korisnickoIme;
-        this.lozinka = sifra;
+        this.lozinka = lozinka;
         this.ime = ime;
         this.prezime = prezime;
         this.adresa = adresa;
@@ -62,6 +64,6 @@ public class Vozaci extends Korisnik {
 
     @Override
     public String toString() {
-        return jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|" + plata + "\n";
+        return obrisan + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|" + plata + "\n";
     }
 }

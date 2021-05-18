@@ -8,15 +8,17 @@ public class Musterije extends Korisnik{
     public Musterije() {
     }
 
-    public Musterije(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, Voznja poruzbina) {
-        super(jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
+    public Musterije(String uloga, boolean obrisan, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, Voznja poruzbina) {
+        super(uloga, obrisan, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.poruzbina = poruzbina;
     }
 
-    public Musterije(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa,String pol, String brojTelefona) {
+    public Musterije(String obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa,String pol, String brojTelefona) {
+        this.obrisan = Boolean.parseBoolean(obrisan);
+        this.uloga = uloga;
         this.jmbg = jmbg;
         this.korisnickoIme = korisnickoIme;
-        this.lozinka = sifra;
+        this.lozinka = lozinka;
         this.ime = ime;
         this.prezime = prezime;
         this.adresa = adresa;
@@ -40,6 +42,6 @@ public class Musterije extends Korisnik{
 
     @Override
     public String toString() {
-        return jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "\n";
+        return obrisan + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "\n";
     }
 }

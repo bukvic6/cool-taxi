@@ -58,8 +58,6 @@ public class Voznja {
         this.brojKM = Double.parseDouble(brojKM);
         this.musterija = (Musterije) Main.pronadjiKorisnika(musterija);
         this.vozac = (Vozaci) Main.pronadjiKorisnika(vozac);
-//        this.musterija = musterija;
-//        this.vozac = vozac;
     }
 
     public int getId() {

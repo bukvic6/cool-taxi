@@ -3,6 +3,8 @@ package korisnici;
 import java.util.ArrayList;
 
 public abstract class Korisnik extends ArrayList<Korisnik> {
+    protected boolean obrisan;
+    protected String uloga;
     protected String jmbg;
     protected String korisnickoIme;
     protected String lozinka;
@@ -15,7 +17,9 @@ public abstract class Korisnik extends ArrayList<Korisnik> {
     public Korisnik() {
     }
 
-    public Korisnik(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
+    public Korisnik(String uloga, boolean obrisan, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
+        this.uloga = uloga;
+        this.obrisan = obrisan;
         this.jmbg = jmbg;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
@@ -24,6 +28,22 @@ public abstract class Korisnik extends ArrayList<Korisnik> {
         this.adresa = adresa;
         this.pol = pol;
         this.brojTelefona = brojTelefona;
+    }
+
+    public boolean isObrisan() {
+        return obrisan;
+    }
+
+    public void setObrisan(boolean obrisan) {
+        this.obrisan = obrisan;
+    }
+
+    public String getUloga() {
+        return uloga;
+    }
+
+    public void setUloga(String uloga) {
+        this.uloga = uloga;
     }
 
     public String getJmbg() {

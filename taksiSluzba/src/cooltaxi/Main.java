@@ -4,13 +4,8 @@ import automobili.Automobil;
 import korisnici.Korisnik;
 import porudzbina.Voznja;
 
-import gui.GlavniProzor;
 import gui.Loginprozor;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,6 +22,7 @@ public class Main {
 
         ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
         for (Korisnik korisnici: ucitaniKorisnici){
+            if (!korisnici.isObrisan())
             System.out.print(korisnici);
         }
 
@@ -45,6 +41,9 @@ public class Main {
 //        io.upisAutomobila(ucitaniAutomobili);
 //        io.upisVoznje();
 
+//        System.out.println(ucitaniKorisnici.size());
+
+
         Preduzece CoolTaxi = new Preduzece();
         CoolTaxi.setPIB("3846296229");
         CoolTaxi.setAdresa("Todora Toze Jovanovica 13");
@@ -52,22 +51,40 @@ public class Main {
         System.out.println(CoolTaxi);
         Scanner skener = new Scanner(System.in);
 
-        System.out.print("Unesite korisnicko ime: ");
-        String username = skener.nextLine();
+        System.out.print("Unesite korisnicko ime osobe koju zelite da obrisete: ");
+        String korisnik = skener.nextLine();
 
-        System.out.print("Unesite sifru: ");
-        String password = skener.nextLine();
+//        obrisiKorisnika(musterija);
+        System.out.println(obrisiKorisnika(korisnik));
+        io.sacuvajKorisnike(korisniciTXT);
+
+
+//        System.out.print("Unesite korisnicko ime: ");
+//        String username = skener.nextLine();
+//
+//        System.out.print("Unesite sifru: ");
+//        String password = skener.nextLine();
 
         skener.close();
-        Korisnik ulogovaniKorisnik = (Korisnik) login(username, password);
+//        Korisnik ulogovaniKorisnik = (Korisnik) login(username, password);
+//
+//        if (ulogovaniKorisnik != null) {
+//            System.out.println("Dobrodosli " + username);
+//
+//        } else {
+//            System.out.println("Pogresni login podaci, pokusajte ponovo.");
+//        }
 
-        if (ulogovaniKorisnik != null) {
-            System.out.println("Dobrodosli " + username);
+    }
 
-        } else {
-            System.out.println("Pogresni login podaci, pokusajte ponovo.");
-        }
-
+    public static Korisnik obrisiKorisnika(String korisnickoIme){
+        for (Korisnik korisnik: ucitaniKorisnici) {
+            if (korisnik.getKorisnickoIme().equals(korisnickoIme) && !korisnik.isObrisan()) {
+                korisnik.setObrisan(true);
+                io.sacuvajKorisnike(korisniciTXT);
+                return korisnik;
+            }
+        } return null;
     }
 
     public static Korisnik pronadjiKorisnika(String korisnickoIme){
@@ -82,7 +99,7 @@ public class Main {
         ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
         for(Korisnik korisnik : ucitaniKorisnici) {
             if(korisnik.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) &&
-                    korisnik.getLozinka().equals(lozinka)){
+                    korisnik.getLozinka().equals(lozinka) && !korisnik.isObrisan()){
                 return korisnik;
             }
         }

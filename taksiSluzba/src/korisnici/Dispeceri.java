@@ -8,13 +8,15 @@ public class Dispeceri extends Korisnik {
     public Dispeceri(){
     }
 
-    public Dispeceri(String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije) {
-        super(jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
+    public Dispeceri(String uloga, boolean obrisan, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije) {
+        super(uloga, obrisan, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.plata = plata;
         this.brojTelefonskeLinije = brojTelefonskeLinije;
     }
 
-    public Dispeceri(String jmbg, String korisnickoIme, String sifra, String ime, String prezime, String adresa, String pol, String brojTelefona, String brojTelefonskeLinije, String plata, String odeljenje) {
+    public Dispeceri(String obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, String brojTelefonskeLinije, String plata, String odeljenje) {
+        this.obrisan = Boolean.parseBoolean(obrisan);
+        this.uloga = uloga;
         this.jmbg = jmbg;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
@@ -56,6 +58,6 @@ public class Dispeceri extends Korisnik {
 
     @Override
     public String toString() {
-        return jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojTelefonskeLinije + "|" + plata + "|" + odeljenje + "\n";
+        return obrisan + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojTelefonskeLinije + "|" + plata + "|" + odeljenje + "\n";
     }
 }
