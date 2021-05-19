@@ -2,6 +2,7 @@ package automobili;
 import korisnici.Vozaci;
 
 public class Automobil extends Vozaci {
+    private boolean obrisan;
     private String brojTaksiVozila;
     private String model;
     private String proizvodjac;
@@ -12,7 +13,8 @@ public class Automobil extends Vozaci {
     public Automobil() {
     }
 
-    public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, VrstaAutomobila tipAutomobila) {
+    public Automobil(boolean obrisan, String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, VrstaAutomobila tipAutomobila) {
+        this.obrisan = obrisan;
         this.brojTaksiVozila = brojTaksiVozila;
         this.model = model;
         this.proizvodjac = proizvodjac;
@@ -21,7 +23,8 @@ public class Automobil extends Vozaci {
         this.tipAutomobila = tipAutomobila;
     }
 
-    public Automobil(String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, String vrstaAutomobila) {
+    public Automobil(String obrisan, String brojTaksiVozila, String model, String proizvodjac, String godinaProizvodnje, String registracija, String vrstaAutomobila) {
+        this.obrisan = Boolean.parseBoolean(obrisan);
         this.brojTaksiVozila = brojTaksiVozila;
         this.model = model;
         this.proizvodjac = proizvodjac;
@@ -34,6 +37,16 @@ public class Automobil extends Vozaci {
         } else {
             throw new IllegalArgumentException("Ne postoji tip vozila " + vrstaAutomobila);
         }
+    }
+
+    @Override
+    public boolean isObrisan() {
+        return obrisan;
+    }
+
+    @Override
+    public void setObrisan(boolean obrisan) {
+        this.obrisan = obrisan;
     }
 
     public String getBrojTaksiVozila() {
@@ -86,6 +99,6 @@ public class Automobil extends Vozaci {
 
     @Override
     public String toString() {
-        return brojTaksiVozila + "|" + model + "|" + proizvodjac + "|" + godinaProizvodnje + "|" + registracija + "|" + tipAutomobila + "\n";
+        return obrisan + "|" + brojTaksiVozila + "|" + model + "|" + proizvodjac + "|" + godinaProizvodnje + "|" + registracija + "|" + tipAutomobila + "\n";
     }
 }

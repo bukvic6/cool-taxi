@@ -8,6 +8,7 @@ import automobili.Automobil;
 import korisnici.*;
 import porudzbina.Voznja;
 
+import static cooltaxi.Preduzece.ucitaniAutomobili;
 import static cooltaxi.Preduzece.ucitaniKorisnici;
 
 
@@ -44,7 +45,8 @@ public class io {
                 } else if (uloga.equals("vozac")){
                     String clanskaKarta = lineSplit[10];
                     String plata = lineSplit[11];
-                    Vozaci vozac = new Vozaci(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona, clanskaKarta, plata);
+                    String taksi = lineSplit[12];
+                    Vozaci vozac = new Vozaci(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona, clanskaKarta, plata, taksi);
                     korisnici.add(vozac);
                 } else if (uloga.equals("dispecer")){
                     String brojTelefonskeLinije = lineSplit[10];
@@ -74,19 +76,31 @@ public class io {
             e.printStackTrace();
         }
     }
-
-
-    public static void upisAutomobila(ArrayList<Automobil> ucitaniAutomobili) {
-//        ArrayList<Automobil> ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
-        String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra" + "|" + "2010"+ "|" + "ns232ms" + "|" + "PUTNICKO_VOZILO";
+//    public static void upisAutomobila(ArrayList<Automobil> ucitaniAutomobili) {
+////        ArrayList<Automobil> ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
+//        String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra" + "|" + "2010"+ "|" + "ns232ms" + "|" + "PUTNICKO_VOZILO";
+//        try {
+//            File autobomiliFile = new File(automobiliTXT);
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(autobomiliFile));
+//            writer.write(ucitaniAutomobili + noviAutomobil);
+//            writer.close();
+//            System.out.println("Uspesno ste se dodali automobil!");
+//        }catch(IOException e) {
+//            System.out.println("Greska prilikom upisa u datoteku");
+//        }
+//    }
+    public static void sacuvajAutomobile(String putanjaFajla) {
         try {
-            File autobomiliFile = new File(automobiliTXT);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(autobomiliFile));
-            writer.write(ucitaniAutomobili + noviAutomobil);
+            File file = new File(putanjaFajla);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            String sadrzaj = "";
+            for (Automobil automobil: ucitaniAutomobili){
+                sadrzaj += automobil.toString();
+            }
+            writer.write(sadrzaj);
             writer.close();
-            System.out.println("Uspesno ste se dodali automobil!");
-        }catch(IOException e) {
-            System.out.println("Greska prilikom upisa u datoteku");
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
     public static void upisVoznje() {
@@ -115,14 +129,14 @@ public class io {
             while ((line = reader.readLine()) != null) {
 
                 String[] lineSplit = line.split("\\|");
-
-                String brojVozila = lineSplit[0];
-                String model = lineSplit[1];
-                String proizvodjac = lineSplit[2];
-                String godinaProizvodnje = lineSplit[3];
-                String registracija = lineSplit[4];
-                String vrstaAutomobila = lineSplit[5];
-                Automobil listaAutomobila = new Automobil(brojVozila, model, proizvodjac, godinaProizvodnje, registracija, vrstaAutomobila);
+                String obrisan = lineSplit[0];
+                String brojVozila = lineSplit[1];
+                String model = lineSplit[2];
+                String proizvodjac = lineSplit[3];
+                String godinaProizvodnje = lineSplit[4];
+                String registracija = lineSplit[5];
+                String vrstaAutomobila = lineSplit[6];
+                Automobil listaAutomobila = new Automobil(obrisan, brojVozila, model, proizvodjac, godinaProizvodnje, registracija, vrstaAutomobila);
                 automobili.add(listaAutomobila);
             } reader.close();
         }catch(IOException e){

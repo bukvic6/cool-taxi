@@ -46,6 +46,22 @@ public class Preduzece {
         }
         return null;
     }
+    public static Automobil obrisiAutomobil(String brojTaksiVozila){
+        for (Automobil automobil: ucitaniAutomobili) {
+            if (automobil.getBrojTaksiVozila().equals(brojTaksiVozila) && !automobil.isObrisan()) {
+                automobil.setObrisan(true);
+                return automobil;
+            }
+        } return null;
+    }
+
+    public static Automobil pronadjiAutomobil(String registracija){
+        for (Automobil automobil: ucitajAutomobil(automobiliTXT)){
+            if (automobil.getRegistracija().equals(registracija)){
+                return automobil;
+            }
+        } return null;
+    }
 
     public Preduzece (){
 
