@@ -6,6 +6,8 @@ import porudzbina.Voznja;
 
 import java.util.ArrayList;
 
+import static cooltaxi.io.*;
+
 public class Preduzece {
     private String PIB;
     private String naziv;
@@ -13,9 +15,37 @@ public class Preduzece {
     public double cenaStartaVoznje(){return 0;}
     public double cenaPoKilometru(){return 0;}
 
-    private ArrayList<Korisnik> korisnici;
-    private ArrayList<Voznja> voznje;
-    private ArrayList<Automobil> automobili;
+    public static ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
+    public static ArrayList<Automobil> ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
+    public static ArrayList<Voznja> ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
+
+    public static Korisnik obrisiKorisnika(String korisnickoIme){
+        for (Korisnik korisnik: ucitaniKorisnici) {
+            if (korisnik.getKorisnickoIme().equals(korisnickoIme) && !korisnik.isObrisan()) {
+                korisnik.setObrisan(true);
+                return korisnik;
+            }
+        } return null;
+    }
+
+    public static Korisnik pronadjiKorisnika(String korisnickoIme){
+        for (Korisnik korisnik: ucitaniKorisnici){
+            if (korisnik.getKorisnickoIme().equals(korisnickoIme)){
+                return korisnik;
+            }
+        } return null;
+    }
+
+    public static ArrayList<Korisnik> login(String korisnickoIme, String lozinka) {
+        ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
+        for(Korisnik korisnik : ucitaniKorisnici) {
+            if(korisnik.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) &&
+                    korisnik.getLozinka().equals(lozinka) && !korisnik.isObrisan()){
+                return korisnik;
+            }
+        }
+        return null;
+    }
 
     public Preduzece (){
 

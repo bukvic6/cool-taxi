@@ -86,6 +86,6 @@ public class Automobil extends Vozaci {
 
     @Override
     public String toString() {
-        return "A"+brojTaksiVozila + "|" + model + "|" + proizvodjac + "|" + godinaProizvodnje + "|" + registracija + "|" + tipAutomobila + "\n";
+        return brojTaksiVozila + "|" + model + "|" + proizvodjac + "|" + godinaProizvodnje + "|" + registracija + "|" + tipAutomobila + "\n";
     }
 }

@@ -2,6 +2,7 @@ package gui;
 
 
 import cooltaxi.Main;
+import cooltaxi.Preduzece;
 import korisnici.Korisnik;
 import net.miginfocom.swing.MigLayout;
 
@@ -59,7 +60,7 @@ public class Loginprozor extends JFrame {
                 if(korisnickoIme.equals("") || sifra.equals("")) {
                     JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu", "greska", JOptionPane.WARNING_MESSAGE);
                 }else {
-                    Korisnik ulogovani  = (Korisnik) Main.login(korisnickoIme, sifra);
+                    Korisnik ulogovani  = (Korisnik) Preduzece.login(korisnickoIme, sifra);
                     if(ulogovani == null) {
                         JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška", JOptionPane.WARNING_MESSAGE);
                     }else {

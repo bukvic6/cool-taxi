@@ -58,6 +58,6 @@ public class Dispeceri extends Korisnik {
 
     @Override
     public String toString() {
-        return obrisan + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojTelefonskeLinije + "|" + plata + "|" + odeljenje + "\n";
+        return obrisan + "|" + uloga + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojTelefonskeLinije + "|" + plata + "|" + odeljenje + "\n";
     }
 }

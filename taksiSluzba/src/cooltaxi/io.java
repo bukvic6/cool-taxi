@@ -8,7 +8,7 @@ import automobili.Automobil;
 import korisnici.*;
 import porudzbina.Voznja;
 
-import static cooltaxi.Main.ucitaniKorisnici;
+import static cooltaxi.Preduzece.ucitaniKorisnici;
 
 
 public class io {
@@ -64,16 +64,9 @@ public class io {
         try {
             File file = new File(putanjaFajla);
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
             String sadrzaj = "";
-            for (Korisnik korisnici: ucitaniKorisnici){
-                if (!korisnici.isObrisan() && korisnici.getUloga().equals("musterija")){
-                    sadrzaj += korisnici.isObrisan() + "|" + korisnici.getJmbg() + "|" + korisnici.getKorisnickoIme() + "|" + korisnici.getLozinka() + "|" + korisnici.getIme() + "|" + korisnici.getPrezime() + "|" + korisnici.getAdresa() + "|" + korisnici.getPol() + "|" + korisnici.getBrojTelefona() + "\n";
-                } else if (!korisnici.isObrisan() && korisnici.getUloga().equals("dispecer")){
-//                    sadrzaj += korisnici.isObrisan() + "|" + korisnici.getJmbg() + "|" + korisnici.getKorisnickoIme() + "|" + korisnici.getLozinka() + "|" + korisnici.getIme() + "|" + korisnici.getPrezime() + "|" + korisnici.getAdresa() + "|" + korisnici.getPol() + "|" + korisnici.getBrojTelefona() +  "|" + korisnici."\n";
-
-                }
-                    System.out.print(korisnici);
+            for (Korisnik korisnik: ucitaniKorisnici){
+                sadrzaj += korisnik.toString();
             }
             writer.write(sadrzaj);
             writer.close();

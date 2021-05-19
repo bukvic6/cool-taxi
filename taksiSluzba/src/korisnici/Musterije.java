@@ -42,6 +42,6 @@ public class Musterije extends Korisnik{
 
     @Override
     public String toString() {
-        return obrisan + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "\n";
+        return obrisan + "|" + uloga + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "\n";
     }
 }
