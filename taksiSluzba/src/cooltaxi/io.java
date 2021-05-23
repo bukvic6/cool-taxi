@@ -76,46 +76,6 @@ public class io {
             e.printStackTrace();
         }
     }
-//    public static void upisAutomobila(ArrayList<Automobil> ucitaniAutomobili) {
-////        ArrayList<Automobil> ucitaniAutomobili = ucitajAutomobil(automobiliTXT);
-//        String noviAutomobil = "2323"+ "|" + "opel"+ "|" + "astra" + "|" + "2010"+ "|" + "ns232ms" + "|" + "PUTNICKO_VOZILO";
-//        try {
-//            File autobomiliFile = new File(automobiliTXT);
-//            BufferedWriter writer = new BufferedWriter(new FileWriter(autobomiliFile));
-//            writer.write(ucitaniAutomobili + noviAutomobil);
-//            writer.close();
-//            System.out.println("Uspesno ste se dodali automobil!");
-//        }catch(IOException e) {
-//            System.out.println("Greska prilikom upisa u datoteku");
-//        }
-//    }
-    public static void sacuvajAutomobile(String putanjaFajla) {
-        try {
-            File file = new File(putanjaFajla);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            String sadrzaj = "";
-            for (Automobil automobil: ucitaniAutomobili){
-                sadrzaj += automobil.toString();
-            }
-            writer.write(sadrzaj);
-            writer.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-    public static void upisVoznje() {
-        ArrayList<Voznja> ucitaneVoznje = ucitajVoznju(voznjaTXT);
-        String novaVoznja = "100004" + "|" + "2023-05-21T23:47:08.432" + "|" + "Ulica br1 14" + "|" + "Ulica broj 2" + "|" + "KREIRANA" + "|" + "15" + "|" + "2" + "|"+ "marko" + "|" + "milan";
-        try {
-            File voznjaFile = new File(voznjaTXT);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(voznjaFile));
-            writer.write(ucitaneVoznje + novaVoznja);
-            writer.close();
-            System.out.println("Uspesno ste se dodali voznju!");
-        }catch(IOException e) {
-            System.out.println("Greska prilikom upisa u datoteku");
-        }
-    }
 
     public static ArrayList<Automobil> ucitajAutomobil(String putanjaFajla) {
         ArrayList<Automobil> automobili = new ArrayList<Automobil>();
@@ -144,6 +104,22 @@ public class io {
         }
         return automobili;
     }
+
+    public static void sacuvajAutomobile(String putanjaFajla) {
+        try {
+            File file = new File(putanjaFajla);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            String sadrzaj = "";
+            for (Automobil automobil: ucitaniAutomobili){
+                sadrzaj += automobil.toString();
+            }
+            writer.write(sadrzaj);
+            writer.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Voznja> ucitajVoznju(String putanjaFajla) {
         ArrayList<Voznja> voznja = new ArrayList<Voznja>();
         File file = new File(putanjaFajla);
@@ -170,8 +146,21 @@ public class io {
             } reader.close();
         }catch(IOException e){
             System.out.println("Greska prilikom ucitavanja!");
-
         }
         return voznja;
+    }
+
+    public static void upisVoznje() {
+        ArrayList<Voznja> ucitaneVoznje = ucitajVoznju(voznjaTXT);
+        String novaVoznja = "100004" + "|" + "2023-05-21T23:47:08.432" + "|" + "Ulica br1 14" + "|" + "Ulica broj 2" + "|" + "KREIRANA" + "|" + "15" + "|" + "2" + "|"+ "marko" + "|" + "milan";
+        try {
+            File voznjaFile = new File(voznjaTXT);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(voznjaFile));
+            writer.write(ucitaneVoznje + novaVoznja);
+            writer.close();
+            System.out.println("Uspesno ste se dodali voznju!");
+        }catch(IOException e) {
+            System.out.println("Greska prilikom upisa u datoteku");
+        }
     }
 }

@@ -4,14 +4,17 @@ import cooltaxi.Preduzece;
 import korisnici.Korisnik;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class GlavniProzor extends JFrame {
     private JMenuBar mainMenu = new JMenuBar();
-    private JMenu korisniciMenu =new JMenu("korisnici");
+    private JMenu korisniciMenu =new JMenu("Korisnici");
     private JMenuItem korisniciItem = new JMenuItem("korisnici");
+
 
     private Preduzece preduzece;
 
@@ -23,7 +26,6 @@ public class GlavniProzor extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initMenu();
         initActions();
-
     }
 
     private void initMenu() {
@@ -31,16 +33,13 @@ public class GlavniProzor extends JFrame {
         mainMenu.add(korisniciMenu);
         korisniciMenu.add(korisniciItem);
 
-
     }
-    private void initActions(){
-        korisniciItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                KorisniciProzor pp = new KorisniciProzor();
-                pp.setVisible(true);
 
-            }
+    private void initActions(){
+        korisniciItem.addActionListener(e -> {
+            KorisniciProzor pp = new KorisniciProzor();
+            pp.setVisible(true);
+
         });
 
     }

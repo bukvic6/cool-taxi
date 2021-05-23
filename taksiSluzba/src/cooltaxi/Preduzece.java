@@ -36,7 +36,7 @@ public class Preduzece {
         } return null;
     }
 
-    public static ArrayList<Korisnik> login(String korisnickoIme, String lozinka) {
+    public static Korisnik login(String korisnickoIme, String lozinka) {
         ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
         for(Korisnik korisnik : ucitaniKorisnici) {
             if(korisnik.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) &&
