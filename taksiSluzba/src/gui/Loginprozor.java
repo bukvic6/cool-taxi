@@ -21,7 +21,11 @@ public class Loginprozor extends JFrame {
     private JButton btnOK = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
 
-    public Loginprozor(){
+
+    private Preduzece preduzece;
+
+    public Loginprozor(Preduzece preduzece){
+        this.preduzece = preduzece;
         setTitle("Prijava");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -66,7 +70,7 @@ public class Loginprozor extends JFrame {
                     }else {
                         Loginprozor.this.dispose();
                         Loginprozor.this.setVisible(false);
-                        GlavniProzor gp = new GlavniProzor();
+                        GlavniProzor gp = new GlavniProzor(preduzece);
                         gp.setVisible(true);
                     }
                 }
