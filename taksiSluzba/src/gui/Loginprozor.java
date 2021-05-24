@@ -1,14 +1,10 @@
 package gui;
 
-
-import cooltaxi.Main;
 import cooltaxi.Preduzece;
 import korisnici.Korisnik;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class Loginprozor extends JFrame {
@@ -48,31 +44,26 @@ public class Loginprozor extends JFrame {
     }
 
    public void initActions(){
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Loginprozor.this.dispose();
-                Loginprozor.this.setVisible(false);
-            }
+        btnCancel.addActionListener(e -> {
+            Loginprozor.this.dispose();
+            Loginprozor.this.setVisible(false);
         });
-        btnOK.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String korisnickoIme = txtKorisnickoIme.getText().trim();
-                String sifra = new String(pfPassword.getPassword()).trim();
 
-                if(korisnickoIme.equals("") || sifra.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu", "greska", JOptionPane.WARNING_MESSAGE);
+        btnOK.addActionListener(e -> {
+            String korisnickoIme = txtKorisnickoIme.getText().trim();
+            String sifra = new String(pfPassword.getPassword()).trim();
+
+            if(korisnickoIme.equals("") || sifra.equals("")) {
+                JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu", "greska", JOptionPane.WARNING_MESSAGE);
+            }else {
+                Korisnik ulogovani = Preduzece.login(korisnickoIme, sifra);
+                if(ulogovani == null) {
+                    JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška", JOptionPane.WARNING_MESSAGE);
                 }else {
-                    Korisnik ulogovani  = (Korisnik) Preduzece.login(korisnickoIme, sifra);
-                    if(ulogovani == null) {
-                        JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška", JOptionPane.WARNING_MESSAGE);
-                    }else {
-                        Loginprozor.this.dispose();
-                        Loginprozor.this.setVisible(false);
-                        GlavniProzor gp = new GlavniProzor(ulogovani);
-                        gp.setVisible(true);
-                    }
+                    Loginprozor.this.dispose();
+                    Loginprozor.this.setVisible(false);
+                    GlavniProzor gp = new GlavniProzor(ulogovani);
+                    gp.setVisible(false);
                 }
             }
         });

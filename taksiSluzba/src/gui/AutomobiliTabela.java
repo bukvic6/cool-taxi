@@ -2,7 +2,6 @@ package gui;
 
 import automobili.Automobil;
 import cooltaxi.Preduzece;
-import korisnici.Korisnik;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

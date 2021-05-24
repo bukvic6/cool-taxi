@@ -1,12 +1,9 @@
 package porudzbina;
 
-import automobili.VrstaAutomobila;
-import cooltaxi.Main;
 import cooltaxi.Preduzece;
 import korisnici.Musterije;
 import korisnici.Vozaci;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 public class Voznja {

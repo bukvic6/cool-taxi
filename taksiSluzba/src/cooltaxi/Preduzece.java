@@ -46,6 +46,7 @@ public class Preduzece {
         }
         return null;
     }
+
     public static Automobil obrisiAutomobil(String brojTaksiVozila){
         for (Automobil automobil: ucitaniAutomobili) {
             if (automobil.getBrojTaksiVozila().equals(brojTaksiVozila) && !automobil.isObrisan()) {

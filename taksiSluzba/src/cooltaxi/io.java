@@ -8,15 +8,14 @@ import automobili.Automobil;
 import korisnici.*;
 import porudzbina.Voznja;
 
-import static cooltaxi.Preduzece.ucitaniAutomobili;
-import static cooltaxi.Preduzece.ucitaniKorisnici;
+import static cooltaxi.Preduzece.*;
 
 
 public class io {
 
-    static String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
-    static String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
-    static String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
+    public static String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
+    public static String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
+    public static String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
 
     public static ArrayList<Korisnik> ucitajKorisnike(String putanjaFajla) {
         ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
@@ -150,17 +149,19 @@ public class io {
         return voznja;
     }
 
-    public static void upisVoznje() {
-        ArrayList<Voznja> ucitaneVoznje = ucitajVoznju(voznjaTXT);
-        String novaVoznja = "100004" + "|" + "2023-05-21T23:47:08.432" + "|" + "Ulica br1 14" + "|" + "Ulica broj 2" + "|" + "KREIRANA" + "|" + "15" + "|" + "2" + "|"+ "marko" + "|" + "milan";
+
+    public static void sacuvajVoznju(String putanjaFajla) {
         try {
-            File voznjaFile = new File(voznjaTXT);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(voznjaFile));
-            writer.write(ucitaneVoznje + novaVoznja);
+            File file = new File(putanjaFajla);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            String sadrzaj = "";
+            for (Voznja porudzbina: ucitaneVoznje){
+                sadrzaj += porudzbina.toString();
+            }
+            writer.write(sadrzaj);
             writer.close();
-            System.out.println("Uspesno ste se dodali voznju!");
-        }catch(IOException e) {
-            System.out.println("Greska prilikom upisa u datoteku");
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
