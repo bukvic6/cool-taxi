@@ -15,8 +15,8 @@ public class Preduzece {
     public double cenaStartaVoznje(){return 0;}
     public double cenaPoKilometru(){return 0;}
 
-    public static ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
     public static ArrayList<Automobil> ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
+    public static ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
     public static ArrayList<Voznja> ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
 
     public static Korisnik obrisiKorisnika(String korisnickoIme){
@@ -57,7 +57,7 @@ public class Preduzece {
     }
 
     public static Automobil pronadjiAutomobil(String registracija){
-        for (Automobil automobil: ucitajAutomobil(automobiliTXT)){
+        for (Automobil automobil: ucitaniAutomobili){
             if (automobil.getRegistracija().equals(registracija)){
                 return automobil;
             }

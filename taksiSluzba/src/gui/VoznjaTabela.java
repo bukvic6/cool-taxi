@@ -34,8 +34,8 @@ public class VoznjaTabela extends JFrame {
             sadrzaj[i][4] = porudzbina.getStatus();
             sadrzaj[i][5] = porudzbina.getTrajanjeVoznje();
             sadrzaj[i][6] = porudzbina.getBrojKM();
-            sadrzaj[i][7] = porudzbina.getMusterija();
-            sadrzaj[i][8] = porudzbina.getVozac();
+            sadrzaj[i][7] = porudzbina.getMusterija().getKorisnickoIme();
+            sadrzaj[i][8] = porudzbina.getVozac().getKorisnickoIme();
         }
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);

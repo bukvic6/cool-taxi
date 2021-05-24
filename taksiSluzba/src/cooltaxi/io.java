@@ -26,7 +26,6 @@ public class io {
             while ((line = reader.readLine()) != null) {
 
                 String[] lineSplit = line.split("\\|");
-
                 String obrisan = lineSplit[0];
                 String uloga = lineSplit[1];
                 String jmbg = lineSplit[2];
@@ -79,12 +78,9 @@ public class io {
     public static ArrayList<Automobil> ucitajAutomobil(String putanjaFajla) {
         ArrayList<Automobil> automobili = new ArrayList<Automobil>();
         File file = new File(putanjaFajla);
-
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
-
             String line;
-
             while ((line = reader.readLine()) != null) {
 
                 String[] lineSplit = line.split("\\|");

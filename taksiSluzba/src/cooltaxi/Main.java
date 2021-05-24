@@ -17,13 +17,13 @@ public class Main {
         Loginprozor lp = new Loginprozor();
         lp.setVisible(true);
 
+        for (Automobil automobil: Preduzece.ucitaniAutomobili){
+            System.out.print(automobil);
+        }
+
         for (Korisnik korisnici: Preduzece.ucitaniKorisnici){
             if (!korisnici.isObrisan())
             System.out.print(korisnici);
-        }
-
-        for (Automobil automobil: Preduzece.ucitaniAutomobili){
-            System.out.print(automobil);
         }
 
         for (Voznja porudzbina: Preduzece.ucitaneVoznje){
