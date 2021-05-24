@@ -14,8 +14,10 @@ import static cooltaxi.io.*;
 public class Main {
 
     public static void main(String[] args) {
-        Preduzece preduzece = new Preduzece();
-        Loginprozor lp = new Loginprozor(preduzece);
+//        Korisnik ulogovani = new Korisnik();
+
+
+        Loginprozor lp = new Loginprozor();
         lp.setVisible(true);
 
         for (Korisnik korisnici: Preduzece.ucitaniKorisnici){

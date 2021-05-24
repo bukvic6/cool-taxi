@@ -22,10 +22,9 @@ public class Loginprozor extends JFrame {
     private JButton btnCancel = new JButton("Cancel");
 
 
-    private Preduzece preduzece;
+    private Korisnik ulogovani;
 
-    public Loginprozor(Preduzece preduzece){
-        this.preduzece = preduzece;
+    public Loginprozor() {
         setTitle("Prijava");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -33,6 +32,7 @@ public class Loginprozor extends JFrame {
         initActions();
         pack();
     }
+
     public void initGUI(){
         MigLayout mig = new MigLayout("wrap 2", "[][]","[]10[][]10[]");
         setLayout(mig);
@@ -70,7 +70,7 @@ public class Loginprozor extends JFrame {
                     }else {
                         Loginprozor.this.dispose();
                         Loginprozor.this.setVisible(false);
-                        GlavniProzor gp = new GlavniProzor(preduzece);
+                        GlavniProzor gp = new GlavniProzor(ulogovani);
                         gp.setVisible(true);
                     }
                 }
