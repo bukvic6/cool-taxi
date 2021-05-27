@@ -66,6 +66,6 @@ public class Vozaci extends Korisnik {
 
     @Override
     public String toString() {
-        return obrisan + "|" + uloga + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|" + plata + "|" + taksi.getRegistracija() +"\n";
+        return obrisan + "|" + uloga + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|" + plata + "|" + (taksi==null?"":taksi.getBrojTaksiVozila()) +"\n";
     }
 }

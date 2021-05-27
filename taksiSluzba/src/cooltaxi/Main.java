@@ -21,9 +21,9 @@ public class Main {
                 System.out.print(automobil);
         }
 
-        for (Korisnik korisnici: Preduzece.ucitaniKorisnici){
-            if (!korisnici.isObrisan())
-            System.out.print(korisnici);
+        for (Korisnik korisnik: Preduzece.ucitaniKorisnici){
+            if (!korisnik.isObrisan())
+                System.out.print(korisnik);
         }
 
         for (Voznja porudzbina: Preduzece.ucitaneVoznje){
