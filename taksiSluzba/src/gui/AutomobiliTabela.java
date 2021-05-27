@@ -84,5 +84,13 @@ public class AutomobiliTabela extends JFrame {
                 }
             }
         });
+
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DodajAuto DodajA = new DodajAuto();
+                DodajA.setVisible(true);
+            }
+        });
     }
 }

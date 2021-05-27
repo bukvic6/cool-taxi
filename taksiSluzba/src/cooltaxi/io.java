@@ -115,6 +115,7 @@ public class io {
         }
     }
 
+
     public static ArrayList<Voznja> ucitajVoznju(String putanjaFajla) {
         ArrayList<Voznja> voznja = new ArrayList<Voznja>();
         File file = new File(putanjaFajla);

@@ -39,6 +39,7 @@ public class Automobil extends Vozaci {
         }
     }
 
+
     @Override
     public boolean isObrisan() {
         return obrisan;
