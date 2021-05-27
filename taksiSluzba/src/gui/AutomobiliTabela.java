@@ -3,7 +3,6 @@ package gui;
 import automobili.Automobil;
 import cooltaxi.Preduzece;
 import cooltaxi.io;
-import korisnici.Korisnik;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static cooltaxi.io.automobiliTXT;
-import static cooltaxi.io.korisniciTXT;
 
 public class AutomobiliTabela extends JFrame {
     private JToolBar mainToolbar = new JToolBar();
@@ -88,9 +86,29 @@ public class AutomobiliTabela extends JFrame {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DodajAuto DodajA = new DodajAuto();
+                DodajIzmeniAuto DodajA = new DodajIzmeniAuto(null);
                 DodajA.setVisible(true);
             }
         });
+        btnEdit.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selektovanRed = tabela.getSelectedRow();
+                if(selektovanRed == -1) {
+                    JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+                }else {
+                    String registracija = tableModel.getValueAt(selektovanRed, 4).toString();
+                    Automobil automobil = Preduzece.pronadjiAutomobil(registracija);
+                    if(automobil == null) {
+                        JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja automobila", "Greska", JOptionPane.WARNING_MESSAGE);
+                    }else {
+                        DodajIzmeniAuto IzmeniA = new DodajIzmeniAuto(automobil);
+                        IzmeniA.setVisible(true);
+                    }
+                }
+            }
+        });
+
     }
 }

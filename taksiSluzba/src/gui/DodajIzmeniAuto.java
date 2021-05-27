@@ -1,6 +1,7 @@
 package gui;
 
 import automobili.Automobil;
+import automobili.VrstaAutomobila;
 import cooltaxi.io;
 import cooltaxi.Preduzece;
 import net.miginfocom.swing.MigLayout;
@@ -11,9 +12,7 @@ import java.awt.event.ActionListener;
 
 import static cooltaxi.io.automobiliTXT;
 
-
-
-public class DodajAuto extends JFrame {
+public class DodajIzmeniAuto extends JFrame {
     private JLabel lblBrojVozila = new JLabel("Broj vozila");
     private JTextField txtBRVozila = new JTextField(20);
     private JLabel lblModel = new  JLabel("Model");
@@ -25,19 +24,20 @@ public class DodajAuto extends JFrame {
     private JLabel lblRegistracija = new JLabel("Registracija");
     private JTextField txtRegistracija = new JTextField(20);
     private JLabel lblVrstaAutomobila = new JLabel("Vrsta Automobila");
-    private JTextField txtVrstaAutomobila = new JTextField(20);
+    private JComboBox<VrstaAutomobila> txtVrstaAutomobila = new JComboBox<VrstaAutomobila>(VrstaAutomobila.values());
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
 
     private Automobil automobil;
 
-    public DodajAuto(){
+    public DodajIzmeniAuto(Automobil automobil){
+        this.automobil = automobil;
         if(automobil == null){
             setTitle("Dodavanje Automobila");
         }
-//        else {
-//            setTitle("Izmena podatka -" + automobil.getRegistracija());
-//        }
+        else {
+            setTitle("Izmena podatka" + automobil.getRegistracija());
+        }
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();
@@ -50,20 +50,19 @@ public class DodajAuto extends JFrame {
         setLayout(layout);
         if(automobil != null) {
             popuniPolja();
-
         }
         add(lblBrojVozila);
         add(txtBRVozila);
-        add(lblGodinaProizvodnje);
-        add(txtGodinaProizvodnja);
         add(lblModel);
         add(txtModel);
         add(lblProizvodjac);
         add(txtProizvodjac);
-        add(lblVrstaAutomobila);
-        add(txtVrstaAutomobila);
+        add(lblGodinaProizvodnje);
+        add(txtGodinaProizvodnja);
         add(lblRegistracija);
         add(txtRegistracija);
+        add(lblVrstaAutomobila);
+        add(txtVrstaAutomobila);
         add(new JLabel());
         add(btnOk, "split 2");
         add(btnCancel);
@@ -72,34 +71,37 @@ public class DodajAuto extends JFrame {
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Obrisan = "false";
+
                 String BRVozila = txtBRVozila.getText().trim();
-                String GodinaPro = txtGodinaProizvodnja.getText().trim();
-                String Proizvodjac = txtProizvodjac.getText().trim();
                 String Model = txtModel.getText().trim();
-                String VrstaAuta = txtVrstaAutomobila.getText().trim();
+                String Proizvodjac = txtProizvodjac.getText().trim();
+                String GodinaPro = txtGodinaProizvodnja.getText().trim();
                 String Registracija = txtRegistracija.getText().trim();
+                VrstaAutomobila vrstaAutomobila = (VrstaAutomobila) txtVrstaAutomobila.getSelectedItem();
                 if(automobil == null) {
-//                    OVDE TREBA DODATI
+                    Automobil automobil = new Automobil(false, BRVozila, Model, Proizvodjac, GodinaPro, Registracija, vrstaAutomobila);
+                    Preduzece.ucitaniAutomobili.add(automobil);
+                }else {
+                    automobil.setBrojTaksiVozila(BRVozila);
+                    automobil.setModel(Model);
+                    automobil.setProizvodjac(Proizvodjac);
+                    automobil.setGodinaProizvodnje(GodinaPro);
+                    automobil.setRegistracija(Registracija);
+                    automobil.setTipAutomobila(vrstaAutomobila);
                 }
                 io.sacuvajAutomobile(automobiliTXT);
-                DodajAuto.this.dispose();
-                DodajAuto.this.setVisible(false);
-
+                DodajIzmeniAuto.this.dispose();
+                DodajIzmeniAuto.this.setVisible(false);
             }
         });
-
     }
+
     private void popuniPolja() {
         txtBRVozila.setText(automobil.getBrojTaksiVozila());
-        txtGodinaProizvodnja.setText(automobil.getGodinaProizvodnje());
         txtModel.setText(automobil.getModel());
+        txtProizvodjac.setText(automobil.getProizvodjac());
+        txtGodinaProizvodnja.setText(automobil.getGodinaProizvodnje());
         txtRegistracija.setText(automobil.getRegistracija());
-        txtVrstaAutomobila.setText(String.valueOf(automobil.getTipAutomobila()));
-
+        txtVrstaAutomobila.setSelectedItem(automobil.getTipAutomobila());
     }
-
-
-
-
 }
