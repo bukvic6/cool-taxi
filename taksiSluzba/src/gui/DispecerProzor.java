@@ -6,7 +6,7 @@ import javax.swing.*;
 public class DispecerProzor extends JFrame {
     private JMenuBar mainMenu = new JMenuBar();
     private JMenu dispecerMenu = new JMenu("Tabelarni prikaz");
-    private JMenuItem korisnici = new JMenuItem("Korisnici");
+    private JMenuItem korisnici = new JMenuItem("Vozaci");
     private JMenuItem automobili = new JMenuItem("Automobili");
     private JMenuItem voznje = new JMenuItem("Voznje");
 
@@ -30,7 +30,7 @@ public class DispecerProzor extends JFrame {
 
     private void initActions(){
         korisnici.addActionListener(e -> {
-            KorisniciTabela KTabela = new KorisniciTabela();
+            VozaciTabela KTabela = new VozaciTabela();
             KTabela.setVisible(true);
         });
         automobili.addActionListener(e -> {

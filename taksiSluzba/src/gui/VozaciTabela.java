@@ -3,6 +3,9 @@ package gui;
 import automobili.Automobil;
 import cooltaxi.Preduzece;
 import cooltaxi.io;
+import korisnici.Korisnik;
+import korisnici.Vozaci;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,9 +13,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static cooltaxi.io.automobiliTXT;
+import static cooltaxi.io.korisniciTXT;
 
-public class AutomobiliTabela extends JFrame {
+
+public class VozaciTabela extends JFrame {
     private JToolBar mainToolbar = new JToolBar();
     private JButton btnAdd = new JButton("Dodaj");
     private JButton btnEdit = new JButton("Izmeni");
@@ -21,7 +25,7 @@ public class AutomobiliTabela extends JFrame {
     private DefaultTableModel tableModel;
     private JTable tabela;
 
-    public AutomobiliTabela() {
+    public VozaciTabela() {
         setSize(500, 300);
         setResizable(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -37,18 +41,22 @@ public class AutomobiliTabela extends JFrame {
         add(mainToolbar, BorderLayout.NORTH);
         mainToolbar.setFloatable(false);
 
-        String [] zaglavlje = new String[]{"Broj vozila", "Model", "Proizvodjac", "Godina proizvodnje", "Registracija", "Vrsta automobila"};
-        Object[][] sadrzaj = new Object[Preduzece.ucitaniAutomobili.size()][zaglavlje.length];
+        String[] zaglavlje = new String[]{"JMBG", "Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Broj clanske karte", "Plata", "Vozilo"};
+        Object[][] sadrzaj = new Object[Preduzece.getVozaci().size()][zaglavlje.length];
 
-        for (int i = 0; i < Preduzece.ucitaniAutomobili.size(); i++){
-            Automobil automobil = Preduzece.ucitaniAutomobili.get(i);
-            if(!automobil.isObrisan()) {
-                sadrzaj[i][0] = automobil.getBrojTaksiVozila();
-                sadrzaj[i][1] = automobil.getModel();
-                sadrzaj[i][2] = automobil.getProizvodjac();
-                sadrzaj[i][3] = automobil.getGodinaProizvodnje();
-                sadrzaj[i][4] = automobil.getRegistracija();
-                sadrzaj[i][5] = automobil.getTipAutomobila();
+        for (int i = 0; i < Preduzece.getVozaci().size(); i++) {
+            Korisnik korisnik = Preduzece.getVozaci().get(i);
+            if (!korisnik.isObrisan() && korisnik.getUloga().equals("vozac")) {
+                sadrzaj[i][0] = korisnik.getJmbg();
+                sadrzaj[i][1] = korisnik.getKorisnickoIme();
+                sadrzaj[i][2] = korisnik.getIme();
+                sadrzaj[i][3] = korisnik.getPrezime();
+                sadrzaj[i][4] = korisnik.getAdresa();
+                sadrzaj[i][5] = korisnik.getPol();
+                sadrzaj[i][6] = korisnik.getBrojTelefona();
+                sadrzaj[i][7] = ((Vozaci)korisnik).getBrojClanskeKarte();
+                sadrzaj[i][8] = ((Vozaci)korisnik).getPlata();
+                sadrzaj[i][9] = ((Vozaci)korisnik).getTaksi().getBrojTaksiVozila();
             }
         }
 
@@ -63,28 +71,30 @@ public class AutomobiliTabela extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane, BorderLayout.CENTER);
     }
+
     private void initActions() {
+        
         btnDelete.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if (selektovanRed == -1) {
                 JOptionPane.showMessageDialog(null, "Odaberite red u tabeli", "Greska", JOptionPane.WARNING_MESSAGE);
             } else {
-                String registracija = tableModel.getValueAt(selektovanRed, 4).toString();
-                Automobil automobil = Preduzece.pronadjiAutomobil(registracija);
+                String korisnickoIme = tableModel.getValueAt(selektovanRed, 1).toString();
+                Korisnik korisnik = Preduzece.pronadjiKorisnika(korisnickoIme);
 
                 int izbor = JOptionPane.showConfirmDialog(null,
-                        "Da li ste sigurni da zelite da obrisete automobil?",
-                        registracija + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+                        "Da li ste sigurni da zelite da obrisete korisnika?",
+                        korisnickoIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
                 if (izbor == JOptionPane.YES_OPTION) {
-                    automobil.setObrisan(true);
+                    korisnik.setObrisan(true);
                     tableModel.removeRow(selektovanRed);
-                    io.sacuvajAutomobile(automobiliTXT);
+                    io.sacuvajKorisnike(korisniciTXT);
                 }
             }
         });
 
         btnAdd.addActionListener(e -> {
-            DodajIzmeniAuto DodajA = new DodajIzmeniAuto(null);
+            DodajIzmeniVozaca DodajA = new DodajIzmeniVozaca(null);
             DodajA.setVisible(true);
         });
 
@@ -93,16 +103,15 @@ public class AutomobiliTabela extends JFrame {
             if(selektovanRed == -1) {
                 JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
-                String brojTaksiVozila = tableModel.getValueAt(selektovanRed, 0).toString();
-                Automobil automobil = Preduzece.pronadjiAutomobil(brojTaksiVozila);
-                if(automobil == null) {
+                String korisnickoIme = tableModel.getValueAt(selektovanRed, 1).toString();
+                Vozaci vozac = (Vozaci) Preduzece.pronadjiKorisnika(korisnickoIme);
+                if(vozac == null) {
                     JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja automobila", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
-                    DodajIzmeniAuto IzmeniA = new DodajIzmeniAuto(automobil);
-                    IzmeniA.setVisible(true);
+                    DodajIzmeniVozaca izmenaVozaca = new DodajIzmeniVozaca(vozac);
+                    izmenaVozaca.setVisible(true);
                 }
             }
         });
-
     }
 }

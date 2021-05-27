@@ -7,8 +7,7 @@ import porudzbina.Voznja;
 
 import java.util.Scanner;
 
-import static cooltaxi.io.automobiliTXT;
-import static cooltaxi.io.voznjaTXT;
+import static cooltaxi.io.*;
 
 public class Main {
 
@@ -18,7 +17,8 @@ public class Main {
         lp.setVisible(true);
 
         for (Automobil automobil: Preduzece.ucitaniAutomobili){
-            System.out.print(automobil);
+            if (!automobil.isObrisan())
+                System.out.print(automobil);
         }
 
         for (Korisnik korisnici: Preduzece.ucitaniKorisnici){
@@ -27,7 +27,8 @@ public class Main {
         }
 
         for (Voznja porudzbina: Preduzece.ucitaneVoznje){
-            System.out.print(porudzbina);
+            if (!porudzbina.isObrisan())
+                System.out.print(porudzbina);
         }
 
         Preduzece CoolTaxi = new Preduzece();
@@ -36,6 +37,11 @@ public class Main {
         CoolTaxi.setNaziv("Cool Taxi");
         System.out.println(CoolTaxi);
         Scanner skener = new Scanner(System.in);
+        System.out.print("Unesite korisnicko ime osobe koju zelite da obrisete (jovanaj): ");
+        String korisnik = skener.nextLine();
+
+        System.out.println(Preduzece.obrisiKorisnika(korisnik));
+        io.sacuvajKorisnike(korisniciTXT);
 
 //        System.out.print("Unesite broj vozila koji zelite da obrisete: ");
 //        String automobil = skener.nextLine();

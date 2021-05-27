@@ -94,6 +94,11 @@ public class DodajIzmeniAuto extends JFrame {
                 DodajIzmeniAuto.this.setVisible(false);
             }
         });
+
+        btnCancel.addActionListener(e -> {
+            DodajIzmeniAuto.this.dispose();
+            DodajIzmeniAuto.this.setVisible(false);
+        });
     }
 
     private void popuniPolja() {

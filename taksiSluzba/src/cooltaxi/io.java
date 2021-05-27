@@ -127,17 +127,17 @@ public class io {
             while ((line = reader.readLine()) != null) {
 
                 String[] lineSplit = line.split("\\|");
-
-                String id = lineSplit[0];
-                String vremePorudzbine = lineSplit[1];
-                String adresaPolaska = lineSplit[2];
-                String adresaDestinacije = lineSplit[3];
-                String status = lineSplit[4];
-                String trajanjeVoznje = lineSplit[5];
-                String brojKM = lineSplit[6];
-                String musterija = lineSplit[7];
-                String vozac = lineSplit[8];
-                Voznja porudzbina = new Voznja(id, vremePorudzbine, adresaPolaska, adresaDestinacije, status, trajanjeVoznje, brojKM, musterija, vozac);
+                String obrisan = lineSplit[0];
+                String id = lineSplit[1];
+                String vremePorudzbine = lineSplit[2];
+                String adresaPolaska = lineSplit[3];
+                String adresaDestinacije = lineSplit[4];
+                String status = lineSplit[5];
+                String trajanjeVoznje = lineSplit[6];
+                String brojKM = lineSplit[7];
+                String musterija = lineSplit[8];
+                String vozac = lineSplit[9];
+                Voznja porudzbina = new Voznja(obrisan, id, vremePorudzbine, adresaPolaska, adresaDestinacije, status, trajanjeVoznje, brojKM, musterija, vozac);
                 voznja.add(porudzbina);
             } reader.close();
         }catch(IOException e){

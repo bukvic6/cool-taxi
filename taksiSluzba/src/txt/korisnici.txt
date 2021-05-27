@@ -1,3 +1,5 @@
-false|vozac|2603998905078|petarp|12345|Petar|Petrovic|Nizijska 12|MUSKI|0633293829|1|500.0|NS069NY
+false|vozac|2603998905069|nikola|12345|Petar|Petrovic|Nizijska 12|MUSKI|0633293829|1|500.0|NS069NY
+false|vozac|2603998905123|gaja|12345|Petar|Petrovic|Nizijska 12|MUSKI|0633293829|1|500.0|NS203JD
 false|musterija|2005998805045|jovanaj|54321|Jovana|Jovanovic|Seljackih Buna 23|ZENSKI|0613939329
-false|dispecer|1403998305034|milanM|11111|Milan|Milanovic|Durmitorska 12|MUSKI|0623938921|1|450.0|ODELJENJE_ZA_PRIJEM_VOZNJE
+false|dispecer|1403998305034|mile|11111|Milan|Milanovic|Durmitorska 12|MUSKI|0623938921|1|450.0|ODELJENJE_ZA_PRIJEM_VOZNJE
+false|vozac|2603998905078|petarp|12345|Petar|Petrovic|Nizijska 12|MUSKI|0633293829|1|500.0|ns232ms

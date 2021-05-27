@@ -7,6 +7,7 @@ import korisnici.Vozaci;
 import java.time.LocalDateTime;
 
 public class Voznja {
+    protected boolean obrisan;
     protected int id;
     protected LocalDateTime vremePorudzbine;
     protected String adresaPolaska;
@@ -20,7 +21,8 @@ public class Voznja {
     public Voznja() {
     }
 
-    public Voznja(int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, Musterije musterija, Vozaci vozac) {
+    public Voznja(boolean obrisan, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, Musterije musterija, Vozaci vozac) {
+        this.obrisan = obrisan;
         this.id = id;
         this.vremePorudzbine = vremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -32,7 +34,8 @@ public class Voznja {
         this.vozac = vozac;
     }
 
-    public Voznja(String id, String vremePorudzbine, String adresaPolaska, String adresaDestinacije, String status, String trajanjeVoznje, String brojKM, String musterija, String vozac) {
+    public Voznja(String obrisan, String id, String vremePorudzbine, String adresaPolaska, String adresaDestinacije, String status, String trajanjeVoznje, String brojKM, String musterija, String vozac) {
+        this.obrisan = Boolean.parseBoolean(obrisan);
         this.id = Integer.parseInt(id);
         this.vremePorudzbine = LocalDateTime.parse(vremePorudzbine);
         this.adresaPolaska = adresaPolaska;
@@ -56,6 +59,14 @@ public class Voznja {
         this.brojKM = Double.parseDouble(brojKM);
         this.musterija = (Musterije) Preduzece.pronadjiKorisnika(musterija);
         this.vozac = (Vozaci) Preduzece.pronadjiKorisnika(vozac);
+    }
+
+    public boolean isObrisan() {
+        return obrisan;
+    }
+
+    public void setObrisan(boolean obrisan) {
+        this.obrisan = obrisan;
     }
 
     public int getId() {
@@ -132,6 +143,6 @@ public class Voznja {
 
     @Override
     public String toString() {
-        return id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + brojKM + "|" + trajanjeVoznje + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
+        return obrisan + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + brojKM + "|" + trajanjeVoznje + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
     }
 }
