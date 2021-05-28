@@ -6,7 +6,6 @@ import korisnici.Korisnik;
 import korisnici.Musterije;
 import porudzbina.Voznja;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import static cooltaxi.io.*;
@@ -14,12 +13,6 @@ import static cooltaxi.io.*;
 public class Main {
 
     public static void main(String[] args) {
-        Preduzece CoolTaxi = new Preduzece();
-        CoolTaxi.setPIB("3846296229");
-        CoolTaxi.setAdresa("Todora Toze Jovanovica 13");
-        CoolTaxi.setNaziv("Cool Taxi");
-        System.out.println(CoolTaxi);
-
         Loginprozor lp = new Loginprozor();
         lp.setVisible(true);
 
@@ -60,19 +53,20 @@ public class Main {
 
         Musterije noviKorisnik = new Musterije("false", "musterija", jmbg,korisnickoIme,lozinka,ime,prezime,adresa,pol,telefon);
         Preduzece.ucitaniKorisnici.add(noviKorisnik);
+        System.out.print("Izmenite korisnicko ime: ");
+        String novoKorisnickoIme = skener.nextLine();
+        System.out.print("Izmenite adresa: ");
+        String novaAdresa = skener.nextLine();
+        noviKorisnik.setKorisnickoIme(novoKorisnickoIme);
+        noviKorisnik.setAdresa(novaAdresa);
 
-        System.out.print("Unesite korisnicko ime osobe koju zelite da obrisete (jovanaj): ");
+        System.out.print("Unesite korisnicko ime osobe koju zelite da obrisete (jovanaj/mrki): ");
         String korisnik = skener.nextLine();
 
         System.out.println(Preduzece.obrisiKorisnika(korisnik));
         io.sacuvajKorisnike(korisniciTXT);
-
-//        System.out.print("Unesite broj vozila koji zelite da obrisete: ");
-//        String automobil = skener.nextLine();
-//        System.out.println(obrisiAutomobil(automobil));
         io.sacuvajAutomobile(automobiliTXT);
         io.sacuvajVoznju(voznjaTXT);
-
-
+        io.sacuvajPreduzece(preduzeceTXT);
     }
 }

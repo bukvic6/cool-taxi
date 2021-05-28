@@ -2,6 +2,7 @@ package cooltaxi;
 
 
 import java.io.*;
+import java.security.Permission;
 import java.util.ArrayList;
 
 import automobili.Automobil;
@@ -16,6 +17,42 @@ public class io {
     public static String korisniciTXT = "taksiSluzba/src/txt/korisnici.txt";
     public static String automobiliTXT = "taksiSluzba/src/txt/automobil.txt";
     public static String voznjaTXT = "taksiSluzba/src/txt/voznja.txt";
+    public static String preduzeceTXT = "taksiSluzba/src/txt/preduzece.txt";
+
+    public static ArrayList<Preduzece> ucitajPreduzece (String putanjaFajla) {
+        ArrayList<Preduzece> preduzece = new ArrayList<Preduzece>();
+        File file = new File(putanjaFajla);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+
+                String[] lineSplit = line.split("\\|");
+                String pib = lineSplit[0];
+                String adresa = lineSplit[1];
+                String ime = lineSplit[2];
+                Preduzece cooltaxi = new Preduzece(pib, adresa,ime);
+                preduzece.add(cooltaxi);
+            } reader.close();
+        }catch(IOException e){
+            System.out.println("Greska prilikom ucitavanja!");
+        }
+        return preduzece;
+    }
+    public static void sacuvajPreduzece(String putanjaFajla) {
+        try {
+            File file = new File(putanjaFajla);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            String sadrzaj = "";
+            for (Preduzece preduzece: ucitanoPreduzece){
+                sadrzaj += preduzece.toString();
+            }
+            writer.write(sadrzaj);
+            writer.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<Korisnik> ucitajKorisnike(String putanjaFajla) {
         ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();

@@ -19,6 +19,15 @@ public class Preduzece {
     public static ArrayList<Automobil> ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
     public static ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
     public static ArrayList<Voznja> ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
+    public static ArrayList<Preduzece> ucitanoPreduzece = io.ucitajPreduzece(preduzeceTXT);
+
+    public static Preduzece pronadjiPreduzece(String naziv){
+        for (Preduzece preduzece: ucitanoPreduzece){
+            if (preduzece.getNaziv().equals(naziv)){
+                return preduzece;
+            }
+        } return null;
+    }
 
     public static Korisnik obrisiKorisnika(String korisnickoIme){
         for (Korisnik korisnik: ucitaniKorisnici) {
@@ -84,8 +93,9 @@ public class Preduzece {
     }
 
     public Preduzece (){
-
-
+        PIB = "34343";
+        naziv ="dgfds";
+        adresa ="kjkdj";
     }
 
     public Preduzece(String PIB, String naziv, String adresa) {
@@ -121,6 +131,6 @@ public class Preduzece {
 
     @Override
     public String toString() {
-        return "Preduzece " + naziv + " se nalazi na adresi: " + adresa + " sa pib-om " + PIB;
+        return PIB + "|" + adresa + "|" + naziv;
     }
 }
