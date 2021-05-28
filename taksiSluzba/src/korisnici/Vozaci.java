@@ -12,7 +12,7 @@ public class Vozaci extends Korisnik {
 
     public Vozaci(boolean obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa,
                   Pol pol, String brojTelefona, String brojClanskeKarte, double plata, Automobil taksi) {
-        super(uloga, obrisan, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
+        super(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.brojClanskeKarte = brojClanskeKarte;
         this.plata = plata;
         this.taksi = taksi;

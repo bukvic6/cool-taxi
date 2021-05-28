@@ -9,7 +9,7 @@ public class Dispeceri extends Korisnik {
     }
 
     public Dispeceri(String uloga, boolean obrisan, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije) {
-        super(uloga, obrisan, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
+        super(obrisan, uloga, jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona);
         this.plata = plata;
         this.brojTelefonskeLinije = brojTelefonskeLinije;
     }

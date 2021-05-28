@@ -143,6 +143,6 @@ public class Voznja {
 
     @Override
     public String toString() {
-        return obrisan + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + brojKM + "|" + trajanjeVoznje + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
+        return obrisan + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + trajanjeVoznje  + "|" + brojKM + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
     }
 }

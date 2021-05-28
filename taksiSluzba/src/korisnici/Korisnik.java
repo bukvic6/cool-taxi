@@ -17,9 +17,9 @@ public abstract class Korisnik extends ArrayList<Korisnik> {
     public Korisnik() {
     }
 
-    public Korisnik(String uloga, boolean obrisan, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
-        this.uloga = uloga;
+    public Korisnik(boolean obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, Pol pol, String brojTelefona) {
         this.obrisan = obrisan;
+        this.uloga = uloga;
         this.jmbg = jmbg;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;

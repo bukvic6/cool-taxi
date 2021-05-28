@@ -85,6 +85,7 @@ public class Preduzece {
 
     public Preduzece (){
 
+
     }
 
     public Preduzece(String PIB, String naziv, String adresa) {
