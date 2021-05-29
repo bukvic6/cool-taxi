@@ -1,5 +1,6 @@
 package gui;
 
+import automobili.Automobil;
 import cooltaxi.Preduzece;
 import cooltaxi.io;
 import korisnici.Korisnik;
@@ -84,6 +85,27 @@ public class VoznjaTabela extends JFrame {
                     porudzbina.setObrisan(true);
                     tableModel.removeRow(selektovanRed);
                     io.sacuvajVoznju(voznjaTXT);
+                }
+            }
+        });
+
+        btnAdd.addActionListener(e -> {
+            DodajIzmeniVoznju dodajVoznju = new DodajIzmeniVoznju(null);
+            dodajVoznju.setVisible(true);
+        });
+
+        btnEdit.addActionListener(e -> {
+            int selektovanRed = tabela.getSelectedRow();
+            if(selektovanRed == -1) {
+                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+            }else {
+                String adresa = tableModel.getValueAt(selektovanRed, 2).toString();
+                Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
+                if(porudzbina == null) {
+                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje", "Greska", JOptionPane.WARNING_MESSAGE);
+                }else {
+                    DodajIzmeniVoznju izmeniVoznju = new DodajIzmeniVoznju(porudzbina);
+                    izmeniVoznju.setVisible(true);
                 }
             }
         });
