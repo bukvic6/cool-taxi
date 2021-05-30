@@ -1,6 +1,5 @@
 package gui;
 
-import cooltaxi.Main;
 import cooltaxi.Preduzece;
 
 import javax.swing.*;
@@ -17,6 +16,7 @@ public class MusterijeProzor extends JFrame {
     private JLabel adresaSluzbe = new JLabel(CoolTaxi.getAdresa());
     private DefaultTableModel tableModel;
     private JTable tabela;
+    private JButton btnRez = new JButton("Rezervisite voznju putem aplikacije");
 
 
 
@@ -31,6 +31,7 @@ public class MusterijeProzor extends JFrame {
     private void initMenu() {
         setJMenuBar(mainMenu);
         mainMenu.add(korisniciMenu);
+        mainMenu.add(btnRez);
         add(nazivSLuzbe);
         add(PIB);
         add(adresaSluzbe);
@@ -61,5 +62,10 @@ public class MusterijeProzor extends JFrame {
     private void initActions(){
         korisniciMenu.addActionListener(e -> {
         });
+        btnRez.addActionListener(e -> {
+            RezervacijaAplikacija rezAp = new RezervacijaAplikacija();
+            rezAp.setVisible(true);
+        });
+
     }
 }
