@@ -56,7 +56,7 @@ public class VozaciTabela extends JFrame {
                 sadrzaj[i][6] = korisnik.getBrojTelefona();
                 sadrzaj[i][7] = ((Vozaci)korisnik).getBrojClanskeKarte();
                 sadrzaj[i][8] = ((Vozaci)korisnik).getPlata();
-                sadrzaj[i][9] = ((Vozaci)korisnik).getTaksi().getBrojTaksiVozila();
+                sadrzaj[i][9] = ((Vozaci) korisnik).getTaksiBroj();
             }
         }
 

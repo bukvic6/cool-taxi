@@ -6,6 +6,7 @@ public class Vozaci extends Korisnik {
     private String brojClanskeKarte;
     private double plata;
     private Automobil taksi;
+    private String taksiBroj;
 
     public Vozaci() {
     }
@@ -18,7 +19,7 @@ public class Vozaci extends Korisnik {
         this.taksi = taksi;
     }
 
-    public Vozaci(String obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, String clanskaKarta, String plata, String taksi) {
+    public Vozaci(String obrisan, String uloga, String jmbg, String korisnickoIme, String lozinka, String ime, String prezime, String adresa, String pol, String brojTelefona, String clanskaKarta, String plata, String taksiBroj) {
         this.obrisan = Boolean.parseBoolean(obrisan);
         this.uloga = uloga;
         this.jmbg = jmbg;
@@ -37,7 +38,7 @@ public class Vozaci extends Korisnik {
         this.brojTelefona = brojTelefona;
         this.brojClanskeKarte = clanskaKarta;
         this.plata = Double.parseDouble(plata);
-        this.taksi = Preduzece.pronadjiAutomobil(taksi);
+        this.taksiBroj = taksiBroj;
     }
 
     public String getBrojClanskeKarte() {
@@ -64,8 +65,18 @@ public class Vozaci extends Korisnik {
         this.taksi = taksi;
     }
 
+    public String getTaksiBroj() {
+        return taksiBroj;
+    }
+
+    public void setTaksiBroj(String taksiBroj) {
+        this.taksiBroj = taksiBroj;
+    }
+
     @Override
     public String toString() {
-        return obrisan + "|" + uloga + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|" + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|" + plata + "|" + (taksi==null?"":taksi.getBrojTaksiVozila()) +"\n";
+        return obrisan + "|" + uloga + "|" + jmbg + "|" + korisnickoIme + "|" + lozinka + "|" + ime + "|"
+                + prezime + "|" + adresa + "|" + pol + "|" + brojTelefona + "|" + brojClanskeKarte + "|"
+                + plata + "|" + (taksiBroj==null?"":taksiBroj) +"\n";
     }
 }

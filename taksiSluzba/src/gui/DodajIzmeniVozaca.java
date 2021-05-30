@@ -10,6 +10,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 
 import static cooltaxi.io.automobiliTXT;
+import static cooltaxi.io.korisniciTXT;
 
 public class DodajIzmeniVozaca extends JFrame {
     private JLabel lblJMBG = new JLabel("JMBG");
@@ -106,11 +107,12 @@ public class DodajIzmeniVozaca extends JFrame {
             String brojTelefona = txtBrojTelefona.getText().trim();
             String brojClanskeKarte = txtBrojClanskeKarte.getText().trim();
             String plata = txtPlata.getText().trim();
-            Automobil taksi = (Automobil) txtTaksi.getSelectedItem();
+            String brojTaksija = txtTaksi.getSelectedItem().toString();
 
             if(vozac == null) {
-                Vozaci vozac = new Vozaci(false, "vozac", jmbg, korisnickoIme, lozinka, ime, prezime, adresa, pol, brojTelefona, brojClanskeKarte, Integer.parseInt(plata), taksi);
-                Preduzece.getVozaci().add(vozac);
+                Vozaci vozac = new Vozaci("false", "vozac", jmbg, korisnickoIme, lozinka, ime, prezime,
+                        adresa, String.valueOf(pol), brojTelefona, brojClanskeKarte, plata, brojTaksija);
+                Preduzece.ucitaniKorisnici.add(vozac);
             }else {
                 vozac.setJmbg(jmbg);
                 vozac.setKorisnickoIme(korisnickoIme);
@@ -122,9 +124,9 @@ public class DodajIzmeniVozaca extends JFrame {
                 vozac.setBrojTelefona(brojTelefona);
                 vozac.setBrojClanskeKarte(brojClanskeKarte);
                 vozac.setPlata(Double.parseDouble(plata));
-                vozac.setTaksi(taksi);
+                vozac.setTaksiBroj(brojTaksija);
             }
-            io.sacuvajAutomobile(automobiliTXT);
+            io.sacuvajKorisnike(korisniciTXT);
             DodajIzmeniVozaca.this.dispose();
             DodajIzmeniVozaca.this.setVisible(false);
         });
@@ -146,6 +148,6 @@ public class DodajIzmeniVozaca extends JFrame {
         txtBrojTelefona.setText(vozac.getBrojTelefona());
         txtBrojClanskeKarte.setText(vozac.getBrojClanskeKarte());
         txtPlata.setText(String.valueOf(vozac.getPlata()));
-        txtTaksi.setSelectedItem(vozac.getTaksi());
+        txtTaksi.setSelectedItem(vozac.getTaksiBroj());
     }
 }
