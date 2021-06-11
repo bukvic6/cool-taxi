@@ -2,9 +2,12 @@ package gui;
 
 import cooltaxi.Preduzece;
 import cooltaxi.io;
+import korisnici.Korisnik;
 import korisnici.Musterije;
+import korisnici.Vozaci;
 import net.miginfocom.swing.MigLayout;
 import porudzbina.StatusVoznje;
+import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
@@ -14,6 +17,8 @@ import java.time.LocalDateTime;
 import static cooltaxi.io.voznjaTXT;
 
 public class DodajIzmeniVoznju extends JFrame {
+    private JLabel lblTipPorudzbine = new JLabel("Tip porudzbine: ");
+    private JComboBox<TipPorudzbine> txtTipPorudzbine = new JComboBox<TipPorudzbine>(TipPorudzbine.values());
     private JLabel lblID = new JLabel("ID");
     private JTextField txtID = new JTextField(20);
     private JLabel lblVremePoruzbine = new  JLabel("Vreme porudzbine");
@@ -31,19 +36,19 @@ public class DodajIzmeniVoznju extends JFrame {
     private JLabel lblMusterija = new JLabel("Musterija");
     private JTextField txtMusterija = new JTextField(20);
     private JLabel lblVozac = new JLabel("Vozac");
-    private JTextField txtVozac = new JTextField(20);
+    private JComboBox<String> txtVozac = new JComboBox<String>();
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
 
     private final Voznja porudzbina;
 
-    public DodajIzmeniVoznju(Voznja poruzbina){
-        this.porudzbina = poruzbina;
-        if(poruzbina == null){
+    public DodajIzmeniVoznju(Voznja porudzbina){
+        this.porudzbina = porudzbina;
+        if(porudzbina == null){
             setTitle("Dodavanje porudzbine");
         }
         else {
-            setTitle("Izmena podatka " + poruzbina.getId());
+            setTitle("Izmena podatka " + porudzbina.getId());
         }
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -60,10 +65,17 @@ public class DodajIzmeniVoznju extends JFrame {
             txtStatusVoznje.addItem(voznja.getStatus());
         }
 
+        for (Korisnik vozaci: Preduzece.ucitaniKorisnici){
+            if(vozaci.getUloga().equals("vozac")){
+                txtVozac.addItem(vozaci.getKorisnickoIme());
+            }
+        }
+
         if(porudzbina != null) {
             popuniPolja();
         }
-
+        add(lblTipPorudzbine);
+        add(txtTipPorudzbine);
 //        add(lblID);
 //        add(txtID);
         txtID.setText("100003");
@@ -74,8 +86,8 @@ public class DodajIzmeniVoznju extends JFrame {
         add(txtAdresaPolaska);
         add(lblAdresaDestinacije);
         add(txtAdresaDestinacije);
-//        add(lblStatus);
-//        add(txtStatusVoznje);
+        add(lblStatus);
+        add(txtStatusVoznje);
         txtStatusVoznje.setSelectedItem(StatusVoznje.KREIRANA_NA_CEKANJU);
 //        add(lblTrajanjeVoznje);
 //        add(txtTrajanjeVoznje);
@@ -88,7 +100,7 @@ public class DodajIzmeniVoznju extends JFrame {
         txtMusterija.setText("jovanaj");
         add(lblVozac);
         add(txtVozac);
-        txtVozac.setText("petarp");
+//        txtVozac.setText("petarp");
         add(new JLabel());
         add(btnOk, "split 2");
         add(btnCancel);
@@ -96,7 +108,7 @@ public class DodajIzmeniVoznju extends JFrame {
 
     public void initActions() {
         btnOk.addActionListener(e -> {
-
+            TipPorudzbine tipPorudzbine = (TipPorudzbine) txtTipPorudzbine.getSelectedItem();
             String id = txtID.getText().trim();
             String vremePoruzbine = txtVremePorudzbine.getText().trim();
             String adresaPolaska = txtAdresaPolaska.getText().trim();
@@ -105,12 +117,13 @@ public class DodajIzmeniVoznju extends JFrame {
             String trajanjeVoznje = txtTrajanjeVoznje.getText().trim();
             String brojKM = txtBrojKM.getText().trim();
             String musterija = txtMusterija.getText().trim();
-            String vozac = txtVozac.getText().trim();
+            String vozac = String.valueOf(txtVozac.getSelectedItem());
 
             if(porudzbina == null) {
-                Voznja porudzbina = new Voznja("false", id, vremePoruzbine, adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
+                Voznja porudzbina = new Voznja("false", String.valueOf(tipPorudzbine), id, vremePoruzbine, adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
                 Preduzece.ucitaneVoznje.add(porudzbina);
             }else {
+                porudzbina.setTipPorudzbine(tipPorudzbine);
                 porudzbina.setId(Integer.parseInt(id));
                 porudzbina.setVremePorudzbine(LocalDateTime.parse(vremePoruzbine));
                 porudzbina.setAdresaPolaska(adresaPolaska);
@@ -133,6 +146,7 @@ public class DodajIzmeniVoznju extends JFrame {
     }
 
     private void popuniPolja() {
+        txtTipPorudzbine.setSelectedItem(porudzbina.getTipPorudzbine());
         txtID.setText(String.valueOf(porudzbina.getId()));
         txtVremePorudzbine.setText(String.valueOf(porudzbina.getVremePorudzbine()));
         txtAdresaPolaska.setText(porudzbina.getAdresaPolaska());
@@ -141,6 +155,6 @@ public class DodajIzmeniVoznju extends JFrame {
         txtTrajanjeVoznje.setText(porudzbina.getTrajanjeVoznje());
         txtBrojKM.setText(String.valueOf(porudzbina.getBrojKM()));
         txtMusterija.setText(porudzbina.getMusterija().getKorisnickoIme());
-        txtVozac.setText(porudzbina.getVozac().getKorisnickoIme());
+        txtVozac.setSelectedItem(porudzbina.getVozac().getKorisnickoIme());
     }
 }

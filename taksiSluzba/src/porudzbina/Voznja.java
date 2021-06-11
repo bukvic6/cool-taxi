@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 public class Voznja {
     protected boolean obrisan;
+    protected TipPorudzbine tipPorudzbine;
     protected int id;
     protected LocalDateTime vremePorudzbine;
     protected String adresaPolaska;
@@ -21,8 +22,9 @@ public class Voznja {
     public Voznja() {
     }
 
-    public Voznja(boolean obrisan, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, Musterije musterija, Vozaci vozac) {
+    public Voznja(boolean obrisan,TipPorudzbine tipPorudzbine, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, Musterije musterija, Vozaci vozac) {
         this.obrisan = obrisan;
+        this.tipPorudzbine = tipPorudzbine;
         this.id = id;
         this.vremePorudzbine = vremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -34,8 +36,15 @@ public class Voznja {
         this.vozac = vozac;
     }
 
-    public Voznja(String obrisan, String id, String vremePorudzbine, String adresaPolaska, String adresaDestinacije, String status, String trajanjeVoznje, String brojKM, String musterija, String vozac) {
+    public Voznja(String obrisan, String tipPorudzbine, String id, String vremePorudzbine, String adresaPolaska, String adresaDestinacije, String status, String trajanjeVoznje, String brojKM, String musterija, String vozac) {
         this.obrisan = Boolean.parseBoolean(obrisan);
+        if (tipPorudzbine.equals("TELEFON")) {
+            this.tipPorudzbine = TipPorudzbine.TELEFON;
+        } else if (tipPorudzbine.equals("APLIKACIJA")){
+            this.tipPorudzbine = TipPorudzbine.APLIKACIJA;
+        } else {
+            throw new IllegalArgumentException(tipPorudzbine + " nije validan nacin rezervacije");
+        }
         this.id = Integer.parseInt(id);
         this.vremePorudzbine = LocalDateTime.parse(vremePorudzbine);
         this.adresaPolaska = adresaPolaska;
@@ -67,6 +76,14 @@ public class Voznja {
 
     public void setObrisan(boolean obrisan) {
         this.obrisan = obrisan;
+    }
+
+    public TipPorudzbine getTipPorudzbine() {
+        return tipPorudzbine;
+    }
+
+    public void setTipPorudzbine(TipPorudzbine tipPorudzbine) {
+        this.tipPorudzbine = tipPorudzbine;
     }
 
     public int getId() {
@@ -143,6 +160,6 @@ public class Voznja {
 
     @Override
     public String toString() {
-        return obrisan + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + trajanjeVoznje  + "|" + brojKM + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
+        return obrisan + "|" + tipPorudzbine + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + trajanjeVoznje  + "|" + brojKM + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
     }
 }

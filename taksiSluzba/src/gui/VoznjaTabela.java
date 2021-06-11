@@ -40,21 +40,22 @@ public class VoznjaTabela extends JFrame {
         add(mainToolbar, BorderLayout.NORTH);
         mainToolbar.setFloatable(false);
 
-        String[] zaglavlje = new String[]{"Broj porudzbine", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Status", "Trajanje voznje", "KM", "Musterija", "Vozac"};
+        String[] zaglavlje = new String[]{"Tip porudzbine", "Broj porudzbine", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Status", "Trajanje voznje", "KM", "Musterija", "Vozac"};
         Object[][] sadrzaj = new Object[Preduzece.ucitaneVoznje.size()][zaglavlje.length];
 
         for (int i = 0; i < Preduzece.ucitaneVoznje.size(); i++) {
             Voznja porudzbina = Preduzece.ucitaneVoznje.get(i);
             if (!porudzbina.isObrisan()) {
-                sadrzaj[i][0] = porudzbina.getId();
-                sadrzaj[i][1] = porudzbina.getVremePorudzbine();
-                sadrzaj[i][2] = porudzbina.getAdresaPolaska();
-                sadrzaj[i][3] = porudzbina.getAdresaDestinacije();
-                sadrzaj[i][4] = porudzbina.getStatus();
-                sadrzaj[i][5] = porudzbina.getTrajanjeVoznje();
-                sadrzaj[i][6] = porudzbina.getBrojKM();
-                sadrzaj[i][7] = porudzbina.getMusterija().getKorisnickoIme();
-                sadrzaj[i][8] = porudzbina.getVozac().getKorisnickoIme();
+                sadrzaj[i][0] = porudzbina.getTipPorudzbine();
+                sadrzaj[i][1] = porudzbina.getId();
+                sadrzaj[i][2] = porudzbina.getVremePorudzbine();
+                sadrzaj[i][3] = porudzbina.getAdresaPolaska();
+                sadrzaj[i][4] = porudzbina.getAdresaDestinacije();
+                sadrzaj[i][5] = porudzbina.getStatus();
+                sadrzaj[i][6] = porudzbina.getTrajanjeVoznje();
+                sadrzaj[i][7] = porudzbina.getBrojKM();
+                sadrzaj[i][8] = porudzbina.getMusterija().getKorisnickoIme();
+                sadrzaj[i][9] = porudzbina.getVozac().getKorisnickoIme();
             }
         }
 
@@ -75,7 +76,7 @@ public class VoznjaTabela extends JFrame {
             if (selektovanRed == -1) {
                 JOptionPane.showMessageDialog(null, "Odaberite red u tabeli", "Greska", JOptionPane.WARNING_MESSAGE);
             } else {
-                String adresa = tableModel.getValueAt(selektovanRed, 2).toString();
+                String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
                 Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
 
                 int izbor = JOptionPane.showConfirmDialog(null,
@@ -99,7 +100,7 @@ public class VoznjaTabela extends JFrame {
             if(selektovanRed == -1) {
                 JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
-                String adresa = tableModel.getValueAt(selektovanRed, 2).toString();
+                String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
                 Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
                 if(porudzbina == null) {
                     JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje", "Greska", JOptionPane.WARNING_MESSAGE);

@@ -5,6 +5,7 @@ import cooltaxi.Preduzece;
 import cooltaxi.io;
 import net.miginfocom.swing.MigLayout;
 import porudzbina.StatusVoznje;
+import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import javax.swing.*;
 import static cooltaxi.io.voznjaTXT;
 
 public class RezervacijaAplikacija extends JFrame {
-
+    private JComboBox<TipPorudzbine> txtTipPorudzbine = new JComboBox<TipPorudzbine>(TipPorudzbine.values());
     private JTextField txtID = new JTextField(20);
     private JTextField txtVremePorudzbine = new JTextField(20);
     private JLabel lblAdresaPolaska = new  JLabel("Adresa polaska");
@@ -46,6 +47,7 @@ public class RezervacijaAplikacija extends JFrame {
         for (Voznja voznja: Preduzece.ucitaneVoznje){
             txtStatusVoznje.addItem(voznja.getStatus());
         }
+        txtTipPorudzbine.setSelectedItem(TipPorudzbine.APLIKACIJA);
         txtID.setText("100003");
         txtVremePorudzbine.setText("2021-01-21T05:47:08.644");
         add(lblAdresaPolaska);
@@ -65,7 +67,7 @@ public class RezervacijaAplikacija extends JFrame {
 
     public void initActions() {
         btnOk.addActionListener(e -> {
-
+            TipPorudzbine tipPorudzbine = (TipPorudzbine) txtTipPorudzbine.getSelectedItem();
             String id = txtID.getText().trim();
             String vremePoruzbine = txtVremePorudzbine.getText().trim();
             String adresaPolaska = txtAdresaPolaska.getText().trim();
@@ -77,7 +79,7 @@ public class RezervacijaAplikacija extends JFrame {
             String vozac = txtVozac.getText().trim();
 
 
-            Voznja porudzbina = new Voznja("false", id, vremePoruzbine, adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
+            Voznja porudzbina = new Voznja("false", String.valueOf(tipPorudzbine), id, vremePoruzbine, adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
             Preduzece.ucitaneVoznje.add(porudzbina);
 
             io.sacuvajVoznju(voznjaTXT);

@@ -1,3 +1,4 @@
-false|100001|2021-01-21T05:47:08.644|Seljackih buna 69|Orlovica Pavla 14|ZAVRSENA|4.0|15.0|jovanaj|petarp
-false|100002|2021-05-21T05:47:08.644|Nizijska 14|Gazimestanska 8a|KREIRANA|3.0|12.0|jovanaj|petarp
-false|100004|2023-05-21T23:47:08.432|Ulica br1 14|Ulica broj 2|KREIRANA|2.0|15.0|jovanaj|petarp
+false|APLIKACIJA|100003|2021-01-21T05:47:08.644|Seljackih buna 69|Orlovica Pavla 14|KREIRANA_NA_CEKANJU|5|15.0|jovanaj|petarp
+false|TELEFON|100002|2021-05-21T05:47:08.644|Nizijska 14|Gazimestanska 8a|KREIRANA|3.0|12.0|jovanaj|petarp
+false|APLIKACIJA|100004|2023-05-21T23:47:08.432|Ulica br1 14|Ulica broj 2|KREIRANA|2.0|15.0|jovanaj|gaja
+false|TELEFON|100003|2021-01-21T05:47:08.644|as|zrsxdgvybuhjni|KREIRANA_NA_CEKANJU|5|15.0|jovanaj|niki

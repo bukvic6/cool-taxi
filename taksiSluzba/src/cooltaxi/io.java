@@ -165,16 +165,17 @@ public class io {
 
                 String[] lineSplit = line.split("\\|");
                 String obrisan = lineSplit[0];
-                String id = lineSplit[1];
-                String vremePorudzbine = lineSplit[2];
-                String adresaPolaska = lineSplit[3];
-                String adresaDestinacije = lineSplit[4];
-                String status = lineSplit[5];
-                String trajanjeVoznje = lineSplit[6];
-                String brojKM = lineSplit[7];
-                String musterija = lineSplit[8];
-                String vozac = lineSplit[9];
-                Voznja porudzbina = new Voznja(obrisan, id, vremePorudzbine, adresaPolaska, adresaDestinacije, status, trajanjeVoznje, brojKM, musterija, vozac);
+                String tipPorudzbine = lineSplit[1];
+                String id = lineSplit[2];
+                String vremePorudzbine = lineSplit[3];
+                String adresaPolaska = lineSplit[4];
+                String adresaDestinacije = lineSplit[5];
+                String status = lineSplit[6];
+                String trajanjeVoznje = lineSplit[7];
+                String brojKM = lineSplit[8];
+                String musterija = lineSplit[9];
+                String vozac = lineSplit[10];
+                Voznja porudzbina = new Voznja(obrisan, tipPorudzbine, id, vremePorudzbine, adresaPolaska, adresaDestinacije, status, trajanjeVoznje, brojKM, musterija, vozac);
                 voznja.add(porudzbina);
             } reader.close();
         }catch(IOException e){
