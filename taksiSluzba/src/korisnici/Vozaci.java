@@ -1,6 +1,6 @@
 package korisnici;
+
 import automobili.Automobil;
-import cooltaxi.Preduzece;
 
 public class Vozaci extends Korisnik {
     private String brojClanskeKarte;

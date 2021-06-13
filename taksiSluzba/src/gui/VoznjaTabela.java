@@ -54,8 +54,8 @@ public class VoznjaTabela extends JFrame {
                 sadrzaj[i][5] = porudzbina.getStatus();
                 sadrzaj[i][6] = porudzbina.getTrajanjeVoznje();
                 sadrzaj[i][7] = porudzbina.getBrojKM();
-                sadrzaj[i][8] = porudzbina.getMusterija().getKorisnickoIme();
-                sadrzaj[i][9] = porudzbina.getVozac().getKorisnickoIme();
+                sadrzaj[i][8] = porudzbina.getMusterija();
+                sadrzaj[i][9] = porudzbina.getVozac();
             }
         }
 

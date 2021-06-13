@@ -16,14 +16,14 @@ public class RezervacijaAplikacija extends JFrame {
     private JComboBox<TipPorudzbine> txtTipPorudzbine = new JComboBox<TipPorudzbine>(TipPorudzbine.values());
     private JTextField txtID = new JTextField(20);
     private JTextField txtVremePorudzbine = new JTextField(20);
-    private JLabel lblAdresaPolaska = new  JLabel("Adresa polaska");
+    private JLabel lblAdresaPolaska = new  JLabel("Adresa polaska: ");
     private JTextField txtAdresaPolaska = new JTextField(20);
-    private JLabel lblAdresaDestinacije = new JLabel("Adresa destinacije");
+    private JLabel lblAdresaDestinacije = new JLabel("Adresa destinacije: ");
     private JTextField txtAdresaDestinacije = new JTextField(20);
     private JComboBox<StatusVoznje> txtStatusVoznje = new JComboBox<StatusVoznje>(StatusVoznje.values());
     private JTextField txtTrajanjeVoznje = new JTextField(20);
     private JTextField txtBrojKM = new JTextField(20);
-    private JLabel lblMusterija = new JLabel("Unesite ime: (jovanaj)");
+    private JLabel lblMusterija = new JLabel("Unesite korisnicko ime: ");
     private JTextField txtMusterija = new JTextField(20);
     private JTextField txtVozac = new JTextField(20);
     private JButton btnOk = new JButton("OK");
@@ -47,6 +47,7 @@ public class RezervacijaAplikacija extends JFrame {
         for (Voznja voznja: Preduzece.ucitaneVoznje){
             txtStatusVoznje.addItem(voznja.getStatus());
         }
+
         txtTipPorudzbine.setSelectedItem(TipPorudzbine.APLIKACIJA);
         txtID.setText("100003");
         txtVremePorudzbine.setText("2021-01-21T05:47:08.644");

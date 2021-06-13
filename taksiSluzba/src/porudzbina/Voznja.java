@@ -16,13 +16,13 @@ public class Voznja {
     protected StatusVoznje status;
     protected String trajanjeVoznje;
     protected double brojKM;
-    protected Musterije musterija;
-    protected Vozaci vozac;
+    protected String musterija;
+    protected String vozac;
 
     public Voznja() {
     }
 
-    public Voznja(boolean obrisan,TipPorudzbine tipPorudzbine, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, Musterije musterija, Vozaci vozac) {
+    public Voznja(boolean obrisan,TipPorudzbine tipPorudzbine, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, String musterija, String vozac) {
         this.obrisan = obrisan;
         this.tipPorudzbine = tipPorudzbine;
         this.id = id;
@@ -66,8 +66,8 @@ public class Voznja {
         }
         this.trajanjeVoznje = trajanjeVoznje;
         this.brojKM = Double.parseDouble(brojKM);
-        this.musterija = (Musterije) Preduzece.pronadjiKorisnika(musterija);
-        this.vozac = (Vozaci) Preduzece.pronadjiKorisnika(vozac);
+        this.musterija = musterija;
+        this.vozac = vozac;
     }
 
     public boolean isObrisan() {
@@ -142,24 +142,24 @@ public class Voznja {
         this.brojKM = brojKM;
     }
 
-    public Musterije getMusterija() {
+    public String getMusterija() {
         return musterija;
     }
 
-    public void setMusterija(Musterije musterija) {
+    public void setMusterija(String musterija) {
         this.musterija = musterija;
     }
 
-    public Vozaci getVozac() {
+    public String getVozac() {
         return vozac;
     }
 
-    public void setVozac(Vozaci vozac) {
+    public void setVozac(String vozac) {
         this.vozac = vozac;
     }
 
     @Override
     public String toString() {
-        return obrisan + "|" + tipPorudzbine + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + trajanjeVoznje  + "|" + brojKM + "|" + musterija.getKorisnickoIme() + "|" + vozac.getKorisnickoIme() + "\n";
+        return obrisan + "|" + tipPorudzbine + "|" + id + "|" + vremePorudzbine + "|" + adresaPolaska + "|" + adresaDestinacije + "|" + status + "|" + trajanjeVoznje  + "|" + brojKM + "|" + musterija + "|" + vozac + "\n";
     }
 }

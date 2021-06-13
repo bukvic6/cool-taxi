@@ -34,7 +34,7 @@ public class DodajIzmeniVoznju extends JFrame {
     private JLabel lblBrojKM = new JLabel("Broj predjenih km");
     private JTextField txtBrojKM = new JTextField(20);
     private JLabel lblMusterija = new JLabel("Musterija");
-    private JTextField txtMusterija = new JTextField(20);
+    private JComboBox<String> txtMusterija = new JComboBox<String>();
     private JLabel lblVozac = new JLabel("Vozac");
     private JComboBox<String> txtVozac = new JComboBox<String>();
     private JButton btnOk = new JButton("OK");
@@ -71,6 +71,12 @@ public class DodajIzmeniVoznju extends JFrame {
             }
         }
 
+        for (Korisnik musterija: Preduzece.ucitaniKorisnici){
+            if(musterija.getUloga().equals("musterija")){
+                txtMusterija.addItem(musterija.getKorisnickoIme());
+            }
+        }
+
         if(porudzbina != null) {
             popuniPolja();
         }
@@ -82,25 +88,23 @@ public class DodajIzmeniVoznju extends JFrame {
 //        add(lblVremePoruzbine);
 //        add(txtVremePorudzbine);
         txtVremePorudzbine.setText("2021-01-21T05:47:08.644");
-        add(lblAdresaPolaska);
-        add(txtAdresaPolaska);
-        add(lblAdresaDestinacije);
-        add(txtAdresaDestinacije);
+//        add(lblAdresaPolaska);
+//        add(txtAdresaPolaska);
+//        add(lblAdresaDestinacije);
+//        add(txtAdresaDestinacije);
         add(lblStatus);
         add(txtStatusVoznje);
         txtStatusVoznje.setSelectedItem(StatusVoznje.KREIRANA_NA_CEKANJU);
 //        add(lblTrajanjeVoznje);
 //        add(txtTrajanjeVoznje);
         txtTrajanjeVoznje.setText("5");
-        add(lblBrojKM);
-        add(txtBrojKM);
+//        add(lblBrojKM);
+//        add(txtBrojKM);
         txtBrojKM.setText("15");
         add(lblMusterija);
         add(txtMusterija);
-        txtMusterija.setText("jovanaj");
         add(lblVozac);
         add(txtVozac);
-//        txtVozac.setText("petarp");
         add(new JLabel());
         add(btnOk, "split 2");
         add(btnCancel);
@@ -116,7 +120,7 @@ public class DodajIzmeniVoznju extends JFrame {
             StatusVoznje statusVoznje = (StatusVoznje) txtStatusVoznje.getSelectedItem();
             String trajanjeVoznje = txtTrajanjeVoznje.getText().trim();
             String brojKM = txtBrojKM.getText().trim();
-            String musterija = txtMusterija.getText().trim();
+            String musterija = String.valueOf(txtMusterija.getSelectedItem());
             String vozac = String.valueOf(txtVozac.getSelectedItem());
 
             if(porudzbina == null) {
@@ -131,8 +135,8 @@ public class DodajIzmeniVoznju extends JFrame {
                 porudzbina.setStatus(statusVoznje);
                 porudzbina.setTrajanjeVoznje(trajanjeVoznje);
                 porudzbina.setBrojKM(Double.parseDouble(brojKM));
-//                porudzbina.setMusterija(musterija);
-//                porudzbina.setVozac(vozac);
+                porudzbina.setMusterija(musterija);
+                porudzbina.setVozac(vozac);
             }
             io.sacuvajVoznju(voznjaTXT);
             DodajIzmeniVoznju.this.dispose();
@@ -154,7 +158,7 @@ public class DodajIzmeniVoznju extends JFrame {
         txtStatusVoznje.setSelectedItem(porudzbina.getStatus());
         txtTrajanjeVoznje.setText(porudzbina.getTrajanjeVoznje());
         txtBrojKM.setText(String.valueOf(porudzbina.getBrojKM()));
-        txtMusterija.setText(porudzbina.getMusterija().getKorisnickoIme());
-        txtVozac.setSelectedItem(porudzbina.getVozac().getKorisnickoIme());
+        txtMusterija.setSelectedItem(porudzbina.getMusterija());
+        txtVozac.setSelectedItem(porudzbina.getVozac());
     }
 }

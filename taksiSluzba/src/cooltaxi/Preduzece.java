@@ -131,6 +131,6 @@ public class Preduzece {
 
     @Override
     public String toString() {
-        return PIB + "|" + adresa + "|" + naziv;
+        return PIB + "|" + naziv + "|" + adresa;
     }
 }
