@@ -15,6 +15,8 @@ public class GlavniProzor extends JFrame {
             DispecerProzor dispecerprozor = new DispecerProzor();
             dispecerprozor.setVisible(true);
         } else if (ulogovani.getUloga().equals("vozac")) {
+            VozacProzor vozacProzor = new VozacProzor();
+            vozacProzor.setVisible(true);
 
         }else{
 

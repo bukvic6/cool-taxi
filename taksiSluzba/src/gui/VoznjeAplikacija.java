@@ -1,21 +1,17 @@
 package gui;
 
-import automobili.Automobil;
 import cooltaxi.Preduzece;
 import cooltaxi.io;
-import korisnici.Korisnik;
+import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import static cooltaxi.io.korisniciTXT;
 import static cooltaxi.io.voznjaTXT;
 
-public class VoznjaTabela extends JFrame {
+public class VoznjeAplikacija extends JFrame {
     private JToolBar mainToolbar = new JToolBar();
     private JButton btnEdit = new JButton("Izmeni");
     private JButton btnDelete = new JButton("Obrisi");
@@ -23,7 +19,7 @@ public class VoznjaTabela extends JFrame {
     private DefaultTableModel tableModel;
     private JTable tabela;
 
-    public VoznjaTabela() {
+    public VoznjeAplikacija() {
         setSize(500, 300);
         setResizable(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -43,7 +39,7 @@ public class VoznjaTabela extends JFrame {
 
         for (int i = 0; i < Preduzece.ucitaneVoznje.size(); i++) {
             Voznja porudzbina = Preduzece.ucitaneVoznje.get(i);
-            if (!porudzbina.isObrisan()) {
+            if (!porudzbina.isObrisan() && porudzbina.getVozac().equals(Preduzece.ulogovaniKorisnik.getKorisnickoIme()) && porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA)) {
                 sadrzaj[i][0] = porudzbina.getTipPorudzbine();
                 sadrzaj[i][1] = porudzbina.getId();
                 sadrzaj[i][2] = porudzbina.getVremePorudzbine();
@@ -87,7 +83,6 @@ public class VoznjaTabela extends JFrame {
                 }
             }
         });
-
 
         btnEdit.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();

@@ -57,13 +57,13 @@ public class Loginprozor extends JFrame {
             if(korisnickoIme.equals("") || sifra.equals("")) {
                 JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu", "greska", JOptionPane.WARNING_MESSAGE);
             }else {
-                Korisnik ulogovani = Preduzece.login(korisnickoIme, sifra);
-                if(ulogovani == null) {
+                Preduzece.ulogovaniKorisnik = Preduzece.login(korisnickoIme, sifra);
+                if(Preduzece.ulogovaniKorisnik == null) {
                     JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška", JOptionPane.WARNING_MESSAGE);
                 }else {
                     Loginprozor.this.dispose();
                     Loginprozor.this.setVisible(false);
-                    GlavniProzor gp = new GlavniProzor(ulogovani);
+                    GlavniProzor gp = new GlavniProzor(Preduzece.ulogovaniKorisnik);
                     gp.setVisible(false);
                 }
             }

@@ -30,40 +30,6 @@ public class Main {
             if (!porudzbina.isObrisan())
                 System.out.print(porudzbina);
         }
-
-//        Scanner skener = new Scanner(System.in);
-//        System.out.println("dodavanje korisnika:");
-//        System.out.print("Unesite jmbg: ");
-//        String jmbg = skener.nextLine();
-//        System.out.print("Unesite korisnicko ime: ");
-//        String korisnickoIme = skener.nextLine();
-//        System.out.print("Unesite lozinku: ");
-//        String lozinka = skener.nextLine();
-//        System.out.print("Unesite  ime: ");
-//        String ime = skener.nextLine();
-//        System.out.print("Unesite prezime: ");
-//        String prezime = skener.nextLine();
-//        System.out.print("Unesite adresu: ");
-//        String adresa = skener.nextLine();
-//        System.out.print("Unesite pol(MUSKI ili ZENSKI): ");
-//        String pol = skener.nextLine();
-//        System.out.print("Unesite broj telefona: ");
-//        String telefon = skener.nextLine();
-//        System.out.println(".......................................");
-//
-//        Musterije noviKorisnik = new Musterije("false", "musterija", jmbg,korisnickoIme,lozinka,ime,prezime,adresa,pol,telefon);
-//        Preduzece.ucitaniKorisnici.add(noviKorisnik);
-//        System.out.print("Izmenite korisnicko ime: ");
-//        String novoKorisnickoIme = skener.nextLine();
-//        System.out.print("Izmenite adresa: ");
-//        String novaAdresa = skener.nextLine();
-//        noviKorisnik.setKorisnickoIme(novoKorisnickoIme);
-//        noviKorisnik.setAdresa(novaAdresa);
-//
-//        System.out.print("Unesite korisnicko ime osobe koju zelite da obrisete (jovanaj/mrki): ");
-//        String korisnik = skener.nextLine();
-//
-//        System.out.println(Preduzece.obrisiKorisnika(korisnik));
         io.sacuvajKorisnike(korisniciTXT);
         io.sacuvajAutomobile(automobiliTXT);
         io.sacuvajVoznju(voznjaTXT);

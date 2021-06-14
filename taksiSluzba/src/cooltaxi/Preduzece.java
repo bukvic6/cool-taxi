@@ -21,6 +21,8 @@ public class Preduzece {
     public static ArrayList<Voznja> ucitaneVoznje = io.ucitajVoznju(voznjaTXT);
     public static ArrayList<Preduzece> ucitanoPreduzece = io.ucitajPreduzece(preduzeceTXT);
 
+    public static Korisnik ulogovaniKorisnik;
+
     public static Preduzece pronadjiPreduzece(String naziv){
         for (Preduzece preduzece: ucitanoPreduzece){
             if (preduzece.getNaziv().equals(naziv)){

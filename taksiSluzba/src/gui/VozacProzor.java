@@ -6,22 +6,22 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-
-public class MusterijeProzor extends JFrame {
+public class VozacProzor extends JFrame {
     Preduzece CoolTaxi = new Preduzece();
     private JMenuBar mainMenu = new JMenuBar();
     private JMenu korisniciMenu = new JMenu("Istorija voznje");
-    private JMenuItem sopstveneVoznje = new JMenuItem("Istorija sopstvenih voznji");
+    private JMenuItem istorijaVoznje = new JMenuItem("Prikaz sopstvenih voznji");
+    private JMenuItem voznjeAplikacija = new JMenuItem("Prikaz voznji rezervisanih putem aplikacije");
     private JLabel nazivSLuzbe = new JLabel(CoolTaxi.getNaziv());
     private JLabel PIB = new JLabel(CoolTaxi.getPIB());
     private JLabel adresaSluzbe = new JLabel(CoolTaxi.getAdresa());
     private DefaultTableModel tableModel;
     private JTable tabela;
-    private JButton btnRez = new JButton("Rezervisite voznju putem aplikacije");
 
 
 
-    public MusterijeProzor() {
+
+    public VozacProzor() {
         setTitle("Dobrodosli u Cool Taxi");
         setSize(500, 500);
         setLocationRelativeTo(null);
@@ -32,8 +32,8 @@ public class MusterijeProzor extends JFrame {
     private void initMenu() {
         setJMenuBar(mainMenu);
         mainMenu.add(korisniciMenu);
-        korisniciMenu.add(sopstveneVoznje);
-        mainMenu.add(btnRez);
+        korisniciMenu.add(istorijaVoznje);
+        korisniciMenu.add(voznjeAplikacija);
         add(nazivSLuzbe);
         add(PIB);
         add(adresaSluzbe);
@@ -59,18 +59,16 @@ public class MusterijeProzor extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane, BorderLayout.CENTER);
     }
-    
+
 
     private void initActions(){
-        sopstveneVoznje.addActionListener(e -> {
-            IstorijaVoznjeMusterije istorijaVoznje = new IstorijaVoznjeMusterije();
+        istorijaVoznje.addActionListener(e -> {
+            IstorijaVoznjeVozac istorijaVoznje = new IstorijaVoznjeVozac();
             istorijaVoznje.setVisible(true);
-
         });
-        btnRez.addActionListener(e -> {
-            RezervacijaAplikacija rezAp = new RezervacijaAplikacija();
-            rezAp.setVisible(true);
+        voznjeAplikacija.addActionListener(e -> {
+            VoznjeAplikacija istorijaVoznje = new VoznjeAplikacija();
+            istorijaVoznje.setVisible(true);
         });
-
     }
 }
