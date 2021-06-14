@@ -1,6 +1,5 @@
 package gui;
 
-
 import cooltaxi.Preduzece;
 import cooltaxi.io;
 import net.miginfocom.swing.MigLayout;
@@ -9,12 +8,12 @@ import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
-
 import java.time.LocalDateTime;
 
 import static cooltaxi.io.voznjaTXT;
 
-public class RezervacijaAplikacija extends JFrame {
+public class RezervacijaTelefonom extends JFrame {
+
     private JComboBox<TipPorudzbine> txtTipPorudzbine = new JComboBox<TipPorudzbine>(TipPorudzbine.values());
     private JTextField txtID = new JTextField(20);
     private JTextField txtVremePorudzbine = new JTextField(20);
@@ -32,8 +31,8 @@ public class RezervacijaAplikacija extends JFrame {
     private JButton btnCancel = new JButton("Cancel");
 
 
-    public RezervacijaAplikacija(){
-        setTitle("Rezervacija voznje putem aplikacije");
+    public RezervacijaTelefonom(){
+        setTitle("Rezervacija voznje putem telefona");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();
@@ -41,11 +40,12 @@ public class RezervacijaAplikacija extends JFrame {
         setResizable(true);
         pack();
     }
+
     public void initGUI(){
         MigLayout layout = new MigLayout("wrap 2", "[][]","[][][][][][]20[]");
         setLayout(layout);
 
-        txtTipPorudzbine.setSelectedItem(TipPorudzbine.APLIKACIJA);
+        txtTipPorudzbine.setSelectedItem(TipPorudzbine.TELEFON);
         txtID.setText("100003");
         txtVremePorudzbine.setText(String.valueOf(LocalDateTime.now()));
         add(lblAdresaPolaska);
@@ -55,8 +55,7 @@ public class RezervacijaAplikacija extends JFrame {
         txtStatusVoznje.setSelectedItem(StatusVoznje.KREIRANA_NA_CEKANJU);
         txtTrajanjeVoznje.setText("15");
         txtBrojKM.setText("5");
-        add(lblMusterija);
-        add(txtMusterija);
+        txtMusterija.setText(Preduzece.ulogovaniKorisnik.getKorisnickoIme());
         txtVozac.setText("petarp");
         add(new JLabel());
         add(btnOk, "split 2");
@@ -81,16 +80,13 @@ public class RezervacijaAplikacija extends JFrame {
             Preduzece.ucitaneVoznje.add(porudzbina);
 
             io.sacuvajVoznju(voznjaTXT);
-            RezervacijaAplikacija.this.dispose();
-            RezervacijaAplikacija.this.setVisible(false);
+            RezervacijaTelefonom.this.dispose();
+            RezervacijaTelefonom.this.setVisible(false);
         });
 
         btnCancel.addActionListener(e -> {
-            RezervacijaAplikacija.this.dispose();
-            RezervacijaAplikacija.this.setVisible(false);
+            RezervacijaTelefonom.this.dispose();
+            RezervacijaTelefonom.this.setVisible(false);
         });
     }
-
 }
-
-

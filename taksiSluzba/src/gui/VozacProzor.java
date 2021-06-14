@@ -12,14 +12,12 @@ public class VozacProzor extends JFrame {
     private JMenu korisniciMenu = new JMenu("Istorija voznje");
     private JMenuItem istorijaVoznje = new JMenuItem("Prikaz sopstvenih voznji");
     private JMenuItem voznjeAplikacija = new JMenuItem("Prikaz voznji rezervisanih putem aplikacije");
+    private JMenuItem voznjeTelefon = new JMenuItem("Prikaz voznji rezervisanih putem telefona");
     private JLabel nazivSLuzbe = new JLabel(CoolTaxi.getNaziv());
     private JLabel PIB = new JLabel(CoolTaxi.getPIB());
     private JLabel adresaSluzbe = new JLabel(CoolTaxi.getAdresa());
     private DefaultTableModel tableModel;
     private JTable tabela;
-
-
-
 
     public VozacProzor() {
         setTitle("Dobrodosli u Cool Taxi");
@@ -34,6 +32,7 @@ public class VozacProzor extends JFrame {
         mainMenu.add(korisniciMenu);
         korisniciMenu.add(istorijaVoznje);
         korisniciMenu.add(voznjeAplikacija);
+        korisniciMenu.add(voznjeTelefon);
         add(nazivSLuzbe);
         add(PIB);
         add(adresaSluzbe);
@@ -68,6 +67,10 @@ public class VozacProzor extends JFrame {
         });
         voznjeAplikacija.addActionListener(e -> {
             VoznjeAplikacija istorijaVoznje = new VoznjeAplikacija();
+            istorijaVoznje.setVisible(true);
+        });
+        voznjeTelefon.addActionListener(e -> {
+            VoznjeTelefon istorijaVoznje = new VoznjeTelefon();
             istorijaVoznje.setVisible(true);
         });
     }

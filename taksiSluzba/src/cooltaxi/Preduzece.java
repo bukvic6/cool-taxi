@@ -3,6 +3,7 @@ package cooltaxi;
 import automobili.Automobil;
 import korisnici.Korisnik;
 import korisnici.Vozaci;
+import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import java.util.ArrayList;
@@ -92,6 +93,26 @@ public class Preduzece {
                 vozaci.add(vozac);
             }
         }return vozaci;
+    }
+
+    public static ArrayList<Voznja> getVoznjaTelefon(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) && porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+
+    public static ArrayList<Voznja> getVoznjaAplikacija(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) && porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
     }
 
     public Preduzece (){

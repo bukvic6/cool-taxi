@@ -17,9 +17,9 @@ public class MusterijeProzor extends JFrame {
     private JLabel adresaSluzbe = new JLabel(CoolTaxi.getAdresa());
     private DefaultTableModel tableModel;
     private JTable tabela;
-    private JButton btnRez = new JButton("Rezervisite voznju putem aplikacije");
-
-
+    private JToolBar mainToolbar = new JToolBar();
+    private JButton btnApp = new JButton("Rezervisite voznju putem aplikacije");
+    private JButton btnTel = new JButton("Rezervisite voznju putem telefona");
 
     public MusterijeProzor() {
         setTitle("Dobrodosli u Cool Taxi");
@@ -29,11 +29,15 @@ public class MusterijeProzor extends JFrame {
         initMenu();
         initActions();
     }
+
     private void initMenu() {
         setJMenuBar(mainMenu);
         mainMenu.add(korisniciMenu);
         korisniciMenu.add(sopstveneVoznje);
-        mainMenu.add(btnRez);
+        mainToolbar.add(btnApp);
+        mainToolbar.add(btnTel);
+        add(mainToolbar, BorderLayout.SOUTH);
+        mainToolbar.setFloatable(false);
         add(nazivSLuzbe);
         add(PIB);
         add(adresaSluzbe);
@@ -65,12 +69,16 @@ public class MusterijeProzor extends JFrame {
         sopstveneVoznje.addActionListener(e -> {
             IstorijaVoznjeMusterije istorijaVoznje = new IstorijaVoznjeMusterije();
             istorijaVoznje.setVisible(true);
-
-        });
-        btnRez.addActionListener(e -> {
-            RezervacijaAplikacija rezAp = new RezervacijaAplikacija();
-            rezAp.setVisible(true);
         });
 
+        btnApp.addActionListener(e -> {
+            RezervacijaAplikacija rezApp = new RezervacijaAplikacija();
+            rezApp.setVisible(true);
+        });
+
+        btnTel.addActionListener(e -> {
+            RezervacijaTelefonom rezTel = new RezervacijaTelefonom();
+            rezTel.setVisible(true);
+        });
     }
 }

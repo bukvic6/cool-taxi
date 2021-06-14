@@ -65,10 +65,12 @@ public class DispecerProzor extends JFrame {
             VozaciTabela KTabela = new VozaciTabela();
             KTabela.setVisible(true);
         });
+
         automobili.addActionListener(e -> {
             AutomobiliTabela ATabela = new AutomobiliTabela();
             ATabela.setVisible(true);
         });
+
         voznje.addActionListener(e -> {
             VoznjaTabela VTabela = new VoznjaTabela();
             VTabela.setVisible(true);

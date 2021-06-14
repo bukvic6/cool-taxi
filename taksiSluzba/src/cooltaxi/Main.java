@@ -3,10 +3,7 @@ package cooltaxi;
 import automobili.Automobil;
 import gui.Loginprozor;
 import korisnici.Korisnik;
-import korisnici.Musterije;
 import porudzbina.Voznja;
-
-import java.util.Scanner;
 
 import static cooltaxi.io.*;
 

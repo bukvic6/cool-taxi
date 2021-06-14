@@ -1,24 +1,21 @@
 package gui;
 
 import cooltaxi.Preduzece;
-import cooltaxi.io;
+import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-import static cooltaxi.io.voznjaTXT;
-
-public class VoznjaTabela extends JFrame {
+public class VoznjeTelefon extends JFrame {
     private JToolBar mainToolbar = new JToolBar();
     private JButton btnEdit = new JButton("Izmeni");
-    private JButton btnDelete = new JButton("Obrisi");
 
     private DefaultTableModel tableModel;
     private JTable tabela;
 
-    public VoznjaTabela() {
+    public VoznjeTelefon() {
         setSize(500, 300);
         setResizable(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -29,16 +26,15 @@ public class VoznjaTabela extends JFrame {
 
     private void initMenu() {
         mainToolbar.add(btnEdit);
-        mainToolbar.add(btnDelete);
         add(mainToolbar, BorderLayout.NORTH);
         mainToolbar.setFloatable(false);
 
         String[] zaglavlje = new String[]{"Tip porudzbine", "Broj porudzbine", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Status", "Trajanje voznje", "KM", "Musterija", "Vozac"};
-        Object[][] sadrzaj = new Object[Preduzece.ucitaneVoznje.size()][zaglavlje.length];
+        Object[][] sadrzaj = new Object[Preduzece.getVoznjaTelefon().size()][zaglavlje.length];
 
-        for (int i = 0; i < Preduzece.ucitaneVoznje.size(); i++) {
-            Voznja porudzbina = Preduzece.ucitaneVoznje.get(i);
-            if (!porudzbina.isObrisan()) {
+        for (int i = 0; i < Preduzece.getVoznjaTelefon().size(); i++) {
+            Voznja porudzbina = Preduzece.getVoznjaTelefon().get(i);
+            if (!porudzbina.isObrisan() && porudzbina.getVozac().equals(Preduzece.ulogovaniKorisnik.getKorisnickoIme())) {
                 sadrzaj[i][0] = porudzbina.getTipPorudzbine();
                 sadrzaj[i][1] = porudzbina.getId();
                 sadrzaj[i][2] = porudzbina.getVremePorudzbine();
@@ -63,26 +59,8 @@ public class VoznjaTabela extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane, BorderLayout.CENTER);
     }
+
     private void initActions() {
-        btnDelete.addActionListener(e -> {
-            int selektovanRed = tabela.getSelectedRow();
-            if (selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli", "Greska", JOptionPane.WARNING_MESSAGE);
-            } else {
-                String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
-                Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
-
-                int izbor = JOptionPane.showConfirmDialog(null,
-                        "Da li ste sigurni da zelite da obrisete voznju?",
-                        adresa + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
-                if (izbor == JOptionPane.YES_OPTION) {
-                    porudzbina.setObrisan(true);
-                    tableModel.removeRow(selektovanRed);
-                    io.sacuvajVoznju(voznjaTXT);
-                }
-            }
-        });
-
         btnEdit.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if(selektovanRed == -1) {
@@ -93,7 +71,7 @@ public class VoznjaTabela extends JFrame {
                 if(porudzbina == null) {
                     JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
-                    IzmeniVoznju izmeniVoznju = new IzmeniVoznju(porudzbina);
+                    IzmenaVoznjeVozac izmeniVoznju = new IzmenaVoznjeVozac(porudzbina);
                     izmeniVoznju.setVisible(true);
                 }
             }

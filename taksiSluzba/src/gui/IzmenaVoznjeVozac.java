@@ -2,21 +2,17 @@ package gui;
 
 import cooltaxi.Preduzece;
 import cooltaxi.io;
-import korisnici.Korisnik;
-import korisnici.Musterije;
-import korisnici.Vozaci;
 import net.miginfocom.swing.MigLayout;
 import porudzbina.StatusVoznje;
 import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
-
 import java.time.LocalDateTime;
 
 import static cooltaxi.io.voznjaTXT;
 
-public class DodajIzmeniVoznju extends JFrame {
+public class IzmenaVoznjeVozac extends JFrame {
     private JLabel lblTipPorudzbine = new JLabel("Tip porudzbine: ");
     private JComboBox<TipPorudzbine> txtTipPorudzbine = new JComboBox<TipPorudzbine>(TipPorudzbine.values());
     private JLabel lblID = new JLabel("ID");
@@ -42,14 +38,9 @@ public class DodajIzmeniVoznju extends JFrame {
 
     private final Voznja porudzbina;
 
-    public DodajIzmeniVoznju(Voznja porudzbina){
+    public IzmenaVoznjeVozac(Voznja porudzbina){
         this.porudzbina = porudzbina;
-        if(porudzbina == null){
-            setTitle("Dodavanje porudzbine");
-        }
-        else {
-            setTitle("Izmena podatka " + porudzbina.getId());
-        }
+        setTitle("Izmena podatka " + porudzbina.getId());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();
@@ -57,6 +48,7 @@ public class DodajIzmeniVoznju extends JFrame {
         setResizable(true);
         pack();
     }
+
     public void initGUI(){
         MigLayout layout = new MigLayout("wrap 2", "[][]","[][][][][][]20[]");
         setLayout(layout);
@@ -65,46 +57,18 @@ public class DodajIzmeniVoznju extends JFrame {
             txtStatusVoznje.addItem(voznja.getStatus());
         }
 
-        for (Korisnik vozaci: Preduzece.ucitaniKorisnici){
-            if(vozaci.getUloga().equals("vozac")){
-                txtVozac.addItem(vozaci.getKorisnickoIme());
-            }
-        }
-
-        for (Korisnik musterija: Preduzece.ucitaniKorisnici){
-            if(musterija.getUloga().equals("musterija")){
-                txtMusterija.addItem(musterija.getKorisnickoIme());
-            }
-        }
-
         if(porudzbina != null) {
             popuniPolja();
         }
-        add(lblTipPorudzbine);
-        add(txtTipPorudzbine);
-//        add(lblID);
-//        add(txtID);
+
         txtID.setText("100003");
-//        add(lblVremePoruzbine);
-//        add(txtVremePorudzbine);
-        txtVremePorudzbine.setText("2021-01-21T05:47:08.644");
-//        add(lblAdresaPolaska);
-//        add(txtAdresaPolaska);
-//        add(lblAdresaDestinacije);
-//        add(txtAdresaDestinacije);
         add(lblStatus);
         add(txtStatusVoznje);
-        txtStatusVoznje.setSelectedItem(StatusVoznje.KREIRANA_NA_CEKANJU);
-//        add(lblTrajanjeVoznje);
-//        add(txtTrajanjeVoznje);
-        txtTrajanjeVoznje.setText("5");
-//        add(lblBrojKM);
-//        add(txtBrojKM);
-        txtBrojKM.setText("15");
-        add(lblMusterija);
-        add(txtMusterija);
-        add(lblVozac);
-        add(txtVozac);
+        add(lblTrajanjeVoznje);
+        add(txtTrajanjeVoznje);
+        add(lblBrojKM);
+        add(txtBrojKM);
+        txtVozac.setSelectedItem(Preduzece.ulogovaniKorisnik.getKorisnickoIme());
         add(new JLabel());
         add(btnOk, "split 2");
         add(btnCancel);
@@ -112,6 +76,7 @@ public class DodajIzmeniVoznju extends JFrame {
 
     public void initActions() {
         btnOk.addActionListener(e -> {
+
             TipPorudzbine tipPorudzbine = (TipPorudzbine) txtTipPorudzbine.getSelectedItem();
             String id = txtID.getText().trim();
             String vremePoruzbine = txtVremePorudzbine.getText().trim();
@@ -120,32 +85,28 @@ public class DodajIzmeniVoznju extends JFrame {
             StatusVoznje statusVoznje = (StatusVoznje) txtStatusVoznje.getSelectedItem();
             String trajanjeVoznje = txtTrajanjeVoznje.getText().trim();
             String brojKM = txtBrojKM.getText().trim();
-            String musterija = String.valueOf(txtMusterija.getSelectedItem());
-            String vozac = String.valueOf(txtVozac.getSelectedItem());
+//            String musterija = String.valueOf(txtMusterija.getSelectedItem());
+//            String vozac = String.valueOf(txtVozac.getSelectedItem());
 
-            if(porudzbina == null) {
-                Voznja porudzbina = new Voznja("false", String.valueOf(tipPorudzbine), id, vremePoruzbine, adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
-                Preduzece.ucitaneVoznje.add(porudzbina);
-            }else {
-                porudzbina.setTipPorudzbine(tipPorudzbine);
-                porudzbina.setId(Integer.parseInt(id));
-                porudzbina.setVremePorudzbine(LocalDateTime.parse(vremePoruzbine));
-                porudzbina.setAdresaPolaska(adresaPolaska);
-                porudzbina.setAdresaDestinacije(adresaDestinacije);
-                porudzbina.setStatus(statusVoznje);
-                porudzbina.setTrajanjeVoznje(trajanjeVoznje);
-                porudzbina.setBrojKM(Double.parseDouble(brojKM));
-                porudzbina.setMusterija(musterija);
-                porudzbina.setVozac(vozac);
-            }
+            porudzbina.setTipPorudzbine(tipPorudzbine);
+            porudzbina.setId(Integer.parseInt(id));
+            porudzbina.setVremePorudzbine(LocalDateTime.parse(vremePoruzbine));
+            porudzbina.setAdresaPolaska(adresaPolaska);
+            porudzbina.setAdresaDestinacije(adresaDestinacije);
+            porudzbina.setStatus(statusVoznje);
+            porudzbina.setTrajanjeVoznje(trajanjeVoznje);
+            porudzbina.setBrojKM(Double.parseDouble(brojKM));
+//            porudzbina.setMusterija(musterija);
+//            porudzbina.setVozac(vozac);
+
             io.sacuvajVoznju(voznjaTXT);
-            DodajIzmeniVoznju.this.dispose();
-            DodajIzmeniVoznju.this.setVisible(false);
+            IzmenaVoznjeVozac.this.dispose();
+            IzmenaVoznjeVozac.this.setVisible(false);
         });
 
         btnCancel.addActionListener(e -> {
-            DodajIzmeniVoznju.this.dispose();
-            DodajIzmeniVoznju.this.setVisible(false);
+            IzmenaVoznjeVozac.this.dispose();
+            IzmenaVoznjeVozac.this.setVisible(false);
         });
     }
 
