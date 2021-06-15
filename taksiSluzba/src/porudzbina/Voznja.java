@@ -1,9 +1,5 @@
 package porudzbina;
 
-import cooltaxi.Preduzece;
-import korisnici.Musterije;
-import korisnici.Vozaci;
-
 import java.time.LocalDateTime;
 
 public class Voznja {
@@ -14,7 +10,7 @@ public class Voznja {
     protected String adresaPolaska;
     protected String adresaDestinacije;
     protected StatusVoznje status;
-    protected String trajanjeVoznje;
+    protected int trajanjeVoznje;
     protected double brojKM;
     protected String musterija;
     protected String vozac;
@@ -22,7 +18,7 @@ public class Voznja {
     public Voznja() {
     }
 
-    public Voznja(boolean obrisan,TipPorudzbine tipPorudzbine, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, String trajanjeVoznje, double brojKM, String musterija, String vozac) {
+    public Voznja(boolean obrisan,TipPorudzbine tipPorudzbine, int id, LocalDateTime vremePorudzbine, String adresaPolaska, String adresaDestinacije, StatusVoznje status, int trajanjeVoznje, double brojKM, String musterija, String vozac) {
         this.obrisan = obrisan;
         this.tipPorudzbine = tipPorudzbine;
         this.id = id;
@@ -64,7 +60,7 @@ public class Voznja {
         } else {
             throw new IllegalArgumentException("Status " + status + " ne postoji");
         }
-        this.trajanjeVoznje = trajanjeVoznje;
+        this.trajanjeVoznje = Integer.parseInt(trajanjeVoznje);
         this.brojKM = Double.parseDouble(brojKM);
         this.musterija = musterija;
         this.vozac = vozac;
@@ -126,11 +122,11 @@ public class Voznja {
         this.status = status;
     }
 
-    public String getTrajanjeVoznje() {
+    public int getTrajanjeVoznje() {
         return trajanjeVoznje;
     }
 
-    public void setTrajanjeVoznje(String trajanjeVoznje) {
+    public void setTrajanjeVoznje(int trajanjeVoznje) {
         this.trajanjeVoznje = trajanjeVoznje;
     }
 

@@ -13,6 +13,9 @@ public class DispecerProzor extends JFrame {
     private JMenuItem vozaci = new JMenuItem("Vozaci");
     private JMenuItem automobili = new JMenuItem("Automobili");
     private JMenuItem voznje = new JMenuItem("Voznje");
+    private JMenu sumiranaStatistika = new JMenu("Sumirana statistika");
+    private JMenuItem statistikaVoznje = new JMenuItem("za voznje");
+    private JMenuItem statistikaVozaca = new JMenuItem("za vozace");
     private DefaultTableModel tableModel;
     private JTable tabela;
     private JToolBar mainToolbar = new JToolBar();
@@ -34,11 +37,14 @@ public class DispecerProzor extends JFrame {
         dispecerMenu.add(vozaci);
         dispecerMenu.add(automobili);
         dispecerMenu.add(voznje);
+        mainMenu.add(sumiranaStatistika);
+        sumiranaStatistika.add(statistikaVoznje);
+        sumiranaStatistika.add(statistikaVozaca);
         mainToolbar.add(btnEdit);
         add(mainToolbar, BorderLayout.SOUTH);
         mainToolbar.setFloatable(false);
 
-        String [] zaglavlje = new String[]{"PIB", "Adresa","Ime"};
+        String [] zaglavlje = new String[]{"PIB", "Adresa","Ime",  "Cena starta voznje", "Cena po km"};
         Object[][] sadrzaj = new Object[Preduzece.ucitanoPreduzece.size()][zaglavlje.length];
 
         for (int i = 0; i < Preduzece.ucitanoPreduzece.size(); i++){
@@ -46,6 +52,8 @@ public class DispecerProzor extends JFrame {
             sadrzaj[i][0] = preduzece.getPIB();
             sadrzaj[i][1] = preduzece.getAdresa();
             sadrzaj[i][2] = preduzece.getNaziv();
+            sadrzaj[i][3] = preduzece.getCenaStartaVoznje();
+            sadrzaj[i][4] = preduzece.getCenaPoKilometru();
         }
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
@@ -74,6 +82,11 @@ public class DispecerProzor extends JFrame {
         voznje.addActionListener(e -> {
             VoznjaTabela VTabela = new VoznjaTabela();
             VTabela.setVisible(true);
+        });
+
+        statistikaVoznje.addActionListener(e -> {
+            StatistikaVoznje statistikaVoznje = new StatistikaVoznje();
+            statistikaVoznje.setVisible(true);
         });
 
         btnEdit.addActionListener(e -> {

@@ -14,8 +14,8 @@ public class Preduzece {
     private String PIB;
     private String naziv;
     private String adresa;
-    public double cenaStartaVoznje(){return 0;}
-    public double cenaPoKilometru(){return 0;}
+    private double CenaStartaVoznje;
+    private double CenaPoKilometru;
 
     public static ArrayList<Automobil> ucitaniAutomobili = io.ucitajAutomobil(automobiliTXT);
     public static ArrayList<Korisnik> ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
@@ -115,16 +115,71 @@ public class Preduzece {
         }return voznje;
     }
 
-    public Preduzece (){
-        PIB = "34343";
-        naziv ="dgfds";
-        adresa ="kjkdj";
+    public static ArrayList<Voznja> VoznjeTelefonom(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON)){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
     }
 
-    public Preduzece(String PIB, String naziv, String adresa) {
+    public static ArrayList<Voznja> VoznjeAplikacijom(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA)){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+
+    public static float prosecnoTrajanjeVoznji(){
+        float ukupnoTrajanjeVoznji = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            ukupnoTrajanjeVoznji += porudzbina.getTrajanjeVoznje();
+        }return ukupnoTrajanjeVoznji / ucitaneVoznje.size();
+    }
+
+    public static float prosecanBrojKM(){
+        float ukupanBrojPredjenihKM = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            ukupanBrojPredjenihKM += porudzbina.getBrojKM();
+        }return ukupanBrojPredjenihKM / ucitaneVoznje.size();
+    }
+
+    public static double ukupnaZarada(){
+        double ukupnaZarada = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            for (Preduzece cooltaxi: ucitanoPreduzece){
+                double cenaPoKm = cooltaxi.getCenaPoKilometru();
+                double cenaStarta = cooltaxi.getCenaStartaVoznje();
+                ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
+            }
+        }return ukupnaZarada;
+    }
+
+    public static double prosecnaZarada(){
+        double ukupnaZarada = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            for (Preduzece cooltaxi: ucitanoPreduzece){
+                double cenaPoKm = cooltaxi.getCenaPoKilometru();
+                double cenaStarta = cooltaxi.getCenaStartaVoznje();
+                ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
+            }
+        }return ukupnaZarada / ucitaneVoznje.size();
+    }
+
+    public Preduzece (){
+    }
+
+    public Preduzece(String PIB, String naziv, String adresa, String cenaStarta, String cenaPoKM) {
         this.PIB = PIB;
         this.naziv = naziv;
         this.adresa = adresa;
+        this.CenaStartaVoznje = Double.parseDouble(cenaStarta);
+        this.CenaPoKilometru = Double.parseDouble(cenaPoKM);
     }
 
     public String getPIB() {
@@ -151,9 +206,24 @@ public class Preduzece {
         this.adresa = adresa;
     }
 
+    public double getCenaStartaVoznje() {
+        return CenaStartaVoznje;
+    }
+
+    public void setCenaStartaVoznje(double CenaStartaVoznje) {
+        this.CenaStartaVoznje = CenaStartaVoznje;
+    }
+
+    public double getCenaPoKilometru() {
+        return CenaPoKilometru;
+    }
+
+    public void setCenaPoKilometru(double CenaPoKilometru) {
+        this.CenaPoKilometru = CenaPoKilometru;
+    }
 
     @Override
     public String toString() {
-        return PIB + "|" + naziv + "|" + adresa;
+        return PIB + "|" + naziv + "|" + adresa + "|" + CenaStartaVoznje + "|" + CenaPoKilometru;
     }
 }

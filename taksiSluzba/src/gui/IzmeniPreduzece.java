@@ -16,6 +16,10 @@ public class IzmeniPreduzece extends JFrame {
     private JTextField txtAdresa = new JTextField(20);
     private JLabel lblNaziv = new  JLabel("Naziv");
     private JTextField txtNaziv = new JTextField(20);
+    private JLabel lblCenaStarta = new  JLabel("Cena starta");
+    private JTextField txtCenaStarta = new JTextField(20);
+    private JLabel lblCenaPoKM = new  JLabel("Cena po km");
+    private JTextField txtCenaPoKM = new JTextField(20);
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
 
@@ -44,6 +48,10 @@ public class IzmeniPreduzece extends JFrame {
         add(txtAdresa);
         add(lblNaziv);
         add(txtNaziv);
+        add(lblCenaStarta);
+        add(txtCenaStarta);
+        add(lblCenaPoKM);
+        add(txtCenaPoKM);
         add(new JLabel());
         add(btnOk, "split 2");
         add(btnCancel);
@@ -54,9 +62,13 @@ public class IzmeniPreduzece extends JFrame {
             String PIB = txtPIB.getText().trim();
             String adresa = txtAdresa.getText().trim();
             String naziv = txtNaziv.getText().trim();
+            String cenaStarta = txtCenaStarta.getText().trim();
+            String cenaPoKM = txtCenaPoKM.getText().trim();
             preduzece.setPIB(PIB);
             preduzece.setAdresa(adresa);
             preduzece.setNaziv(naziv);
+            preduzece.setCenaStartaVoznje(Double.parseDouble(cenaStarta));
+            preduzece.setCenaPoKilometru(Double.parseDouble(cenaPoKM));
 
             io.sacuvajPreduzece(preduzeceTXT);
             IzmeniPreduzece.this.dispose();
@@ -72,5 +84,7 @@ public class IzmeniPreduzece extends JFrame {
         txtPIB.setText(preduzece.getPIB());
         txtAdresa.setText(preduzece.getAdresa());
         txtNaziv.setText(preduzece.getNaziv());
+        txtCenaStarta.setText(String.valueOf(preduzece.getCenaStartaVoznje()));
+        txtCenaPoKM.setText(String.valueOf(preduzece.getCenaPoKilometru()));
     }
 }

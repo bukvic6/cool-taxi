@@ -31,7 +31,9 @@ public class io {
                 String pib = lineSplit[0];
                 String adresa = lineSplit[1];
                 String ime = lineSplit[2];
-                Preduzece cooltaxi = new Preduzece(pib, adresa,ime);
+                String cenaStarta = lineSplit[3];
+                String cenaPoKm = lineSplit[4];
+                Preduzece cooltaxi = new Preduzece(pib, adresa, ime, cenaStarta, cenaPoKm);
                 preduzece.add(cooltaxi);
             } reader.close();
         }catch(IOException e){
@@ -39,6 +41,7 @@ public class io {
         }
         return preduzece;
     }
+
     public static void sacuvajPreduzece(String putanjaFajla) {
         try {
             File file = new File(putanjaFajla);

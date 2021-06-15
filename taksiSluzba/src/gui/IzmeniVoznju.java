@@ -101,7 +101,7 @@ public class IzmeniVoznju extends JFrame {
             porudzbina.setAdresaPolaska(adresaPolaska);
             porudzbina.setAdresaDestinacije(adresaDestinacije);
             porudzbina.setStatus(statusVoznje);
-            porudzbina.setTrajanjeVoznje(trajanjeVoznje);
+            porudzbina.setTrajanjeVoznje(Integer.parseInt(trajanjeVoznje));
             porudzbina.setBrojKM(Double.parseDouble(brojKM));
 //            porudzbina.setMusterija(musterija);
             porudzbina.setVozac(vozac);
@@ -124,7 +124,7 @@ public class IzmeniVoznju extends JFrame {
         txtAdresaPolaska.setText(porudzbina.getAdresaPolaska());
         txtAdresaDestinacije.setText(porudzbina.getAdresaDestinacije());
         txtStatusVoznje.setSelectedItem(porudzbina.getStatus());
-        txtTrajanjeVoznje.setText(porudzbina.getTrajanjeVoznje());
+        txtTrajanjeVoznje.setText(String.valueOf(porudzbina.getTrajanjeVoznje()));
         txtBrojKM.setText(String.valueOf(porudzbina.getBrojKM()));
         txtMusterija.setSelectedItem(porudzbina.getMusterija());
         txtVozac.setSelectedItem(porudzbina.getVozac());

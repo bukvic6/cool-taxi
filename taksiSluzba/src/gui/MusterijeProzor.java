@@ -42,7 +42,7 @@ public class MusterijeProzor extends JFrame {
         add(PIB);
         add(adresaSluzbe);
 
-        String [] zaglavlje = new String[]{"PIB", "Adresa","Ime"};
+        String [] zaglavlje = new String[]{"PIB", "Adresa", "Ime", "Cena starta voznje", "Cena po km"};
         Object[][] sadrzaj = new Object[Preduzece.ucitanoPreduzece.size()][zaglavlje.length];
 
         for (int i = 0; i < Preduzece.ucitanoPreduzece.size(); i++){
@@ -50,6 +50,8 @@ public class MusterijeProzor extends JFrame {
             sadrzaj[i][0] = preduzece.getPIB();
             sadrzaj[i][1] = preduzece.getAdresa();
             sadrzaj[i][2] = preduzece.getNaziv();
+            sadrzaj[i][3] = preduzece.getCenaStartaVoznje();
+            sadrzaj[i][4] = preduzece.getCenaPoKilometru();
         }
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
