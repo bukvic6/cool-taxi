@@ -149,6 +149,40 @@ public class Preduzece {
         }return ukupanBrojPredjenihKM / ucitaneVoznje.size();
     }
 
+    public static float prosecanBrojKMpoVoznji(){
+        float ukupanBrojPredjenihKM = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())) {
+            ukupanBrojPredjenihKM += porudzbina.getBrojKM();
+            }
+        }return ukupanBrojPredjenihKM / (getVoznjaTelefon().size() + getVoznjaAplikacija().size());
+    }
+    public static float ukupanBrojKm(){
+        float ukupanBrojPredjenihKM = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())) {
+                ukupanBrojPredjenihKM += porudzbina.getBrojKM();
+            }
+        }return ukupanBrojPredjenihKM;
+    }
+
+    public static float ukupnoTrajanjeVoznje(){
+        float ukupnoTrajanjeVoznje = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())) {
+                ukupnoTrajanjeVoznje += porudzbina.getTrajanjeVoznje();
+            }
+        }return ukupnoTrajanjeVoznje;
+    }
+    public static float prosecnoTrajanjeVoznje(){
+        float ukupnoTrajanjeVoznje = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())) {
+                ukupnoTrajanjeVoznje += porudzbina.getTrajanjeVoznje();
+            }
+        }return ukupnoTrajanjeVoznje / (getVoznjaTelefon().size() + getVoznjaAplikacija().size());
+    }
+
     public static double ukupnaZarada(){
         double ukupnaZarada = 0;
         for (Voznja porudzbina: ucitaneVoznje){
@@ -169,6 +203,30 @@ public class Preduzece {
                 ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
             }
         }return ukupnaZarada / ucitaneVoznje.size();
+    }
+
+    public static double ukupnaZaradaVozaca(){
+        double ukupnaZarada = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if(porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+            for (Preduzece cooltaxi: ucitanoPreduzece){
+                double cenaPoKm = cooltaxi.getCenaPoKilometru();
+                double cenaStarta = cooltaxi.getCenaStartaVoznje();
+                ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
+            }}
+        }return ukupnaZarada;
+    }
+
+    public static double prosecnaZaradaVozaca(){
+        double ukupnaZarada = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if(porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                for (Preduzece cooltaxi: ucitanoPreduzece){
+                double cenaPoKm = cooltaxi.getCenaPoKilometru();
+                double cenaStarta = cooltaxi.getCenaStartaVoznje();
+                ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
+            }}
+        }return ukupnaZarada  / (getVoznjaTelefon().size() + getVoznjaAplikacija().size());
     }
 
     public Preduzece (){
