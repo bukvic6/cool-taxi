@@ -23,10 +23,10 @@ public class IstorijaVoznjeMusterije extends JFrame {
 
     private void initMenu() {
         String[] zaglavlje = new String[]{"Tip porudzbine", "Broj porudzbine", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Status", "Trajanje voznje", "KM", "Musterija", "Vozac"};
-        Object[][] sadrzaj = new Object[Preduzece.ucitaneVoznje.size()][zaglavlje.length];
+        Object[][] sadrzaj = new Object[Preduzece.getSopstveneVoznjeZaKorisnika().size()][zaglavlje.length];
 
-        for (int i = 0; i < Preduzece.ucitaneVoznje.size(); i++) {
-            Voznja porudzbina = Preduzece.ucitaneVoznje.get(i);
+        for (int i = 0; i < Preduzece.getSopstveneVoznjeZaKorisnika().size(); i++) {
+            Voznja porudzbina = Preduzece.getSopstveneVoznjeZaKorisnika().get(i);
             if (!porudzbina.isObrisan() && porudzbina.getMusterija().equals(Preduzece.ulogovaniKorisnik.getKorisnickoIme())) {
                 sadrzaj[i][0] = porudzbina.getTipPorudzbine();
                 sadrzaj[i][1] = porudzbina.getId();

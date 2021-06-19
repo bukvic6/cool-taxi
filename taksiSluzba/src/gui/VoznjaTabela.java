@@ -6,6 +6,8 @@ import porudzbina.Voznja;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 import static cooltaxi.io.voznjaTXT;
@@ -54,6 +56,8 @@ public class VoznjaTabela extends JFrame {
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
+        TableRowSorter<TableModel> sortiranje =new TableRowSorter<TableModel>(tabela.getModel());
+        tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

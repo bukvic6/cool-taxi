@@ -94,6 +94,24 @@ public class Preduzece {
             }
         }return vozaci;
     }
+    public static ArrayList<Voznja> getSopstveneVoznje(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+    public static ArrayList<Voznja> getSopstveneVoznjeZaKorisnika(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getMusterija().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
 
     public static ArrayList<Voznja> getVoznjaTelefon(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
