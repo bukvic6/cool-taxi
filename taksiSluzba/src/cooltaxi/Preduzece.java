@@ -122,11 +122,29 @@ public class Preduzece {
             }
         }return voznje;
     }
+    public static ArrayList<Voznja> getVoznjaTelefonIzvestaj(String korisnickoIme){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) && porudzbina.getVozac().equals(korisnickoIme)){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
 
     public static ArrayList<Voznja> getVoznjaAplikacija(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: ucitaneVoznje){
             if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) && porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+    public static ArrayList<Voznja> getVoznjaAplikacijaIzvestaj(String korisnickoIme){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) && porudzbina.getVozac().equals(korisnickoIme)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
             }
@@ -245,6 +263,64 @@ public class Preduzece {
                 ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
             }}
         }return ukupnaZarada  / (getVoznjaTelefon().size() + getVoznjaAplikacija().size());
+    }
+    public static double getProsecnaZaradaPoVozacima(String korisnickoIme){
+        double prosecnaZarada = 0;
+        for(Voznja porudzbina: ucitaneVoznje){
+            if(porudzbina.getVozac().equals(korisnickoIme)){
+                for (Preduzece cooltaxi: ucitanoPreduzece){
+                    double cenaPoKm = cooltaxi.getCenaPoKilometru();
+                    double cenaStarta = cooltaxi.getCenaStartaVoznje();
+                    prosecnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
+                }}
+        }
+        return prosecnaZarada / (getVoznjaTelefonIzvestaj(korisnickoIme).size() + getVoznjaAplikacijaIzvestaj(korisnickoIme).size());
+    }
+    public static double getUkupnaZaradaPoVozacima(String korisnickoIme){
+        double prosecnaZarada = 0;
+        for(Voznja porudzbina: ucitaneVoznje){
+            if(porudzbina.getVozac().equals(korisnickoIme)){
+                for (Preduzece cooltaxi: ucitanoPreduzece){
+                    double cenaPoKm = cooltaxi.getCenaPoKilometru();
+                    double cenaStarta = cooltaxi.getCenaStartaVoznje();
+                    prosecnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
+                }}
+        }
+        return prosecnaZarada;
+    }
+    public static float ukupanBrojKmPoVozacima(String korisnickoIme){
+        float ukupanBrojPredjenihKM = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(korisnickoIme)) {
+                ukupanBrojPredjenihKM += porudzbina.getBrojKM();
+            }
+        }return ukupanBrojPredjenihKM;
+    }
+    public static float prosecanBrojKmPoVozacima(String korisnickoIme){
+        float ukupanBrojPredjenihKM = 0;
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getVozac().equals(korisnickoIme)) {
+                ukupanBrojPredjenihKM += porudzbina.getBrojKM();
+            }
+        }return ukupanBrojPredjenihKM  / (getVoznjaTelefonIzvestaj(korisnickoIme).size() + getVoznjaAplikacijaIzvestaj(korisnickoIme).size());
+    }
+    public static float ukupnoTrajanjeVoznjePoVozacima(String korisnickoIme) {
+        float ukupnoTrajanjeVoznje = 0;
+        for (Voznja porudzbina : ucitaneVoznje) {
+            if (porudzbina.getVozac().equals(korisnickoIme)) {
+                ukupnoTrajanjeVoznje += porudzbina.getTrajanjeVoznje();
+            }
+        }
+        return ukupnoTrajanjeVoznje;
+    }
+    public static float prosecnoTrajanjeVoznjePoVozacima(String korisnickoIme) {
+        float ukupnoTrajanjeVoznje = 0;
+        for (Voznja porudzbina : ucitaneVoznje) {
+            if (porudzbina.getVozac().equals(korisnickoIme)) {
+                ukupnoTrajanjeVoznje += porudzbina.getTrajanjeVoznje();
+            }
+        }
+        return ukupnoTrajanjeVoznje / (getVoznjaTelefonIzvestaj(korisnickoIme).size() + getVoznjaAplikacijaIzvestaj(korisnickoIme).size());
     }
 
     public Preduzece (){
