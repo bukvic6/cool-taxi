@@ -49,6 +49,38 @@ public class Preduzece {
         } return null;
     }
 
+    public static Vozaci pronadjiVozacaPoKorisnickomImenu(String korisnickoIme){
+        for (Vozaci vozac: getVozaci()) {
+            if (vozac.getKorisnickoIme().equals(korisnickoIme)) {
+                return vozac;
+            }
+        }return null;
+    }
+
+    public static Vozaci pronadjiVozacaPoPrezimenu(String prezime){
+        for (Vozaci vozac: getVozaci()) {
+            if (vozac.getPrezime().equals(prezime)) {
+                return vozac;
+            }
+        }return null;
+    }
+
+    public static Vozaci pronadjiVozacaPoPlati(double plata){
+        for (Vozaci vozac: getVozaci()) {
+            if (vozac.getPlata() == plata) {
+                return vozac;
+            }
+        }return null;
+    }
+
+    public static Vozaci pronadjiVozacaPoAutomobilu(String auto){
+        for (Vozaci vozac: getVozaci()) {
+            if (vozac.getTaksiBroj().equals(auto)) {
+                return vozac;
+            }
+        }return null;
+    }
+
     public static Korisnik login(String korisnickoIme, String lozinka) {
         ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
         for(Korisnik korisnik : ucitaniKorisnici) {

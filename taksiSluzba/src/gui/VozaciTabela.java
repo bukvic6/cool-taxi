@@ -19,6 +19,7 @@ public class VozaciTabela extends JFrame {
     private JButton btnAdd = new JButton("Dodaj");
     private JButton btnEdit = new JButton("Izmeni");
     private JButton btnDelete = new JButton("Obrisi");
+    private JButton btnPretraga = new JButton("Pretrazi");
 
     private DefaultTableModel tableModel;
     private JTable tabela;
@@ -36,6 +37,7 @@ public class VozaciTabela extends JFrame {
         mainToolbar.add(btnAdd);
         mainToolbar.add(btnEdit);
         mainToolbar.add(btnDelete);
+        mainToolbar.add(btnPretraga);
         add(mainToolbar, BorderLayout.NORTH);
         mainToolbar.setFloatable(false);
 
@@ -71,6 +73,10 @@ public class VozaciTabela extends JFrame {
     }
 
     private void initActions() {
+        btnPretraga.addActionListener(e -> {
+            PretragaVozaca pretragaVozaca = new PretragaVozaca();
+            pretragaVozaca.setVisible(true);
+        });
         
         btnDelete.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();

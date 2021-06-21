@@ -37,7 +37,7 @@ public class Loginprozor extends JFrame {
         add(btnOK, "split 2");
         add(btnCancel);
         txtKorisnickoIme.setText("mile");
-        pfPassword.setText("11111");
+        pfPassword.setText("mile");
     }
 
    public void initActions(){
