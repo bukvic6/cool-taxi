@@ -1,17 +1,13 @@
 package gui;
 
 import cooltaxi.Preduzece;
-import cooltaxi.io;
 import korisnici.Korisnik;
-import korisnici.Vozaci;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-
-import static cooltaxi.io.korisniciTXT;
 
 public class IzvestajOVozacima extends JFrame {
     private DefaultTableModel tableModel;
@@ -26,12 +22,13 @@ public class IzvestajOVozacima extends JFrame {
     }
 
     private void initMenu() {
-        String[] zaglavlje = new String[]{"vozac", "Broj voznji","Ukupna zarada","Prosecna zarada","ukupno Km","Prosecno Km","Ukupno trajanje voznje","Prosecno trajanej voznje"};
+        String[] zaglavlje = new String[]{"Vozac", "Broj voznji", "Ukupna zarada", "Prosecna zarada", "Ukupno km", "Prosecno km", "Ukupno trajanje voznje", "Prosecno trajanje voznje"};
         Object[][] sadrzaj = new Object[Preduzece.getVozaci().size()][zaglavlje.length];
 
         for (int i = 0; i < Preduzece.getVozaci().size(); i++) {
             Korisnik korisnik = Preduzece.getVozaci().get(i);
-            String ukupanBrVoznji = String.valueOf(Preduzece.getVoznjaAplikacijaIzvestaj(korisnik.getKorisnickoIme()).size() + Preduzece.getVoznjaTelefonIzvestaj(korisnik.getKorisnickoIme()).size());
+            String ukupanBrVoznji = String.valueOf(Preduzece.getVoznjaAplikacijaIzvestaj(korisnik.getKorisnickoIme()).size() +
+                    Preduzece.getVoznjaTelefonIzvestaj(korisnik.getKorisnickoIme()).size());
 
             sadrzaj[i][0] = korisnik.getKorisnickoIme();
             sadrzaj[i][1] = ukupanBrVoznji;
@@ -45,7 +42,7 @@ public class IzvestajOVozacima extends JFrame {
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
-        TableRowSorter<TableModel> sortiranje =new TableRowSorter<TableModel>(tabela.getModel());
+        TableRowSorter<TableModel> sortiranje = new TableRowSorter<TableModel>(tabela.getModel());
         tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);

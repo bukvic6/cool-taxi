@@ -17,9 +17,8 @@ public class GlavniProzor extends JFrame {
         } else if (ulogovani.getUloga().equals("vozac")) {
             VozacProzor vozacProzor = new VozacProzor();
             vozacProzor.setVisible(true);
-
         }else{
-
+            System.out.println("Nepostojeci tip korisnika");
         }
     }
 }

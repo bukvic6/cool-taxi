@@ -90,7 +90,6 @@ public class RezervacijaAplikacija extends JFrame {
             RezervacijaAplikacija.this.setVisible(false);
         });
     }
-
 }
 
 

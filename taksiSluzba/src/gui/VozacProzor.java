@@ -29,6 +29,7 @@ public class VozacProzor extends JFrame {
         initMenu();
         initActions();
     }
+
     private void initMenu() {
         setJMenuBar(mainMenu);
         mainMenu.add(korisniciMenu);
@@ -69,14 +70,17 @@ public class VozacProzor extends JFrame {
             IstorijaVoznjeVozac istorijaVoznje = new IstorijaVoznjeVozac();
             istorijaVoznje.setVisible(true);
         });
+
         voznjeAplikacija.addActionListener(e -> {
             VoznjeAplikacija istorijaVoznje = new VoznjeAplikacija();
             istorijaVoznje.setVisible(true);
         });
+
         voznjeTelefon.addActionListener(e -> {
             VoznjeTelefon istorijaVoznje = new VoznjeTelefon();
             istorijaVoznje.setVisible(true);
         });
+
         statistikaVoznje.addActionListener(e -> {
             StatistikaVozaca statistikaVozaca = new StatistikaVozaca();
             statistikaVozaca.setVisible(true);

@@ -85,8 +85,6 @@ public class IzmenaVoznjeVozac extends JFrame {
             StatusVoznje statusVoznje = (StatusVoznje) txtStatusVoznje.getSelectedItem();
             String trajanjeVoznje = txtTrajanjeVoznje.getText().trim();
             String brojKM = txtBrojKM.getText().trim();
-//            String musterija = String.valueOf(txtMusterija.getSelectedItem());
-//            String vozac = String.valueOf(txtVozac.getSelectedItem());
 
             porudzbina.setTipPorudzbine(tipPorudzbine);
             porudzbina.setId(Integer.parseInt(id));
@@ -96,8 +94,6 @@ public class IzmenaVoznjeVozac extends JFrame {
             porudzbina.setStatus(statusVoznje);
             porudzbina.setTrajanjeVoznje(Integer.parseInt(trajanjeVoznje));
             porudzbina.setBrojKM(Double.parseDouble(brojKM));
-//            porudzbina.setMusterija(musterija);
-//            porudzbina.setVozac(vozac);
 
             io.sacuvajVoznju(voznjaTXT);
             IzmenaVoznjeVozac.this.dispose();

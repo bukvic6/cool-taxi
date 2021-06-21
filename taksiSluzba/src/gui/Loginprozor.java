@@ -1,7 +1,6 @@
 package gui;
 
 import cooltaxi.Preduzece;
-import korisnici.Korisnik;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -16,9 +15,6 @@ public class Loginprozor extends JFrame {
     private JPasswordField pfPassword = new JPasswordField(20);
     private JButton btnOK = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
-
-
-    private Korisnik ulogovani;
 
     public Loginprozor() {
         setTitle("Prijava");
@@ -55,11 +51,13 @@ public class Loginprozor extends JFrame {
             String sifra = new String(pfPassword.getPassword()).trim();
 
             if(korisnickoIme.equals("") || sifra.equals("")) {
-                JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu", "greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu",
+                        "greska", JOptionPane.WARNING_MESSAGE);
             }else {
                 Preduzece.ulogovaniKorisnik = Preduzece.login(korisnickoIme, sifra);
                 if(Preduzece.ulogovaniKorisnik == null) {
-                    JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Pogrešni login podaci.",
+                            "Greška", JOptionPane.WARNING_MESSAGE);
                 }else {
                     Loginprozor.this.dispose();
                     Loginprozor.this.setVisible(false);

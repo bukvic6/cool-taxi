@@ -56,7 +56,7 @@ public class VoznjaTabela extends JFrame {
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
-        TableRowSorter<TableModel> sortiranje =new TableRowSorter<TableModel>(tabela.getModel());
+        TableRowSorter<TableModel> sortiranje = new TableRowSorter<TableModel>(tabela.getModel());
         tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
@@ -67,11 +67,13 @@ public class VoznjaTabela extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane, BorderLayout.CENTER);
     }
+
     private void initActions() {
         btnDelete.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if (selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             } else {
                 String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
                 Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
@@ -90,12 +92,14 @@ public class VoznjaTabela extends JFrame {
         btnEdit.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if(selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
                 String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
                 Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
                 if(porudzbina == null) {
-                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje", "Greska", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje",
+                            "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     IzmeniVoznju izmeniVoznju = new IzmeniVoznju(porudzbina);
                     izmeniVoznju.setVisible(true);

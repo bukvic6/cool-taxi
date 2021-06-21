@@ -9,7 +9,6 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 
-import static cooltaxi.io.automobiliTXT;
 import static cooltaxi.io.korisniciTXT;
 
 public class DodajIzmeniVozaca extends JFrame {
@@ -55,6 +54,7 @@ public class DodajIzmeniVozaca extends JFrame {
         setResizable(false);
         pack();
     }
+
     public void initGUI(){
         MigLayout layout = new MigLayout("wrap 2", "[][]","[][][][][][]20[]");
         setLayout(layout);

@@ -16,7 +16,6 @@ public class DispecerProzor extends JFrame {
     private JMenu sumiranaStatistika = new JMenu("Sumirana statistika");
     private JMenuItem statistikaVoznje = new JMenuItem("za voznje");
     private JMenuItem statistikaVozaca = new JMenuItem("za vozace");
-    private JMenuItem izvestajiOVozacima = new JMenuItem("Izvestaji o vozacima");
     private DefaultTableModel tableModel;
     private JTable tabela;
     private JToolBar mainToolbar = new JToolBar();
@@ -41,7 +40,6 @@ public class DispecerProzor extends JFrame {
         mainMenu.add(sumiranaStatistika);
         sumiranaStatistika.add(statistikaVoznje);
         sumiranaStatistika.add(statistikaVozaca);
-        sumiranaStatistika.add(izvestajiOVozacima);
         mainToolbar.add(btnEdit);
         add(mainToolbar, BorderLayout.SOUTH);
         mainToolbar.setFloatable(false);
@@ -90,7 +88,8 @@ public class DispecerProzor extends JFrame {
             StatistikaVoznje statistikaVoznje = new StatistikaVoznje();
             statistikaVoznje.setVisible(true);
         });
-        izvestajiOVozacima.addActionListener(e -> {
+
+        statistikaVozaca.addActionListener(e -> {
             IzvestajOVozacima izvestajOVozacima = new IzvestajOVozacima();
             izvestajOVozacima.setVisible(true);
         });

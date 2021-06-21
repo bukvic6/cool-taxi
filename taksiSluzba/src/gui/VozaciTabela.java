@@ -58,7 +58,7 @@ public class VozaciTabela extends JFrame {
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
-        TableRowSorter<TableModel> sortiranje =new TableRowSorter<TableModel>(tabela.getModel());
+        TableRowSorter<TableModel> sortiranje = new TableRowSorter<TableModel>(tabela.getModel());
         tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
@@ -75,7 +75,8 @@ public class VozaciTabela extends JFrame {
         btnDelete.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if (selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             } else {
                 String korisnickoIme = tableModel.getValueAt(selektovanRed, 1).toString();
                 Korisnik korisnik = Preduzece.pronadjiKorisnika(korisnickoIme);
@@ -99,12 +100,14 @@ public class VozaciTabela extends JFrame {
         btnEdit.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if(selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
                 String korisnickoIme = tableModel.getValueAt(selektovanRed, 1).toString();
                 Vozaci vozac = (Vozaci) Preduzece.pronadjiKorisnika(korisnickoIme);
                 if(vozac == null) {
-                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja automobila", "Greska", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja automobila",
+                            "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     DodajIzmeniVozaca izmenaVozaca = new DodajIzmeniVozaca(vozac);
                     izmenaVozaca.setVisible(true);

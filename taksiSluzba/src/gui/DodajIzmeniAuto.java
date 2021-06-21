@@ -68,31 +68,28 @@ public class DodajIzmeniAuto extends JFrame {
         add(btnCancel);
     }
     public void initActions() {
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnOk.addActionListener(e -> {
 
-                String BRVozila = txtBRVozila.getText().trim();
-                String Model = txtModel.getText().trim();
-                String Proizvodjac = txtProizvodjac.getText().trim();
-                String GodinaPro = txtGodinaProizvodnja.getText().trim();
-                String Registracija = txtRegistracija.getText().trim();
-                VrstaAutomobila vrstaAutomobila = (VrstaAutomobila) txtVrstaAutomobila.getSelectedItem();
-                if(automobil == null) {
-                    Automobil automobil = new Automobil(false, BRVozila, Model, Proizvodjac, GodinaPro, Registracija, vrstaAutomobila);
-                    Preduzece.ucitaniAutomobili.add(automobil);
-                }else {
-                    automobil.setBrojTaksiVozila(BRVozila);
-                    automobil.setModel(Model);
-                    automobil.setProizvodjac(Proizvodjac);
-                    automobil.setGodinaProizvodnje(GodinaPro);
-                    automobil.setRegistracija(Registracija);
-                    automobil.setTipAutomobila(vrstaAutomobila);
-                }
-                io.sacuvajAutomobile(automobiliTXT);
-                DodajIzmeniAuto.this.dispose();
-                DodajIzmeniAuto.this.setVisible(false);
+            String BRVozila = txtBRVozila.getText().trim();
+            String Model = txtModel.getText().trim();
+            String Proizvodjac = txtProizvodjac.getText().trim();
+            String GodinaPro = txtGodinaProizvodnja.getText().trim();
+            String Registracija = txtRegistracija.getText().trim();
+            VrstaAutomobila vrstaAutomobila = (VrstaAutomobila) txtVrstaAutomobila.getSelectedItem();
+            if(automobil == null) {
+                Automobil automobil = new Automobil(false, BRVozila, Model, Proizvodjac, GodinaPro, Registracija, vrstaAutomobila);
+                Preduzece.ucitaniAutomobili.add(automobil);
+            }else {
+                automobil.setBrojTaksiVozila(BRVozila);
+                automobil.setModel(Model);
+                automobil.setProizvodjac(Proizvodjac);
+                automobil.setGodinaProizvodnje(GodinaPro);
+                automobil.setRegistracija(Registracija);
+                automobil.setTipAutomobila(vrstaAutomobila);
             }
+            io.sacuvajAutomobile(automobiliTXT);
+            DodajIzmeniAuto.this.dispose();
+            DodajIzmeniAuto.this.setVisible(false);
         });
 
         btnCancel.addActionListener(e -> {

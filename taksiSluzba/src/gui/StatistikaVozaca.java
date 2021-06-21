@@ -63,5 +63,4 @@ public class StatistikaVozaca extends JFrame {
         add(txtProsecnaZarada);
         txtProsecnaZarada.setEditable(false);
     }
-
 }

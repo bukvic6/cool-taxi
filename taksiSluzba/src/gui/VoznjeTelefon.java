@@ -1,11 +1,12 @@
 package gui;
 
 import cooltaxi.Preduzece;
-import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class VoznjeTelefon extends JFrame {
@@ -50,6 +51,8 @@ public class VoznjeTelefon extends JFrame {
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
+        TableRowSorter<TableModel> sortiranje = new TableRowSorter<TableModel>(tabela.getModel());
+        tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -64,12 +67,14 @@ public class VoznjeTelefon extends JFrame {
         btnEdit.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if(selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
                 String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
                 Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
                 if(porudzbina == null) {
-                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje", "Greska", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje",
+                            "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     IzmenaVoznjeVozac izmeniVoznju = new IzmenaVoznjeVozac(porudzbina);
                     izmeniVoznju.setVisible(true);

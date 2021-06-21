@@ -9,8 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static cooltaxi.io.automobiliTXT;
 
@@ -54,10 +52,9 @@ public class AutomobiliTabela extends JFrame {
             }
         }
 
-
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
-        TableRowSorter<TableModel> sortiranje =new TableRowSorter<TableModel>(tabela.getModel());
+        TableRowSorter<TableModel> sortiranje = new TableRowSorter<TableModel>(tabela.getModel());
         tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
@@ -68,11 +65,13 @@ public class AutomobiliTabela extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane, BorderLayout.CENTER);
     }
+
     private void initActions() {
         btnDelete.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if (selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Odaberite red u tabeli",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             } else {
                 String registracija = tableModel.getValueAt(selektovanRed, 4).toString();
                 Automobil automobil = Preduzece.pronadjiAutomobil(registracija);
@@ -96,12 +95,14 @@ public class AutomobiliTabela extends JFrame {
         btnEdit.addActionListener(e -> {
             int selektovanRed = tabela.getSelectedRow();
             if(selektovanRed == -1) {
-                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.",
+                        "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
                 String brojTaksiVozila = tableModel.getValueAt(selektovanRed, 0).toString();
                 Automobil automobil = Preduzece.pronadjiAutomobil(brojTaksiVozila);
                 if(automobil == null) {
-                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja automobila", "Greska", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja automobila",
+                            "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     DodajIzmeniAuto IzmeniA = new DodajIzmeniAuto(automobil);
                     IzmeniA.setVisible(true);

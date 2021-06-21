@@ -75,8 +75,8 @@ public class RezervacijaTelefonom extends JFrame {
             String musterija = txtMusterija.getText().trim();
             String vozac = txtVozac.getText().trim();
 
-
-            Voznja porudzbina = new Voznja("false", String.valueOf(tipPorudzbine), id, vremePoruzbine, adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
+            Voznja porudzbina = new Voznja("false", String.valueOf(tipPorudzbine), id, vremePoruzbine,
+                    adresaPolaska, adresaDestinacije, String.valueOf(statusVoznje), trajanjeVoznje, brojKM, musterija, vozac);
             Preduzece.ucitaneVoznje.add(porudzbina);
 
             io.sacuvajVoznju(voznjaTXT);

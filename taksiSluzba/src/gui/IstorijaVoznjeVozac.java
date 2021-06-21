@@ -5,6 +5,8 @@ import porudzbina.Voznja;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class IstorijaVoznjeVozac extends JFrame {
@@ -22,10 +24,10 @@ public class IstorijaVoznjeVozac extends JFrame {
     private void initMenu() {
 
         String[] zaglavlje = new String[]{"Tip porudzbine", "Broj porudzbine", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Status", "Trajanje voznje", "KM", "Musterija", "Vozac"};
-        Object[][] sadrzaj = new Object[Preduzece.getSopstveneVoznje().size()][zaglavlje.length];
+        Object[][] sadrzaj = new Object[Preduzece.istorijaVoznjeVozac().size()][zaglavlje.length];
 
-        for (int i = 0; i < Preduzece.getSopstveneVoznje().size(); i++) {
-            Voznja porudzbina = Preduzece.getSopstveneVoznje().get(i);
+        for (int i = 0; i < Preduzece.istorijaVoznjeVozac().size(); i++) {
+            Voznja porudzbina = Preduzece.istorijaVoznjeVozac().get(i);
             if (!porudzbina.isObrisan() && porudzbina.getVozac().equals(Preduzece.ulogovaniKorisnik.getKorisnickoIme())) {
                 sadrzaj[i][0] = porudzbina.getTipPorudzbine();
                 sadrzaj[i][1] = porudzbina.getId();
@@ -42,6 +44,8 @@ public class IstorijaVoznjeVozac extends JFrame {
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavlje);
         tabela = new JTable(tableModel);
+        TableRowSorter<TableModel> sortiranje = new TableRowSorter<TableModel>(tabela.getModel());
+        tabela.setRowSorter(sortiranje);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

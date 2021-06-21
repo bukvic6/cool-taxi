@@ -37,7 +37,7 @@ public class IzmeniVoznju extends JFrame {
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
 
-    private final Voznja porudzbina;
+    private Voznja porudzbina;
 
     public IzmeniVoznju(Voznja porudzbina){
         this.porudzbina = porudzbina;
@@ -92,7 +92,6 @@ public class IzmeniVoznju extends JFrame {
             StatusVoznje statusVoznje = (StatusVoznje) txtStatusVoznje.getSelectedItem();
             String trajanjeVoznje = txtTrajanjeVoznje.getText().trim();
             String brojKM = txtBrojKM.getText().trim();
-//            String musterija = String.valueOf(txtMusterija.getSelectedItem());
             String vozac = String.valueOf(txtVozac.getSelectedItem());
 
             porudzbina.setTipPorudzbine(tipPorudzbine);
@@ -103,7 +102,6 @@ public class IzmeniVoznju extends JFrame {
             porudzbina.setStatus(statusVoznje);
             porudzbina.setTrajanjeVoznje(Integer.parseInt(trajanjeVoznje));
             porudzbina.setBrojKM(Double.parseDouble(brojKM));
-//            porudzbina.setMusterija(musterija);
             porudzbina.setVozac(vozac);
 
             io.sacuvajVoznju(voznjaTXT);
