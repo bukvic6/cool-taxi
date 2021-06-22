@@ -17,6 +17,7 @@ public class AutomobiliTabela extends JFrame {
     private JButton btnAdd = new JButton("Dodaj");
     private JButton btnEdit = new JButton("Izmeni");
     private JButton btnDelete = new JButton("Obrisi");
+    private JButton btnPretraga = new JButton("Pretraga");
 
     private DefaultTableModel tableModel;
     private JTable tabela;
@@ -34,6 +35,7 @@ public class AutomobiliTabela extends JFrame {
         mainToolbar.add(btnAdd);
         mainToolbar.add(btnEdit);
         mainToolbar.add(btnDelete);
+        mainToolbar.add(btnPretraga);
         add(mainToolbar, BorderLayout.NORTH);
         mainToolbar.setFloatable(false);
 
@@ -108,6 +110,10 @@ public class AutomobiliTabela extends JFrame {
                     IzmeniA.setVisible(true);
                 }
             }
+        });
+        btnPretraga.addActionListener(e -> {
+            PretragaAutomobila pretragaAutomobila = new PretragaAutomobila();
+            pretragaAutomobila.setVisible(true);
         });
 
     }

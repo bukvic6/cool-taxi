@@ -7,6 +7,7 @@ import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import java.util.ArrayList;
+import java.util.SplittableRandom;
 
 import static cooltaxi.io.*;
 
@@ -119,6 +120,19 @@ public class Preduzece {
                 return automobil;
             }
         } return null;
+    }
+    public static ArrayList<Automobil> pronadjiAutomobil(String model,String proizvodjac, String godinaProizvodnje,
+                                                         String registracija, String taxiBroj){
+        ArrayList<Automobil> pronadjeniAutomobili = new ArrayList<>();
+        for (Automobil automobil: ucitaniAutomobili) {
+            if ((model.equals("") || automobil.getModel().contains(model)) &&
+                    (proizvodjac.equals("") || automobil.getProizvodjac().contains(proizvodjac)) &&
+                    (godinaProizvodnje.equals("") || automobil.getGodinaProizvodnje().contains(godinaProizvodnje)) &&
+                    (registracija.equals("") || automobil.getRegistracija().contains(registracija)) &&
+                            (taxiBroj.equals("") || automobil.getBrojTaksiVozila().contains(taxiBroj)))  {
+                pronadjeniAutomobili.add(automobil);
+            }
+        }return pronadjeniAutomobili;
     }
 
     public static Voznja pronadjiPorudzbinu(String adresa){

@@ -1,4 +1,4 @@
-false|APLIKACIJA|100001|2021-05-18T19:07:30.803919100|Seljackih buna 69|Orlovica Pavla 14|KREIRANA_NA_CEKANJU|17|5.5|jovanaj|petarp
+false|APLIKACIJA|100001|2021-05-18T19:07:30.803919100|Seljackih buna 69|Orlovica Pavla 14|ZAVRSENA|25|6.0|jovanaj|petarp
 false|TELEFON|100002|2021-04-11T11:07:30.803919100|Nizijska 14|Gazimestanska 8a|PRIHVACENA|5|15.0|jovanaj|niki
 false|APLIKACIJA|100003|2021-06-14T18:07:30.803919100|Ulica br1 14|Ulica broj 2|KREIRANA|2|15.0|jovanaj|gaja
 false|APLIKACIJA|100004|2021-06-14T17:07:30.803919100|Bulevara Evrope|Bulevar Cara Lazara|DODELJENA|15|3.8|vlaki|gaja
