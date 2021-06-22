@@ -1,6 +1,5 @@
 package gui;
 
-import cooltaxi.Preduzece;
 import korisnici.Korisnik;
 import korisnici.Vozaci;
 

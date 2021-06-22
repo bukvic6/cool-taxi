@@ -48,7 +48,6 @@ public class PretragaVozaca extends JFrame {
         btnPretraga.addActionListener(e -> {
             ArrayList<Vozaci> pretrazenVozac = Preduzece.pronadjiVozaca(txtKorisnickoIme.getText(), txtPrezime.getText(),
                     Double.parseDouble(txtPlata.getText()), txtAuto.getText());
-            System.out.println(pretrazenVozac);
             PronadjenVozac pronadjenVozac1 = new PronadjenVozac(pretrazenVozac);
             pronadjenVozac1.setVisible(true);
         });

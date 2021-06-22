@@ -1,14 +1,14 @@
 false|APLIKACIJA|100001|2021-05-18T19:07:30.803919100|Seljackih buna 69|Orlovica Pavla 14|ZAVRSENA|25|6.0|jovanaj|petarp
 false|TELEFON|100002|2021-04-11T11:07:30.803919100|Nizijska 14|Gazimestanska 8a|PRIHVACENA|5|15.0|jovanaj|niki
 false|APLIKACIJA|100003|2021-06-14T18:07:30.803919100|Ulica br1 14|Ulica broj 2|KREIRANA|2|15.0|jovanaj|gaja
-false|APLIKACIJA|100004|2021-06-14T17:07:30.803919100|Bulevara Evrope|Bulevar Cara Lazara|DODELJENA|15|3.8|vlaki|gaja
+false|APLIKACIJA|100004|2021-06-14T17:07:30.803919100|Bulevara Evrope|Bulevar Cara Lazara|ZAVRSENA|15|3.8|vlaki|gaja
 false|TELEFON|100005|2021-06-14T17:07:30.803919100|Pavla Papa|Orlovica Pavla 14|KREIRANA_NA_CEKANJU|5|9.4|vlaki|niki
-false|TELEFON|100006|2021-05-29T17:07:30.803919100|Seljackih buna 93|Gazimestanska|ODBIJENA|25|17.6|vlaki|petarp
+false|TELEFON|100006|2021-05-29T17:07:30.803919100|Seljackih buna 93|Gazimestanska|ZAVRSENA|25|17.6|vlaki|petarp
 false|TELEFON|100007|2021-06-11T17:07:30.803919100|Kosancic Ivana|Orlovica Pavla 14|KREIRANA|20|4.0|straja|gaja
-false|APLIKACIJA|100008|2021-05-18T19:07:30.803919100|Seljackih buna 69|Orlovica Pavla 14|KREIRANA_NA_CEKANJU|17|5.5|straja|petarp
+false|APLIKACIJA|100008|2021-05-18T19:07:30.803919100|Seljackih buna 69|Orlovica Pavla 14|ZAVRSENA|17|5.5|straja|petarp
 false|TELEFON|100009|2021-05-16T11:07:30.803919100|Nizijska 14|Gazimestanska 8a|PRIHVACENA|5|15.0|straja|niki
 false|APLIKACIJA|100010|2021-06-20T18:07:30.803919100|Ulica br1 14|Ulica broj 2|KREIRANA|2|15.0|jovanaj|gaja
 false|TELEFON|100011|2021-06-21T17:07:30.803919100|Bulevara Evrope|Bulevar Cara Lazara|DODELJENA|15|3.8|vlaki|gaja
-false|APLIKACIJA|100012|2021-06-21T17:07:30.803919100|Pavla Papa|Orlovica Pavla 14|KREIRANA_NA_CEKANJU|5|9.4|straja|niki
-false|APLIKACIJA|100013|2021-06-21T19:57:30.803919100|Bulevar Evrope 20|Jovana Subotica|KREIRANA_NA_CEKANJU|25|17.6|vlaki|petarp
+false|APLIKACIJA|100012|2021-06-21T17:07:30.803919100|Pavla Papa|Orlovica Pavla 14|ZAVRSENA|5|9.4|straja|niki
+false|APLIKACIJA|100013|2021-06-21T19:57:30.803919100|Bulevar Evrope 20|Jovana Subotica|ZAVRSENA|25|17.6|vlaki|petarp
 false|TELEFON|100014|2021-06-21T20:07:30.425469100|Bate Brkica|Branimira Cosica 3|KREIRANA|20|4.0|straja|gaja

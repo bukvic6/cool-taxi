@@ -3,11 +3,11 @@ package cooltaxi;
 import automobili.Automobil;
 import korisnici.Korisnik;
 import korisnici.Vozaci;
+import porudzbina.StatusVoznje;
 import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
 import java.util.ArrayList;
-import java.util.SplittableRandom;
 
 import static cooltaxi.io.*;
 
@@ -121,6 +121,7 @@ public class Preduzece {
             }
         } return null;
     }
+
     public static ArrayList<Automobil> pronadjiAutomobil(String model,String proizvodjac, String godinaProizvodnje,
                                                          String registracija, String taxiBroj){
         ArrayList<Automobil> pronadjeniAutomobili = new ArrayList<>();
@@ -173,6 +174,16 @@ public class Preduzece {
         }return voznje;
     }
 
+    public static ArrayList<Voznja> zavrseneVoznje() {
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje) {
+            if (porudzbina.getStatus().equals(StatusVoznje.ZAVRSENA)){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+
     public static ArrayList<Voznja> getVoznjaTelefon(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: ucitaneVoznje){
@@ -187,7 +198,8 @@ public class Preduzece {
     public static ArrayList<Voznja> getVoznjaTelefonIzvestaj(String korisnickoIme){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: ucitaneVoznje){
-            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) && porudzbina.getVozac().equals(korisnickoIme)){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) &&
+                    porudzbina.getVozac().equals(korisnickoIme)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
             }
@@ -217,7 +229,7 @@ public class Preduzece {
 
     public static ArrayList<Voznja> VoznjeTelefonom(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
@@ -227,7 +239,7 @@ public class Preduzece {
 
     public static ArrayList<Voznja> VoznjeAplikacijom(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
@@ -237,16 +249,16 @@ public class Preduzece {
 
     public static float prosecnoTrajanjeVoznji(){
         float ukupnoTrajanjeVoznji = 0;
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             ukupnoTrajanjeVoznji += porudzbina.getTrajanjeVoznje();
-        }return ukupnoTrajanjeVoznji / ucitaneVoznje.size();
+        }return ukupnoTrajanjeVoznji / zavrseneVoznje().size();
     }
 
     public static float prosecanBrojKM(){
         float ukupanBrojPredjenihKM = 0;
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             ukupanBrojPredjenihKM += porudzbina.getBrojKM();
-        }return ukupanBrojPredjenihKM / ucitaneVoznje.size();
+        }return ukupanBrojPredjenihKM / zavrseneVoznje().size();
     }
 
     public static float prosecanBrojKMpoVoznji(){
@@ -287,7 +299,7 @@ public class Preduzece {
 
     public static double ukupnaZarada(){
         double ukupnaZarada = 0;
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             for (Preduzece cooltaxi: ucitanoPreduzece){
                 double cenaPoKm = cooltaxi.getCenaPoKilometru();
                 double cenaStarta = cooltaxi.getCenaStartaVoznje();
@@ -298,13 +310,13 @@ public class Preduzece {
 
     public static double prosecnaZarada(){
         double ukupnaZarada = 0;
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             for (Preduzece cooltaxi: ucitanoPreduzece){
                 double cenaPoKm = cooltaxi.getCenaPoKilometru();
                 double cenaStarta = cooltaxi.getCenaStartaVoznje();
                 ukupnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
             }
-        }return ukupnaZarada / ucitaneVoznje.size();
+        }return ukupnaZarada / zavrseneVoznje().size();
     }
 
     public static double ukupnaZaradaVozaca(){

@@ -2,7 +2,6 @@ package gui;
 
 import automobili.Automobil;
 import cooltaxi.Preduzece;
-import korisnici.Vozaci;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public class PretragaAutomobila extends JFrame {
     private JTextField txtModel = new JTextField(BROJ);
     private JLabel lblProizvodjac = new JLabel("Pretrazite automobil po proizvodjacu: ");
     private JTextField txtProizvodjac = new JTextField(BROJ);
-    private JLabel lblGodinaProiz = new JLabel("Pretrazite automobil po godini proizvodnje ");
+    private JLabel lblGodinaProiz = new JLabel("Pretrazite automobil po godini proizvodnje: ");
     private JTextField txtGodinaProiz = new JTextField(BROJ);
     private JLabel lblRegistracija = new JLabel("Pretrazite automobil po registraciji: ");
     private JTextField txtRegistracija = new JTextField(BROJ);
@@ -24,7 +23,7 @@ public class PretragaAutomobila extends JFrame {
     private JButton btnPretraga = new JButton("Pretrazi automobile");
 
     public PretragaAutomobila() {
-        setTitle("Pretraga vozaca");
+        setTitle("Pretraga automobila");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();

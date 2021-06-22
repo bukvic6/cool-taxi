@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class StatistikaVoznje extends JFrame {
     int broj = 15;
-    String ukupanBrVoznji = String.valueOf(Preduzece.ucitaneVoznje.size());
+    String ukupanBrVoznji = String.valueOf(Preduzece.zavrseneVoznje().size());
     String brVoznjiApp = String.valueOf(Preduzece.VoznjeAplikacijom().size());
     String brVoznjiTel = String.valueOf(Preduzece.VoznjeTelefonom().size());
     String trajanjeVoznje = String.valueOf(Preduzece.prosecnoTrajanjeVoznji());
