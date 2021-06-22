@@ -1,7 +1,6 @@
 package gui;
 
 import cooltaxi.Preduzece;
-import korisnici.Korisnik;
 import korisnici.Vozaci;
 import net.miginfocom.swing.MigLayout;
 
@@ -9,15 +8,15 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class PretragaVozaca extends JFrame {
-    int broj = 20;
+    int BROJ = 20;
     private JLabel lblKorisnickoIme = new JLabel("Pretrazite vozaca po korisnickom imenu: ");
-    private JTextField txtKorisnickoIme = new JTextField(broj);
+    private JTextField txtKorisnickoIme = new JTextField(BROJ);
     private JLabel lblPrezime = new JLabel("Pretrazite vozaca po prezimenu: ");
-    private JTextField txtPrezime = new JTextField(broj);
+    private JTextField txtPrezime = new JTextField(BROJ);
     private JLabel lblPlata = new JLabel("Pretrazite vozaca po plati: ");
-    private JTextField txtPlata = new JTextField(broj);
+    private JFormattedTextField txtPlata = new JFormattedTextField();
     private JLabel lblAuto = new JLabel("Pretrazite vozaca po automobilu: ");
-    private JTextField txtAuto = new JTextField(broj);
+    private JTextField txtAuto = new JTextField(BROJ);
     private JButton btnPretraga = new JButton("Pretrazi vozace");
 
     public PretragaVozaca() {
@@ -38,6 +37,8 @@ public class PretragaVozaca extends JFrame {
         add(txtPrezime);
         add(lblPlata);
         add(txtPlata);
+        txtPlata.setValue(Double.valueOf(0.0));
+        txtPlata.setColumns(BROJ);
         add(lblAuto);
         add(txtAuto);
         add(btnPretraga);
@@ -45,22 +46,11 @@ public class PretragaVozaca extends JFrame {
 
     private void initActions() {
         btnPretraga.addActionListener(e -> {
-            if (txtKorisnickoIme.getText().length() != 0) {
-                Vozaci pretrazeniKorisnik = Preduzece.pronadjiVozacaPoKorisnickomImenu(txtKorisnickoIme.getText());
-                System.out.print(pretrazeniKorisnik);
-            }
-            if (txtPrezime.getText().length() != 0) {
-                Vozaci pretrazeniKorisnik = Preduzece.pronadjiVozacaPoPrezimenu(txtPrezime.getText());
-                System.out.print(pretrazeniKorisnik);
-            }
-            if (txtPlata.getText().length() != 0) {
-                Vozaci pretrazeniKorisnik = Preduzece.pronadjiVozacaPoPlati(Double.parseDouble(txtPlata.getText()));
-                System.out.print(pretrazeniKorisnik);
-            }
-            if (txtAuto.getText().length() != 0) {
-                Vozaci pretrazeniKorisnik = Preduzece.pronadjiVozacaPoAutomobilu(txtAuto.getText());
-                System.out.print(pretrazeniKorisnik);
-            }
+            ArrayList<Vozaci> pretrazenVozac = Preduzece.pronadjiVozaca(txtKorisnickoIme.getText(), txtPrezime.getText(),
+                    Double.parseDouble(txtPlata.getText()), txtAuto.getText());
+            System.out.println(pretrazenVozac);
+            PronadjenVozac pronadjenVozac1 = new PronadjenVozac(pretrazenVozac);
+            pronadjenVozac1.setVisible(true);
         });
     }
 }

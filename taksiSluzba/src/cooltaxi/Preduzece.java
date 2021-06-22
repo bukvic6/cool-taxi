@@ -49,6 +49,18 @@ public class Preduzece {
         } return null;
     }
 
+    public static ArrayList<Vozaci> pronadjiVozaca(String korisnickoIme, String prezime, double plata, String auto){
+        ArrayList<Vozaci> pronadjeniVozaci = new ArrayList<>();
+        for (Vozaci vozac: getVozaci()) {
+            if ((korisnickoIme.equals("") || vozac.getKorisnickoIme().contains(korisnickoIme)) &&
+                    (prezime.equals("") || vozac.getPrezime().contains(prezime)) &&
+                        vozac.getPlata() >= plata &&
+                            (auto.equals("") || vozac.getTaksiBroj().contains(auto))) {
+                pronadjeniVozaci.add(vozac);
+            }
+        }return pronadjeniVozaci;
+    }
+
     public static Vozaci pronadjiVozacaPoKorisnickomImenu(String korisnickoIme){
         for (Vozaci vozac: getVozaci()) {
             if (vozac.getKorisnickoIme().equals(korisnickoIme)) {

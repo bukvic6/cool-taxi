@@ -46,7 +46,7 @@ public class RezervacijaAplikacija extends JFrame {
         setLayout(layout);
 
         txtTipPorudzbine.setSelectedItem(TipPorudzbine.APLIKACIJA);
-        txtID.setText("100003");
+        txtID.setText(String.valueOf(Preduzece.ucitaneVoznje.size() + 100001));
         txtVremePorudzbine.setText(String.valueOf(LocalDateTime.now()));
         add(lblAdresaPolaska);
         add(txtAdresaPolaska);
