@@ -7,9 +7,7 @@ import porudzbina.StatusVoznje;
 import porudzbina.TipPorudzbine;
 import porudzbina.Voznja;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static cooltaxi.io.*;
@@ -67,7 +65,6 @@ public class Preduzece {
 
     public static ArrayList<Voznja> pronadjiVoznju(LocalDateTime prvi, LocalDateTime drugi, String korisnickoIme){
         ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
-
         for (Voznja voznja: zavrseneVoznje()) {
             if (voznja.getVremePorudzbine().isAfter(prvi) && voznja.getVremePorudzbine().isBefore(drugi)
                     && voznja.getVozac().equals(korisnickoIme)){
@@ -76,6 +73,14 @@ public class Preduzece {
         }return pronadjeneVoznje;
     }
 
+    public static ArrayList<Voznja> pronadjiVoznju(LocalDateTime prvi, LocalDateTime drugi){
+        ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
+        for (Voznja voznja: zavrseneVoznje()) {
+            if (voznja.getVremePorudzbine().isAfter(prvi) && voznja.getVremePorudzbine().isBefore(drugi)){
+                pronadjeneVoznje.add(voznja);
+            }
+        }return pronadjeneVoznje;
+    }
 
     public static Vozaci pronadjiVozacaPoKorisnickomImenu(String korisnickoIme){
         for (Vozaci vozac: getVozaci()) {

@@ -2,8 +2,12 @@ package gui;
 
 import cooltaxi.Preduzece;
 import net.miginfocom.swing.MigLayout;
+import porudzbina.Voznja;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class StatistikaVoznje extends JFrame {
     int broj = 15;
@@ -14,6 +18,11 @@ public class StatistikaVoznje extends JFrame {
     String brojKM = String.valueOf(Preduzece.prosecanBrojKM());
     String ukupnaZarada = String.valueOf(Preduzece.ukupnaZarada());
     String prosecnaZarada = String.valueOf(Preduzece.prosecnaZarada());
+    private JLabel lblPrviDatum = new JLabel("Unesite datum (yyyy-mm-ddThh:mm:ss) od: ");
+    private JTextField txtPrviDatum = new JTextField(broj);
+    private JLabel lblDrugiDatum = new JLabel("Unesite datum (yyyy-mm-ddThh:mm:ss) do: ");
+    private JTextField txtDrugiDatum = new JTextField(broj);
+    private JButton btnPretraga = new JButton("pretrazi");
     private JLabel lblSveVoznje = new JLabel("Ukupan broj voznji: ");
     private JTextField txtUkupanBrojVoznji = new JTextField(ukupanBrVoznji, broj);
     private JLabel lblVoznjeApp = new JLabel("Broj voznji putem aplikacije: ");
@@ -34,12 +43,18 @@ public class StatistikaVoznje extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();
+        initActions();
         pack();
     }
 
     public void initGUI(){
         MigLayout mig = new MigLayout("wrap 2", "[][]","[]10[][]10[]");
         setLayout(mig);
+        add(lblPrviDatum);
+        add(txtPrviDatum);
+        add(lblDrugiDatum);
+        add(txtDrugiDatum);
+        add(btnPretraga, "span 2");
         add(lblSveVoznje);
         add(txtUkupanBrojVoznji);
         txtUkupanBrojVoznji.setEditable(false);
@@ -61,5 +76,21 @@ public class StatistikaVoznje extends JFrame {
         add(lblProsecnaZarada);
         add(txtProsecnaZarada);
         txtProsecnaZarada.setEditable(false);
+    }
+
+    private void initActions(){
+        btnPretraga.addActionListener(e -> {
+            try{
+                LocalDateTime prvi1 = LocalDateTime.parse(txtPrviDatum.getText());
+                LocalDateTime drugi1 = LocalDateTime.parse(txtDrugiDatum.getText());
+                ArrayList<Voznja> pronadjiVoznju = Preduzece.pronadjiVoznju(prvi1, drugi1);
+                System.out.println(pronadjiVoznju);
+                PronadjeneVoznjeDispecer pronadjeneVoznje = new PronadjeneVoznjeDispecer(pronadjiVoznju);
+                pronadjeneVoznje.setVisible(true);
+            }
+            catch(DateTimeParseException ex) {
+                System.out.println(ex.getMessage());
+            };
+        });
     }
 }

@@ -5,14 +5,9 @@ import net.miginfocom.swing.MigLayout;
 import porudzbina.Voznja;
 
 import javax.swing.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static cooltaxi.Preduzece.ulogovaniKorisnik;
 
@@ -27,16 +22,16 @@ public class StatistikaVozaca extends JFrame {
     String prosecnoTrajanjeVoznje = String.valueOf(Preduzece.prosecnoTrajanjeVoznje());
     String ukupnaZarada = String.valueOf(Preduzece.ukupnaZaradaVozaca());
     String prosecnaZarada = String.valueOf(Preduzece.prosecnaZaradaVozaca());
-    private JLabel lblPrviDatum = new JLabel("Statistika od: ");
+    private JLabel lblPrviDatum = new JLabel("Unesite datum (yyyy-mm-ddThh:mm:ss) od: ");
     private JTextField txtPrviDatum = new JTextField(broj);
-    private JLabel lblDrugiDatum = new JLabel("do: ");
+    private JLabel lblDrugiDatum = new JLabel("Unesite datum (yyyy-mm-ddThh:mm:ss) do: ");
     private JTextField txtDrugiDatum = new JTextField(broj);
     private JButton pretrazi = new JButton("pretrazi");
     private JLabel lblSveVoznje = new JLabel("Ukupan broj voznji: ");
     private JTextField txtUkupanBrojVoznji = new JTextField(ukupanBrVoznji, broj);
     private JLabel lblProsekKmpoVoznji = new JLabel("Prosecan broj km po voznji: ");
     private JTextField txtprosekKmpoVoznji = new JTextField(prosekKmpoVoznji, broj);
-    private JLabel lblUkupanBrojKm = new JLabel("Broj voznji putem telefona: ");
+    private JLabel lblUkupanBrojKm = new JLabel("Ukupan broj km: ");
     private JTextField txtUkupanBrojKm = new JTextField(brPredjenihKm, broj);
     private JLabel lblTrajanjeVoznje = new JLabel("Ukupno trajanje voznje: ");
     private JTextField txtTrajanjeVoznji = new JTextField(trajanjeVoznje, broj);
@@ -46,8 +41,6 @@ public class StatistikaVozaca extends JFrame {
     private JTextField txtUkupnaZarada = new JTextField(ukupnaZarada, broj);
     private JLabel lblProsecnaZarada = new JLabel("Prosecna zarada po voznji: ");
     private JTextField txtProsecnaZarada = new JTextField(prosecnaZarada, broj);
-
-
 
     public StatistikaVozaca() {
         setTitle("Sumirana statistika voznji");
@@ -65,7 +58,7 @@ public class StatistikaVozaca extends JFrame {
         add(txtPrviDatum);
         add(lblDrugiDatum);
         add(txtDrugiDatum);
-        add(pretrazi);
+        add(pretrazi, "span 2");
         add(lblSveVoznje);
         add(txtUkupanBrojVoznji);
         txtUkupanBrojVoznji.setEditable(false);
@@ -88,6 +81,7 @@ public class StatistikaVozaca extends JFrame {
         add(txtProsecnaZarada);
         txtProsecnaZarada.setEditable(false);
     }
+
     private void initActions(){
         pretrazi.addActionListener(e -> {
             try{
@@ -95,14 +89,12 @@ public class StatistikaVozaca extends JFrame {
                 LocalDateTime drugi1 = LocalDateTime.parse(txtDrugiDatum.getText());
                 ArrayList<Voznja> pronadjiVoznju = Preduzece.pronadjiVoznju(prvi1,drugi1, ulogovaniKorisnik.getKorisnickoIme());
                 System.out.println(pronadjiVoznju);
-                PronadjeneVoznje pronadjeneVoznje = new PronadjeneVoznje(pronadjiVoznju);
+                PronadjeneVoznjeVozac pronadjeneVoznje = new PronadjeneVoznjeVozac(pronadjiVoznju);
                 pronadjeneVoznje.setVisible(true);
             }
             catch(DateTimeParseException ex) {
                 System.out.println(ex.getMessage());
             };
-
-
         });
     }
 }
