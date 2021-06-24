@@ -111,6 +111,7 @@ public class AutomobiliTabela extends JFrame {
                 }
             }
         });
+
         btnPretraga.addActionListener(e -> {
             PretragaAutomobila pretragaAutomobila = new PretragaAutomobila();
             pretragaAutomobila.setVisible(true);

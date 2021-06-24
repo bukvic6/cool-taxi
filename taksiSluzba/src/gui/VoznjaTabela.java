@@ -75,12 +75,12 @@ public class VoznjaTabela extends JFrame {
                 JOptionPane.showMessageDialog(null, "Odaberite red u tabeli",
                         "Greska", JOptionPane.WARNING_MESSAGE);
             } else {
-                String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
-                Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
+                String id = tableModel.getValueAt(selektovanRed, 1).toString();
+                Voznja porudzbina = Preduzece.pronadjiPorudzbinu(Integer.parseInt(id));
 
                 int izbor = JOptionPane.showConfirmDialog(null,
                         "Da li ste sigurni da zelite da obrisete voznju?",
-                        adresa + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+                        id + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
                 if (izbor == JOptionPane.YES_OPTION) {
                     porudzbina.setObrisan(true);
                     tableModel.removeRow(selektovanRed);
@@ -95,8 +95,8 @@ public class VoznjaTabela extends JFrame {
                 JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.",
                         "Greska", JOptionPane.WARNING_MESSAGE);
             }else {
-                String adresa = tableModel.getValueAt(selektovanRed, 3).toString();
-                Voznja porudzbina = Preduzece.pronadjiPorudzbinu(adresa);
+                String id = tableModel.getValueAt(selektovanRed, 1).toString();
+                Voznja porudzbina = Preduzece.pronadjiPorudzbinu(Integer.parseInt(id));
                 if(porudzbina == null) {
                     JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje",
                             "Greska", JOptionPane.WARNING_MESSAGE);

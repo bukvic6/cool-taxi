@@ -124,9 +124,9 @@ public class Preduzece {
         }return pronadjeniAutomobili;
     }
 
-    public static Voznja pronadjiPorudzbinu(String adresa){
+    public static Voznja pronadjiPorudzbinu(int id){
         for (Voznja porudzbina: ucitaneVoznje){
-            if (porudzbina.getAdresaPolaska().equals(adresa)){
+            if (porudzbina.getId() == id){
                 return porudzbina;
             }
         } return null;
@@ -183,9 +183,31 @@ public class Preduzece {
         }return voznje;
     }
 
+    public static ArrayList<Voznja> voznjaTelefon(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) &&
+                    porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+
     public static ArrayList<Voznja> getVoznjaAplikacija(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: zavrseneVoznje()){
+            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) &&
+                    porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                Voznja voznja = porudzbina;
+                voznje.add(voznja);
+            }
+        }return voznje;
+    }
+
+    public static ArrayList<Voznja> voznjaAplikacija(){
+        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+        for (Voznja porudzbina: ucitaneVoznje){
             if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) &&
                     porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
                 Voznja voznja = porudzbina;

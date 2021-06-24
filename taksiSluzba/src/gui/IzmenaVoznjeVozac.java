@@ -60,7 +60,8 @@ public class IzmenaVoznjeVozac extends JFrame {
         if(porudzbina != null) {
             popuniPolja();
         }
-        
+
+        txtVremePorudzbine.setText(String.valueOf(LocalDateTime.now()));
         add(lblStatus);
         add(txtStatusVoznje);
         add(lblTrajanjeVoznje);

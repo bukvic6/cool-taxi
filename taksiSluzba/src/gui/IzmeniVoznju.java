@@ -72,7 +72,6 @@ public class IzmeniVoznju extends JFrame {
             popuniPolja();
         }
 
-        txtID.setText("100003");
         add(lblStatus);
         add(txtStatusVoznje);
         add(lblVozac);

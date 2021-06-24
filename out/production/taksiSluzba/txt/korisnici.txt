@@ -1,8 +1,9 @@
-false|vozac|2603998905069|niki|niki|Nikola|Krstin|Bulevar Evrope|MUSKI|0633293829|1|350.0|A23
-false|vozac|2603998905123|gaja|gaja|Andrej|Gajic|Nizijska 12|MUSKI|0633293829|1|500.0|A12
+false|vozac|2603998905069|niki|niki|Nikola|Krstin|Bulevar Evrope|MUSKI|0633293829|12|350.0|A23
+false|vozac|2603998905123|gaja|gaja|Andrej|Gajic|Stevana Dejanova|MUSKI|0633293829|1|450.0|A12
 false|musterija|2005998805045|jovanaj|jovanaj|Jovana|Jovanovic|Seljackih Buna 23|ZENSKI|0613939329
 false|dispecer|1403998305034|mile|mile|Milan|Milanovic|Durmitorska 12|MUSKI|0623938921|1|450.0|ODELJENJE_ZA_PRIJEM_VOZNJE
 false|dispecer|1403998305034|mrki|mrki|Nebojsa|Dimitrijevic|ulica 1|MUSKI|0623938921|2|400.0|ODELJENJE_ZA_PRIJEM_VOZNJE
-false|vozac|2603998905078|petarp|petarp|Petar|Petrovic|Nizijska 12|MUSKI|0633293829|1|500.0|A12
+false|vozac|2603998905078|petarp|petarp|Petar|Petrovic|Nizijska 12|MUSKI|0633293829|2|500.0|A21
 false|musterija|2005998802345|vlaki|vlaki|Vladica|Jeremic|Orlovica Pavla|ZENSKI|0613969329
 false|musterija|2005998804345|straja|straja|Strahinja|Mijatovic|Bulevar Kneza Milosa|MUSKI|0643981329
+false|vozac|2603999905123|kalu|kalu|Luka|Tubin|Stefana Prvovencanog|MUSKI|0641234567|3|400.0|A31
