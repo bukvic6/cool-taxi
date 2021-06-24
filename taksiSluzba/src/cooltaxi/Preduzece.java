@@ -82,38 +82,6 @@ public class Preduzece {
         }return pronadjeneVoznje;
     }
 
-    public static Vozaci pronadjiVozacaPoKorisnickomImenu(String korisnickoIme){
-        for (Vozaci vozac: getVozaci()) {
-            if (vozac.getKorisnickoIme().equals(korisnickoIme)) {
-                return vozac;
-            }
-        }return null;
-    }
-
-    public static Vozaci pronadjiVozacaPoPrezimenu(String prezime){
-        for (Vozaci vozac: getVozaci()) {
-            if (vozac.getPrezime().equals(prezime)) {
-                return vozac;
-            }
-        }return null;
-    }
-
-    public static Vozaci pronadjiVozacaPoPlati(double plata){
-        for (Vozaci vozac: getVozaci()) {
-            if (vozac.getPlata() == plata) {
-                return vozac;
-            }
-        }return null;
-    }
-
-    public static Vozaci pronadjiVozacaPoAutomobilu(String auto){
-        for (Vozaci vozac: getVozaci()) {
-            if (vozac.getTaksiBroj().equals(auto)) {
-                return vozac;
-            }
-        }return null;
-    }
-
     public static Korisnik login(String korisnickoIme, String lozinka) {
         ucitaniKorisnici = io.ucitajKorisnike(korisniciTXT);
         for(Korisnik korisnik : ucitaniKorisnici) {
@@ -215,17 +183,6 @@ public class Preduzece {
         }return voznje;
     }
 
-    public static ArrayList<Voznja> getVoznjaTelefonIzvestaj(String korisnickoIme){
-        ArrayList<Voznja> voznje = new ArrayList<Voznja>();
-        for (Voznja porudzbina: zavrseneVoznje()){
-            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) &&
-                    porudzbina.getVozac().equals(korisnickoIme)){
-                Voznja voznja = porudzbina;
-                voznje.add(voznja);
-            }
-        }return voznje;
-    }
-
     public static ArrayList<Voznja> getVoznjaAplikacija(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: zavrseneVoznje()){
@@ -237,10 +194,10 @@ public class Preduzece {
         }return voznje;
     }
 
-    public static ArrayList<Voznja> getVoznjaAplikacijaIzvestaj(String korisnickoIme){
+    public static ArrayList<Voznja> getBrojVoznji(String korisnickoIme){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: zavrseneVoznje()){
-            if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) && porudzbina.getVozac().equals(korisnickoIme)){
+            if (porudzbina.getVozac().equals(korisnickoIme)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
             }
@@ -373,7 +330,7 @@ public class Preduzece {
                     prosecnaZarada += ((porudzbina.getBrojKM() * cenaPoKm) + cenaStarta);
                 }}
         }
-        return prosecnaZarada / (getVoznjaTelefonIzvestaj(korisnickoIme).size() + getVoznjaAplikacijaIzvestaj(korisnickoIme).size());
+        return prosecnaZarada / getBrojVoznji(korisnickoIme).size();
     }
 
     public static double getUkupnaZaradaPoVozacima(String korisnickoIme){
@@ -404,7 +361,7 @@ public class Preduzece {
             if (porudzbina.getVozac().equals(korisnickoIme)) {
                 ukupanBrojPredjenihKM += porudzbina.getBrojKM();
             }
-        }return ukupanBrojPredjenihKM  / (getVoznjaTelefonIzvestaj(korisnickoIme).size() + getVoznjaAplikacijaIzvestaj(korisnickoIme).size());
+        }return ukupanBrojPredjenihKM  / getBrojVoznji(korisnickoIme).size();
     }
 
     public static float ukupnoTrajanjeVoznjePoVozacima(String korisnickoIme) {
@@ -424,7 +381,7 @@ public class Preduzece {
                 ukupnoTrajanjeVoznje += porudzbina.getTrajanjeVoznje();
             }
         }
-        return ukupnoTrajanjeVoznje / (getVoznjaTelefonIzvestaj(korisnickoIme).size() + getVoznjaAplikacijaIzvestaj(korisnickoIme).size());
+        return ukupnoTrajanjeVoznje / getBrojVoznji(korisnickoIme).size();
     }
 
     public Preduzece (){
