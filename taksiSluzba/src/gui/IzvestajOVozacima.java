@@ -82,8 +82,7 @@ public class IzvestajOVozacima extends JFrame {
             try{
                 LocalDateTime prvi1 = LocalDateTime.parse(txtPrviDatum.getText());
                 LocalDateTime drugi1 = LocalDateTime.parse(txtDrugiDatum.getText());
-                ArrayList<Voznja> pronadjiVoznju = Preduzece.pronadjiVoznju(prvi1,drugi1);
-                System.out.println(pronadjiVoznju);
+                ArrayList<Voznja> pronadjiVoznju = Preduzece.pronadjiVoznju(prvi1, drugi1);
                 PretragaIzvestajaOVozacima pronadjeneVoznje = new PretragaIzvestajaOVozacima(pronadjiVoznju);
                 pronadjeneVoznje.setVisible(true);
             }

@@ -84,7 +84,6 @@ public class StatistikaVoznje extends JFrame {
                 LocalDateTime prvi1 = LocalDateTime.parse(txtPrviDatum.getText());
                 LocalDateTime drugi1 = LocalDateTime.parse(txtDrugiDatum.getText());
                 ArrayList<Voznja> pronadjiVoznju = Preduzece.pronadjiVoznju(prvi1, drugi1);
-                System.out.println(pronadjiVoznju);
                 PronadjeneVoznjeDispecer pronadjeneVoznje = new PronadjeneVoznjeDispecer(pronadjiVoznju);
                 pronadjeneVoznje.setVisible(true);
             }

@@ -144,7 +144,7 @@ public class Preduzece {
 
     public static ArrayList<Voznja> istorijaVoznjeVozac(){
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
-        for (Voznja porudzbina: ucitaneVoznje){
+        for (Voznja porudzbina: zavrseneVoznje()){
             if (porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
@@ -187,7 +187,8 @@ public class Preduzece {
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: ucitaneVoznje){
             if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.TELEFON) &&
-                    porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                    porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme()) &&
+                    !porudzbina.getStatus().equals(StatusVoznje.ZAVRSENA)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
             }
@@ -209,7 +210,8 @@ public class Preduzece {
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for (Voznja porudzbina: ucitaneVoznje){
             if (porudzbina.getTipPorudzbine().equals(TipPorudzbine.APLIKACIJA) &&
-                    porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme())){
+                    porudzbina.getVozac().equals(ulogovaniKorisnik.getKorisnickoIme()) &&
+                    !porudzbina.getStatus().equals(StatusVoznje.ZAVRSENA)){
                 Voznja voznja = porudzbina;
                 voznje.add(voznja);
             }
